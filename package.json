@@ -4,11 +4,14 @@
   "description": "Accessibility testing for ecommerce sites using Puppeteer and axe-core",
   "type": "module",
   "scripts": {
-    "start": "node --import tsx ./src/run.ts"
+    "axe": "node --import tsx ./src/runAxe.ts",
+    "report": "node --import tsx ./src/generateReport.ts",
+    "start": "npm run axe && npm run report"
   },
   "dependencies": {
     "@axe-core/puppeteer": "^4.10.1",
     "puppeteer": "24.7.2",
+    "puppeteer-autoscroll-down": "^2.0.0",
     "puppeteer-extra": "^3.3.6",
     "puppeteer-extra-plugin-stealth": "^2.11.2"
   },
