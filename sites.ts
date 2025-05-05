@@ -16,7 +16,7 @@ export const sites = {
     // "saturn.de": "https://www.saturn.de",
     // "bol.nl": "https://www.bol.com/nl/nl/",
     // "zalando.de": "https://www.zalando.de",
-    "aboutyou.de": "https://www.aboutyou.de",
+    "aboutyou.de": "https://en.aboutyou.de",
   },
   "product list": {
     // "galaxus.de": "https://www.galaxus.de/de/s1/producttype/smartphone-24",

@@ -196,15 +196,7 @@ function generateHTMLTable(
     <table>
       <tr>
         <th style="text-align: left;">Site</th>
-        ${allPages
-          .map((page) =>
-            deviceKeys.length > 1
-              ? deviceKeys
-                  .map((device) => `<th>${page} (${device})</th>`)
-                  .join("")
-              : `<th>${page}</th>`
-          )
-          .join("")}
+        ${allPages.map((page) => `<th>${page}</th>`).join("")}
       </tr>
 `;
   for (const site of sitesInOrder) {
@@ -214,9 +206,15 @@ function generateHTMLTable(
       data[siteKey]?.url || sites.home[site] || `https://${displaySite}`;
     html += `    <tr>\n      <td><a class="site-link" href="${siteUrl}" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=${site}&sz=48" alt="" style="width:20px;height:20px;vertical-align:middle;margin-right:8px;object-fit:contain;">${displaySite}</a></td>\n`;
     for (const page of allPages) {
+      html += '<td class="score-cell">';
+      let first = true;
       for (const device of deviceKeys) {
+        if (!first) {
+          html +=
+            '<div style="height:1px;width:100%;background:#e0e0e0;margin:24px 0 24px 0;"></div>';
+        }
+        first = false;
         const score = data[siteKey]?.pages[page.toLowerCase()]?.[device];
-
         // Try to get the page URL from the report data (use correct reportsDir)
         let pageUrl = "";
         try {
@@ -231,20 +229,87 @@ function generateHTMLTable(
             }
           }
         } catch {}
+        // Screenshot filename: [site]_[pageType]_[viewport].png
+        const screenshotFilename = `${site}_${page.replace(
+          / /g,
+          "_"
+        )}_${device.toLowerCase()}.png`;
+        const screenshotPath = path.join(reportsDir, screenshotFilename);
+        let screenshotHtml = "";
+        if (fs.existsSync(screenshotPath)) {
+          const relScreenshot = screenshotFilename;
+          screenshotHtml = `<div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="${relScreenshot}"><img src="${relScreenshot}" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div>`;
+        }
+        const vp = viewports[device.toUpperCase()];
+        const labelText = vp
+          ? `<strong>${device}</strong> <br/>(${vp.width}x${vp.height})`
+          : device;
+        const label = `<div style="font-size:11px;color:#888;margin:16px 0 16px 0;">${labelText}</div>`;
         if (score !== undefined && pageUrl) {
-          html += `<td class="score-cell"><a href="${pageUrl}" target="_blank" rel="noopener">${getGaugeSVG(
+          html += `<div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;">`;
+          html += `<a href="${pageUrl}" target="_blank" rel="noopener">${getGaugeSVG(
             score
-          )}</a></td>`;
+          )}</a>${label}${screenshotHtml}`;
+          html += `</div>`;
         } else if (score !== undefined) {
-          html += `<td class="score-cell">${getGaugeSVG(score)}</td>`;
+          html += `<div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;">`;
+          html += `${getGaugeSVG(score)}${label}${screenshotHtml}`;
+          html += `</div>`;
         } else {
-          html += `<td class="score-cell">N/A</td>`;
+          html += `<div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;color:#bbb;margin:0 auto;">N/A</div>`;
         }
       }
+      html += "</td>";
     }
     html += "</tr>\n";
   }
-  html += `    </table>\n  </div>\n</body>\n</html>`;
+  html += `    </table>
+  </div>
+
+  <!-- Accessible Lightbox Modal -->
+  <div id="lightbox-modal" role="dialog" aria-modal="true" aria-label="Screenshot preview" tabindex="-1" style="display:none;position:fixed;z-index:10000;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.85);align-items:flex-start;justify-content:center;overflow:auto;">
+    <button id="lightbox-close" aria-label="Close dialog" style="position:fixed;top:24px;right:32px;background:#fff;border:none;border-radius:50%;width:44px;height:44px;font-size:2rem;line-height:1.2;cursor:pointer;box-shadow:0 2px 8px #0003;z-index:10001;">&times;</button>
+    <img id="lightbox-img" src="" alt="Full page screenshot" style="display:block;margin:80px auto 32px auto;border-radius:12px;box-shadow:0 4px 32px #0008;outline:4px solid #fff;" />
+  </div>
+  <script>
+    // Lightbox logic
+    const modal = document.getElementById('lightbox-modal');
+    const modalImg = document.getElementById('lightbox-img');
+    const closeBtn = document.getElementById('lightbox-close');
+    let lastActive = null;
+    document.querySelectorAll('.screenshot-thumb').forEach(thumb => {
+      thumb.addEventListener('click', function(e) {
+        e.preventDefault();
+        lastActive = document.activeElement;
+        modalImg.src = this.getAttribute('data-full');
+        modal.style.display = 'flex';
+        closeBtn.focus();
+        document.body.style.overflow = 'hidden';
+      });
+    });
+    function closeModal() {
+      modal.style.display = 'none';
+      modalImg.src = '';
+      document.body.style.overflow = '';
+      if (lastActive) lastActive.focus();
+    }
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', function(e) {
+      if (modal.style.display === 'flex' && (e.key === 'Escape' || e.key === 'Esc')) {
+        closeModal();
+      }
+      // Trap focus inside modal
+      if (modal.style.display === 'flex' && e.key === 'Tab') {
+        e.preventDefault();
+        closeBtn.focus();
+      }
+    });
+  </script>
+</body>
+</html>`;
   return html;
 }
 

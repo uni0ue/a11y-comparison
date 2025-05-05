@@ -2,96 +2,75 @@ import { ElementHandle, Page } from "puppeteer";
 import { setTimeout } from "node:timers/promises";
 
 /**
- * Helper to recursively find a button by ID or text in all shadow roots and the main DOM
- */
-async function findButtonInAllShadowRoots(
-  page: Page,
-  options: { id?: string; texts?: string[] }
-) {
-  return await page.evaluateHandle(function (opts) {
-    function normalize(text) {
-      return (text || "").trim().toLowerCase();
-    }
-    function matches(text, texts) {
-      return (
-        texts &&
-        texts.some(function (kw) {
-          return text.includes(kw);
-        })
-      );
-    }
-    function findInNode(node) {
-      if (!node) return null;
-      // By ID
-      if (opts.id) {
-        var btn = node.querySelector && node.querySelector("button#" + opts.id);
-        if (btn) return btn;
-      }
-      // By text
-      if (opts.texts) {
-        var buttons = node.querySelectorAll && node.querySelectorAll("button");
-        if (buttons) {
-          for (var i = 0; i < buttons.length; i++) {
-            var text = normalize(buttons[i].textContent);
-            if (matches(text, opts.texts)) return buttons[i];
-          }
-        }
-      }
-      // Recurse into shadow roots
-      var treeWalker = document.createTreeWalker(node, NodeFilter.SHOW_ELEMENT);
-      var currentNode = treeWalker.currentNode;
-      while (currentNode) {
-        if (currentNode.shadowRoot) {
-          var found = findInNode(currentNode.shadowRoot);
-          if (found) return found;
-        }
-        var nextNode = treeWalker.nextNode();
-        if (!nextNode) break;
-        currentNode = nextNode;
-      }
-      return null;
-    }
-    return findInNode(document);
-  }, options);
-}
-
-/**
  * Attempts to find and click a cookie accept button on the page.
  * Returns true if a button was found and clicked, false otherwise.
  */
-export async function acceptCookieConsent(page: Page): Promise<boolean> {
+export async function acceptCookieConsent(page: any): Promise<boolean> {
   try {
     await setTimeout(2000);
+    // 1. Try known IDs
     const knownAcceptButtonIds = [
-      "pwa-consent-layer-accept-all-button",
+      "accept",
       "onetrust-accept-btn-handler",
+      "uc-btn-accept-banner",
       "didomi-notice-agree-button",
+      "CybotCookiebotDialogBodyLevelButtonAccept",
       "cookie-accept-all-button",
+      "cookiescript_accept",
       "cookie-accept-button",
       "cookie-accept-all",
-      "cookie-accept",
-      "sp-cc-accept",
-      "accept",
+      "cmpbntyestxt",
+      "cmpboxacceptall",
+      "consent-accept",
+      "usercentrics-accept-button",
+      "privacy-accept-all",
+      "cookiebanner-accept-button",
+      "cookie-agree-button",
     ];
-    // 1. Try by known IDs in all DOMs
     for (const id of knownAcceptButtonIds) {
-      const elHandle = await findButtonInAllShadowRoots(page, { id });
-      if (elHandle && (await elHandle.evaluate((el) => !!el))) {
-        await elHandle.click();
-        return true;
-      }
+      const clicked = await page.evaluate(
+        new Function(
+          "btnId",
+          `
+        function clickButtonByIdInAllShadowRoots(id, root) {
+          if (!root) root = document;
+          var btn = null;
+          if (root.querySelector) {
+            btn = root.querySelector('button#' + id);
+            if (btn) {
+              btn.click();
+              return true;
+            }
+          }
+          var elements = root.querySelectorAll ? root.querySelectorAll('*') : [];
+          for (var i = 0; i < elements.length; i++) {
+            var el = elements[i];
+            if (el.shadowRoot) {
+              if (clickButtonByIdInAllShadowRoots(id, el.shadowRoot)) {
+                return true;
+              }
+            }
+          }
+          return false;
+        }
+        return clickButtonByIdInAllShadowRoots(btnId, document);
+      `
+        ),
+        id
+      );
+      if (clicked) return true;
     }
-    // 2. Try by button text in all DOMs
+    // 2. Try button texts
     const buttonTexts = [
+      "ok",
+      "okay",
+      "okey",
+      "oké",
       "accept all",
       "accept",
       "agree",
       "allow all",
       "got it",
-      "ok",
-      "okay",
-      "okey",
-      "oké",
       "zulassen",
       "akzeptieren",
       "verstanden",
@@ -103,14 +82,46 @@ export async function acceptCookieConsent(page: Page): Promise<boolean> {
       "accepter",
       "alle zulassen",
     ];
-    const elHandle = await findButtonInAllShadowRoots(page, {
-      texts: buttonTexts,
-    });
-    if (elHandle && (await elHandle.evaluate((el) => !!el))) {
-      await elHandle.click();
-      return true;
-    }
-    return false;
+    const clickedByText = await page.evaluate(
+      new Function(
+        "texts",
+        `
+      function getAllButtons(root) {
+        if (!root) root = document;
+        var buttons = [];
+        if (root.querySelectorAll) {
+          buttons = Array.prototype.slice.call(root.querySelectorAll('button'));
+        }
+        var elements = root.querySelectorAll ? root.querySelectorAll('*') : [];
+        for (var i = 0; i < elements.length; i++) {
+          var el = elements[i];
+          if (el.shadowRoot) {
+            buttons = buttons.concat(getAllButtons(el.shadowRoot));
+          }
+        }
+        return buttons;
+      }
+      function normalize(text) {
+        return (text || "").trim().toLowerCase();
+      }
+      var allButtons = getAllButtons(document);
+      for (var i = 0; i < allButtons.length; i++) {
+        var btn = allButtons[i];
+        var text = normalize(btn.textContent || "");
+        for (var j = 0; j < texts.length; j++) {
+          var kw = texts[j];
+          if (text === kw || text.indexOf(kw) !== -1) {
+            btn.click();
+            return true;
+          }
+        }
+      }
+      return false;
+    `
+      ),
+      buttonTexts
+    );
+    return !!clickedByText;
   } catch (e) {
     console.error(e);
     return false;

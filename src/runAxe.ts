@@ -8,41 +8,65 @@ import { scrollPageToBottom } from "puppeteer-autoscroll-down";
 import { axeConfig, viewports } from "../config";
 import { sites } from "../sites";
 import { ignoreCountrySwitcher } from "./ignoreCountrySwitcher";
+import { KnownDevices } from "puppeteer";
 
 async function runAxe(
   url: string,
-  viewport: keyof typeof viewports = "DESKTOP"
+  viewport: keyof typeof viewports = "DESKTOP",
+  domain?: string,
+  pageType?: string
 ) {
   console.log("Starting accessibility test for " + url);
   let browser;
+  let screenshotPath: string | null = null;
   try {
     browser = await puppeteer.launch({
       headless: false,
       defaultViewport: viewports[viewport],
     });
     const page = await browser.newPage();
-    await page.setUserAgent(
-      "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36"
-    );
+    const puppeteerDevices = KnownDevices;
+
+    if (viewport.toUpperCase() === "MOBILE") {
+      // Emulate iPhone 16 Pro for mobile
+      const device = puppeteerDevices["iPhone 16 Pro"];
+      if (device) {
+        await page.emulate(device);
+        console.log("Emulating:", device.name);
+      } else {
+        // fallback: set viewport and user agent
+        await page.setViewport(viewports[viewport]);
+        await page.setUserAgent(
+          "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1"
+        );
+        console.log("Emulating fallback mobile viewport");
+      }
+    } else {
+      // Desktop: set viewport and user agent as before
+      await page.setViewport(viewports[viewport]);
+      await page.setUserAgent(
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36"
+      );
+    }
 
     // Always extract base domain from URL (remove www. if present)
-    let domainName = new URL(url).hostname
-      .replace(/^www\./, "")
-      .replace(/\./g, "_");
+    let domainName =
+      domain || new URL(url).hostname.replace(/^www\./, "").replace(/\./g, "_");
+    let pageTypeName = pageType || "unknown";
 
     const cookiesPath = path.join(
       process.cwd(),
-      "cookies",
+      "storage",
       `cookies-${domainName}.json`
     );
-    let cookies: Array<{
-      name: string;
-      value: string;
-      domain: string;
-    }> = [];
+    const localStoragePath = path.join(
+      process.cwd(),
+      "storage",
+      `localstorage-${domainName}.json`
+    );
     let cookiesLoaded = false;
-
-    // Check if cookies file exists and load it
+    let localStorageLoaded = false;
+    // Restore cookies before navigation
     try {
       const cookiesExists = await fs
         .stat(cookiesPath)
@@ -51,23 +75,25 @@ async function runAxe(
       if (cookiesExists) {
         console.log("Loading cookies from file");
         const cookiesData = await fs.readFile(cookiesPath, "utf-8");
-        cookies = JSON.parse(cookiesData)
-          // Filter out invalid cookies
-          .filter((cookie) => cookie.name && cookie.value)
-          // Filter out expired cookies
+        const cookies = JSON.parse(cookiesData)
           .filter((cookie) => {
-            const expires = cookie.expires || 0;
-            return expires <= 0 || expires > Math.floor(Date.now() / 1000);
+            // Filter out cookies with invalid or empty names
+            if (!cookie.name || typeof cookie.name !== "string") {
+              console.warn("Invalid cookie detected and removed:", cookie);
+              return false;
+            }
+            return true;
           })
-          // remove ak*
-          .filter((cookie) => {
-            const name = cookie.name || "";
-            return (
-              !name.startsWith("ak") &&
-              name !== "_abck" &&
-              name !== "bm_sv" &&
-              !["_uetsid", "_uetvid"].includes(name)
-            );
+          .map((cookie) => {
+            // Decode cookie values
+            if (cookie.value && typeof cookie.value === "string") {
+              try {
+                cookie.value = decodeURIComponent(cookie.value);
+              } catch (e) {
+                console.warn("Error decoding cookie value:", e);
+              }
+            }
+            return cookie;
           });
         await page.setCookie(...cookies);
         cookiesLoaded = cookies.length > 0;
@@ -76,6 +102,26 @@ async function runAxe(
       }
     } catch (error) {
       console.error("Error loading cookies:", error);
+    }
+    // Restore localStorage before navigation (use evaluateOnNewDocument)
+    try {
+      const localStorageExists = await fs
+        .stat(localStoragePath)
+        .then(() => true)
+        .catch(() => false);
+      if (localStorageExists) {
+        const localStorageData = await fs.readFile(localStoragePath, "utf-8");
+        const localStorageObj = JSON.parse(localStorageData);
+        await page.evaluateOnNewDocument((data) => {
+          for (const key in data) {
+            window.localStorage.setItem(key, data[key]);
+          }
+        }, localStorageObj);
+        localStorageLoaded = Object.keys(localStorageObj).length > 0;
+        console.log("Restored localStorage for domain " + domainName);
+      }
+    } catch (error) {
+      console.error("Error restoring localStorage:", error);
     }
 
     // 2. Navigate to URL
@@ -94,9 +140,9 @@ async function runAxe(
       });
 
     // 3. If no cookies were applied, try to accept cookie banner and save cookies
-    if (!cookiesLoaded) {
+    if (!cookiesLoaded && !localStorageLoaded) {
       console.log(
-        "No cookies loaded. Trying to find and click the accept cookie consent button..."
+        "No cookies/localStorage loaded. Trying to find and click the accept cookie consent button..."
       );
       const accepted = await acceptCookieConsent(page);
       if (accepted) {
@@ -114,8 +160,24 @@ async function runAxe(
           await fs.mkdir(cookiesDir, { recursive: true });
         }
         await fs.writeFile(cookiesPath, JSON.stringify(allCookies, null, 2));
-
         console.log(`Cookies saved as file for ${domainName}`);
+        // --- Save localStorage after consent ---
+        const localStorageObj = await page.evaluate(() => {
+          const out = {};
+          for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            if (key !== null) {
+              out[key] = localStorage.getItem(key);
+            }
+          }
+          return out;
+        });
+        await fs.writeFile(
+          localStoragePath,
+          JSON.stringify(localStorageObj, null, 2)
+        );
+        console.log(`localStorage saved as file for ${domainName}`);
+        // --- End localStorage save ---
       }
     }
 
@@ -125,6 +187,7 @@ async function runAxe(
     if (ignored) {
       // Wait for cookies to be set
       await setTimeout(2000);
+      // Save cookies
       const allCookies = await page.cookies();
       const cookiesDir = path.dirname(cookiesPath);
       const cookiesDirExists = await fs
@@ -136,6 +199,20 @@ async function runAxe(
       }
       await fs.writeFile(cookiesPath, JSON.stringify(allCookies, null, 2));
       console.log(`Cookies saved as file for ${domainName}`);
+      // Save localStorage
+      const localStorageObj = await page.evaluate(() => {
+        const out = {};
+        for (let i = 0; i < localStorage.length; i++) {
+          const key = localStorage.key(i);
+          out[key] = localStorage.getItem(key);
+        }
+        return out;
+      });
+      await fs.writeFile(
+        localStoragePath,
+        JSON.stringify(localStorageObj, null, 2)
+      );
+      console.log(`localStorage saved as file for ${domainName}`);
       console.log("Country switcher ignored successfully.");
     } else {
       console.log("No country switcher found.");
@@ -166,7 +243,24 @@ async function runAxe(
     console.log(`Found ${results.violations.length} accessibility violations`);
     console.log(`Found ${results.passes.length} passes`);
 
-    return results;
+    // --- Screenshot logic ---
+    // Use timestamp from results or now
+    const auditTimestamp = results.timestamp || new Date().toISOString();
+    const auditDate = new Date(auditTimestamp);
+    const yyyy = auditDate.getFullYear();
+    const mm = String(auditDate.getMonth() + 1).padStart(2, "0");
+    const dd = String(auditDate.getDate()).padStart(2, "0");
+    const reportDir = path.join("reports", `${yyyy}-${mm}-${dd}`);
+    await fs.mkdir(reportDir, { recursive: true });
+    // Screenshot filename: [domain]_[pageType]_[viewport].png
+    const safePageTypeName = pageTypeName.replace(/\s+/g, "_");
+    const screenshotFilename = `${domainName}_${safePageTypeName}_${viewport.toLowerCase()}.png`;
+    screenshotPath = path.join(reportDir, screenshotFilename);
+    await page.screenshot({ path: screenshotPath, fullPage: true });
+    console.log(`Screenshot saved: ${screenshotPath}`);
+    // --- End screenshot logic ---
+
+    return { ...results, screenshotPath, timestamp: auditTimestamp };
   } finally {
     if (browser) await browser.close();
   }
@@ -203,10 +297,12 @@ function getAllPageTypes(sitesConfig: typeof sites): string[] {
           keyof typeof viewports
         >) {
           console.log(`Running ${viewport} ${domain} ${pageType} ${url}`);
-          const result = await runAxe(url, viewport).catch((error) => {
-            console.error("Error running test:", error);
-            return null;
-          });
+          const result = await runAxe(url, viewport, domain, pageType).catch(
+            (error) => {
+              console.error("Error running test:", error);
+              return null;
+            }
+          );
           if (result) {
             if (!domainResults[pageType]) domainResults[pageType] = {};
             domainResults[pageType][viewport] = result;
@@ -232,5 +328,4 @@ function getAllPageTypes(sitesConfig: typeof sites): string[] {
     console.error(e);
     process.exit(1);
   }
-  process.exit(0);
 })();

@@ -7,14 +7,14 @@ export const viewports = {
     hasTouch: false,
     isLandscape: true,
   },
-  // IPHONE: {
-  //   width: 375,
-  //   height: 812,
-  //   deviceScaleFactor: 3,
-  //   isMobile: true,
-  //   hasTouch: true,
-  //   isLandscape: false,
-  // },
+  MOBILE: {
+    width: 375,
+    height: 812,
+    deviceScaleFactor: 3,
+    isMobile: true,
+    hasTouch: true,
+    isLandscape: false,
+  },
 } as const;
 
 export const axeConfig = {
