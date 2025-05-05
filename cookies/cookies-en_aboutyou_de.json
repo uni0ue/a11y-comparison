@@ -1,0 +1,17 @@
+[
+  {
+    "name": "__cf_bm",
+    "value": "manwDopKDepMoT7wPG10kTphNFsTMh4IK0JKCkZkgIo-1746023416-1.0.1.1-ciGcJy78A0JKfgXjP7XpQ14TeJ7LERVKVY7dpxVjB5BrXDMMJL.5OuHGAUY1AfJVvASwiyAmDHMe1jTJVBwUnmtwGgJV8ECrlX5UAuGz0zU",
+    "domain": ".aboutyou.de",
+    "path": "/",
+    "expires": 1746025216.438137,
+    "size": 177,
+    "httpOnly": true,
+    "secure": true,
+    "session": false,
+    "sameSite": "None",
+    "priority": "Medium",
+    "sameParty": false,
+    "sourceScheme": "Secure"
+  }
+]

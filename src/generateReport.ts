@@ -2,7 +2,8 @@
 // Generates a comparison HTML table of all sites/domains, their pages, and accessibility scores
 import fs from "fs";
 import path from "path";
-import { sites } from "./config";
+import { sites } from "../sites";
+import { viewports } from "../config";
 
 // Utility to get today's date as yyyy-mm-dd
 function getTodayDir() {
@@ -39,14 +40,16 @@ function calculateScore(
 // Read and parse all reports
 function parseReports(reportFiles: string[]) {
   // Also collect the homepage URL for each site
-  const data: Record<string, { pages: Record<string, number>; url: string }> =
-    {};
+  const data: Record<
+    string,
+    { pages: Record<string, Record<string, number>>; url: string }
+  > = {};
   for (const file of reportFiles) {
+    console.log("parseReports processing:", file);
     const raw = fs.readFileSync(file, "utf-8");
     const json = JSON.parse(raw);
-    // Use the file name (without extension and 'report-') as the site/domain name
-    const site = file.replace(/^report-/, "").replace(/\.json$/, "");
-    // Try to get the first page's URL (usually 'home')
+    const site = file.replace(/^.*report-/, "").replace(/\.json$/, "");
+    console.log("site key used:", site);
     let url = "";
     const firstPage = Object.keys(json)[0];
     if (firstPage) {
@@ -57,19 +60,21 @@ function parseReports(reportFiles: string[]) {
     }
     data[site] = { pages: {}, url };
     for (const page of Object.keys(json)) {
-      const deviceKeys = Object.keys(json[page]);
-      if (deviceKeys.length === 0) continue;
-      const device = json[page][deviceKeys[0]];
-      const passes = device.passes?.length || 0;
-      const inapplicable = device.inapplicable?.length || 0;
-      const violations = device.violations?.length || 0;
-      const incomplete = device.incomplete?.length || 0;
-      data[site].pages[page] = calculateScore(
-        passes,
-        inapplicable,
-        violations,
-        incomplete
-      );
+      const pageKey = page.toLowerCase();
+      data[site].pages[pageKey] = {};
+      for (const device of Object.keys(json[page])) {
+        const deviceData = json[page][device];
+        const passes = deviceData.passes?.length || 0;
+        const inapplicable = deviceData.inapplicable?.length || 0;
+        const violations = deviceData.violations?.length || 0;
+        const incomplete = deviceData.incomplete?.length || 0;
+        data[site].pages[pageKey][device] = calculateScore(
+          passes,
+          inapplicable,
+          violations,
+          incomplete
+        );
+      }
     }
   }
   return data;
@@ -110,14 +115,16 @@ function getGaugeSVG(score: number): string {
 }
 
 function generateHTMLTable(
-  data: Record<string, { pages: Record<string, number>; url: string }>,
-  firstReportDate: Date
+  data: Record<
+    string,
+    { pages: Record<string, Record<string, number>>; url: string }
+  >,
+  firstReportDate: Date,
+  reportsDir: string
 ): string {
-  // Collect all unique pages
-  const allPages = Array.from(
-    new Set(Object.values(data).flatMap((site) => Object.keys(site.pages)))
-  );
-  allPages.sort();
+  // Use the order of product types as defined in sites.ts
+  const allPages = Object.keys(sites);
+  const deviceKeys = Object.keys(viewports);
   // Use the order from config.ts
   const sitesInOrder = Object.keys(sites.home);
 
@@ -141,7 +148,7 @@ function generateHTMLTable(
   <meta charset="UTF-8">
   <title>Accessibility Comparison</title>
   <style>
-    body { font-family: Arial, sans-serif; background: #f8f9fa; margin: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";; background: #f8f9fa; margin: 0; }
     .container {
       max-width: 1200px;
       margin: 0 auto;
@@ -163,7 +170,7 @@ function generateHTMLTable(
     h1 { text-align: left; margin-top: 0; }
     table { border-collapse: collapse; margin: 2rem 0; background: #fff; box-shadow: 0 2px 8px #0001; table-layout: fixed; width: 100%; }
     th, td { border: 0px solid #ccc; padding: 0.7em 1.2em; text-align: left; }
-    th { background: #cfe9ff; color: #000; text-align: center; }
+    th { background: #dbe6ee; color: #000; text-align: center; text-transform: capitalize; }
     tr:nth-child(even) td { background: #f2f6fa; }
     .score-cell { text-align: center; }
     .site-link { color: #000; text-decoration: none; font-weight: bold; }
@@ -190,45 +197,49 @@ function generateHTMLTable(
       <tr>
         <th style="text-align: left;">Site</th>
         ${allPages
-          .map(
-            (page) =>
-              `<th>${page.replace(/\b\w/g, (c) => c.toUpperCase())}</th>`
+          .map((page) =>
+            deviceKeys.length > 1
+              ? deviceKeys
+                  .map((device) => `<th>${page} (${device})</th>`)
+                  .join("")
+              : `<th>${page}</th>`
           )
           .join("")}
       </tr>
 `;
   for (const site of sitesInOrder) {
-    // Convert galaxus.de to galaxus.de for display (no change needed)
+    const siteKey = site.replace(/\./g, "_");
     const displaySite = site;
-    const siteKey = site.replace(/\./g, "_"); // match report file naming if needed
     const siteUrl =
       data[siteKey]?.url || sites.home[site] || `https://${displaySite}`;
     html += `    <tr>\n      <td><a class="site-link" href="${siteUrl}" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=${site}&sz=48" alt="" style="width:20px;height:20px;vertical-align:middle;margin-right:8px;object-fit:contain;">${displaySite}</a></td>\n`;
     for (const page of allPages) {
-      const score = data[siteKey]?.pages[page];
-      // Try to get the page URL from the report data
-      let pageUrl = "";
-      try {
-        // Read the report file for this site
-        const reportFile = `report-${siteKey}.json`;
-        if (fs.existsSync(reportFile)) {
-          const reportJson = JSON.parse(fs.readFileSync(reportFile, "utf-8"));
-          if (reportJson[page]) {
-            const deviceKeys = Object.keys(reportJson[page]);
-            if (deviceKeys.length > 0) {
-              pageUrl = reportJson[page][deviceKeys[0]].url || "";
+      for (const device of deviceKeys) {
+        const score = data[siteKey]?.pages[page.toLowerCase()]?.[device];
+
+        // Try to get the page URL from the report data (use correct reportsDir)
+        let pageUrl = "";
+        try {
+          const reportFile = path.join(reportsDir, `report-${siteKey}.json`);
+          if (fs.existsSync(reportFile)) {
+            const reportJson = JSON.parse(fs.readFileSync(reportFile, "utf-8"));
+            if (
+              reportJson[page.toLowerCase()] &&
+              reportJson[page.toLowerCase()][device]
+            ) {
+              pageUrl = reportJson[page.toLowerCase()][device].url || "";
             }
           }
+        } catch {}
+        if (score !== undefined && pageUrl) {
+          html += `<td class="score-cell"><a href="${pageUrl}" target="_blank" rel="noopener">${getGaugeSVG(
+            score
+          )}</a></td>`;
+        } else if (score !== undefined) {
+          html += `<td class="score-cell">${getGaugeSVG(score)}</td>`;
+        } else {
+          html += `<td class="score-cell">N/A</td>`;
         }
-      } catch {}
-      if (score !== undefined && pageUrl) {
-        html += `<td class="score-cell"><a href="${pageUrl}" target="_blank" rel="noopener">${getGaugeSVG(
-          score
-        )}</a></td>`;
-      } else if (score !== undefined) {
-        html += `<td>${getGaugeSVG(score)}</td>`;
-      } else {
-        html += "-";
       }
     }
     html += "</tr>\n";
@@ -262,7 +273,7 @@ function main() {
   }
   const firstReportDate = new Date(timestampStr);
   const data = parseReports(reportFiles);
-  const html = generateHTMLTable(data, firstReportDate);
+  const html = generateHTMLTable(data, firstReportDate, reportsDir);
   if (!fs.existsSync(reportsDir)) fs.mkdirSync(reportsDir, { recursive: true });
   fs.writeFileSync(path.join(reportsDir, "comparison.html"), html, "utf-8");
   console.log(

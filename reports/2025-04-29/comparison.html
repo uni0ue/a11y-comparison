@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Accessibility Comparison</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";; background: #f8f9fa; margin: 0; }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+      box-sizing: border-box;
+      position: relative;
+    }
+    .audit-meta {
+      position: absolute;
+      top: 2rem;
+      right: 1rem;
+      font-size: 0.8em;
+      color: #666;
+      padding: 0.3em 0.8em;
+      z-index: 2;
+      text-align: right;
+    }
+    .timestamp { font-weight: bold; display: block; margin-top: 0.3rem; }
+    h1 { text-align: left; margin-top: 0; }
+    table { border-collapse: collapse; margin: 2rem 0; background: #fff; box-shadow: 0 2px 8px #0001; table-layout: fixed; width: 100%; }
+    th, td { border: 0px solid #ccc; padding: 0.7em 1.2em; text-align: left; }
+    th { background: #dbe6ee; color: #000; text-align: center; text-transform: capitalize; }
+    tr:nth-child(even) td { background: #f2f6fa; }
+    .score-cell { text-align: center; }
+    .site-link { color: #000; text-decoration: none; font-weight: bold; }
+    .gauge { display: block; margin: 0 auto; }
+    @media (max-width: 900px) {
+      .container { padding: 1rem 0.5rem; }
+      table, th, td { font-size: 0.95em; }
+    }
+    @media (max-width: 600px) {
+      .container { padding: 0.5rem 0.2rem; }
+      table, th, td { font-size: 0.85em; }
+      th, td { padding: 0.5em 0.3em; }
+      .audit-meta { position: static; display: block; margin-bottom: 0.5em; text-align: left; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="audit-meta">
+      Axe audit (EN-301-549) <span class="timestamp">29 Apr 2025 18:18</span>
+    </div>
+    <h1>Accessibility Comparison</h1>
+    <table>
+      <tr>
+        <th style="text-align: left;">Site</th>
+        <th>home</th><th>product list</th><th>product detail</th>
+      </tr>
+    <tr>
+      <td><a class="site-link" href="https://www.galaxus.de/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=galaxus.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:middle;margin-right:8px;object-fit:contain;">galaxus.de</a></td>
+<td class="score-cell"><a href="https://www.galaxus.de/" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="20.71" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">97</text>
+    </svg>
+  </a></td><td class="score-cell"><a href="https://www.galaxus.de/de/s1/producttype/smartphone-24" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="20.71" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">97</text>
+    </svg>
+  </a></td><td class="score-cell"><a href="https://www.galaxus.de/de/s1/product/apple-iphone-16-pro-max-256-gb-black-titanium-690-sim-esim-48-mpx-5g-smartphone-49221245" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="20.71" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">97</text>
+    </svg>
+  </a></td></tr>
+    <tr>
+      <td><a class="site-link" href="https://www.amazon.de/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=amazon.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:middle;margin-right:8px;object-fit:contain;">amazon.de</a></td>
+<td class="score-cell"><a href="https://www.amazon.de/" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="39.80" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">91</text>
+    </svg>
+  </a></td><td class="score-cell"><a href="https://www.amazon.de/s?i=electronics&srs=203868645031&rh=n%3A203868645031&s=popularity-rank&fs=true&ref=lp_203868645031_sar" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#ffa400" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="68.10" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">82</text>
+    </svg>
+  </a></td><td class="score-cell"><a href="https://www.amazon.de/Apple-iPhone-Pro-Kamerasteuerung-Batterielaufzeit/dp/B0DGHSG5D2/ref=sr_1_11?dib=eyJ2IjoiMSJ9.W8Mrw129fbePTpSFDllatT4PPySi1cPm89ZcnmApWUDpuP5chpUi8ZauKPhxQi4WxjSHP8uapfzML5lsnoOVjp5jm4RfCrGR7Y01h0LGFsZUU3aIuH2q1pe_QS_ghqETnbm6JBm9JGFDmZqKWrVnzxPGKQhrjFRmKqBZcMiCQRdX8YdAZPtxcq1TLesHkAbLF-8HxETfpFLvn-Gq-KkCKN1owQGH0CJRoMM57kEU4FLpyS-hGjsrnnhnOlHa3FEQY9rXJafUOtS56LUwXiEOBIp6dRsCVcXKRRfSSjWEgzs.Q7OXLdyqi38oMbytf4_ZoCj3Kzp2wEYcrm3DXoLwYm8&dib_tag=se&qid=1745412754&s=ce-de&sr=1-11&srs=203868645031&ufe=app_do%3Aamzn1.fos.4c706219-4fde-46cd-86d6-68fb316fcf3e&th=1" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#ffa400" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="73.37" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">81</text>
+    </svg>
+  </a></td></tr>
+    <tr>
+      <td><a class="site-link" href="https://www.otto.de/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=otto.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:middle;margin-right:8px;object-fit:contain;">otto.de</a></td>
+<td class="score-cell"><a href="https://www.otto.de/" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#ffa400" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="57.90" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">86</text>
+    </svg>
+  </a></td><td class="score-cell"><a href="https://www.otto.de/technik/apple/iphone/" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#ffa400" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="44.41" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">90</text>
+    </svg>
+  </a></td><td class="score-cell"><a href="https://www.otto.de/p/apple-iphone-16-pro-max-smartphone-17-4-cm-6-9-zoll-1000-gb-speicherplatz-48-mp-kamera-1909231830/#variationId=1909231565" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#ffa400" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="49.34" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">88</text>
+    </svg>
+  </a></td></tr>
+    <tr>
+      <td><a class="site-link" href="https://www.home24.de/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=home24.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:middle;margin-right:8px;object-fit:contain;">home24.de</a></td>
+<td class="score-cell"><a href="https://www.home24.de/" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="30.58" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">94</text>
+    </svg>
+  </a></td><td class="score-cell"><a href="https://www.home24.de/eckcouches/" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="39.80" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">91</text>
+    </svg>
+  </a></td><td class="score-cell">N/A</td></tr>
+    <tr>
+      <td><a class="site-link" href="https://www.ebay.de/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=ebay.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:middle;margin-right:8px;object-fit:contain;">ebay.de</a></td>
+<td class="score-cell"><a href="https://www.ebay.de/" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="30.58" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">94</text>
+    </svg>
+  </a></td><td class="score-cell"><a href="https://www.ebay.de/b/Handys-Smartphones/9355/bn_466745" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#ffa400" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="49.01" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">88</text>
+    </svg>
+  </a></td><td class="score-cell">N/A</td></tr>
+    <tr>
+      <td><a class="site-link" href="https://www.ikea.com/de/de/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=ikea.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:middle;margin-right:8px;object-fit:contain;">ikea.de</a></td>
+<td class="score-cell"><a href="https://www.ikea.com/de/de/" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="30.58" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">94</text>
+    </svg>
+  </a></td><td class="score-cell"><a href="https://www.ikea.com/de/de/cat/regale-allzweckregale-st002/" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="25.65" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">95</text>
+    </svg>
+  </a></td><td class="score-cell"><a href="https://www.ikea.com/de/de/p/kallax-regal-weiss-80275887/" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="30.58" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">94</text>
+    </svg>
+  </a></td></tr>
+    <tr>
+      <td><a class="site-link" href="https://www.mediamarkt.de/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=mediamarkt.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:middle;margin-right:8px;object-fit:contain;">mediamarkt.de</a></td>
+<td class="score-cell"><a href="https://www.mediamarkt.de/" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="35.52" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">92</text>
+    </svg>
+  </a></td><td class="score-cell"><a href="https://www.mediamarkt.de/de/category/smartphones-579.html" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#ffa400" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="52.63" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">87</text>
+    </svg>
+  </a></td><td class="score-cell">N/A</td></tr>
+    <tr>
+      <td><a class="site-link" href="https://www.saturn.de/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=saturn.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:middle;margin-right:8px;object-fit:contain;">saturn.de</a></td>
+<td class="score-cell"><a href="https://www.saturn.de/" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="25.65" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">95</text>
+    </svg>
+  </a></td><td class="score-cell"><a href="https://www.saturn.de/de/brand/apple/iphone" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#ffa400" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="52.63" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">87</text>
+    </svg>
+  </a></td><td class="score-cell"><a href="https://www.saturn.de/de/product/_apple-iphone-16-pro-max-5g-256-gb-titan-schwarz-dual-sim-2954329.html" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#ffa400" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="58.56" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">85</text>
+    </svg>
+  </a></td></tr>
+    <tr>
+      <td><a class="site-link" href="https://www.bol.com/nl/nl/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=bol.nl&sz=48" alt="" style="width:20px;height:20px;vertical-align:middle;margin-right:8px;object-fit:contain;">bol.nl</a></td>
+<td class="score-cell"><a href="https://www.bol.com/nl/nl/" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="30.58" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">94</text>
+    </svg>
+  </a></td><td class="score-cell"><a href="https://www.bol.com/nl/nl/l/smartphones/4010/" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#ffa400" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="56.58" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">86</text>
+    </svg>
+  </a></td><td class="score-cell"><a href="https://www.bol.com/nl/nl/p/apple-iphone-16-pro-max-256gb-zwart-titanium/9300000189439873/?suggestionType=featured_product" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#ffa400" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="61.19" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">85</text>
+    </svg>
+  </a></td></tr>
+    <tr>
+      <td><a class="site-link" href="https://en.zalando.de/?_rfl=de" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=zalando.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:middle;margin-right:8px;object-fit:contain;">zalando.de</a></td>
+<td class="score-cell"><a href="https://en.zalando.de/?_rfl=de" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="25.65" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">95</text>
+    </svg>
+  </a></td><td class="score-cell"><a href="https://en.zalando.de/mens-shoes/" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="30.58" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">94</text>
+    </svg>
+  </a></td><td class="score-cell"><a href="https://en.zalando.de/adidas-originals-samba-trainers-cream-whitecore-black-sand-strata-ad111a2ib-a11.html" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="35.19" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">92</text>
+    </svg>
+  </a></td></tr>
+    <tr>
+      <td><a class="site-link" href="https://en.aboutyou.de/your-shop" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=aboutyou.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:middle;margin-right:8px;object-fit:contain;">aboutyou.de</a></td>
+<td class="score-cell"><a href="https://en.aboutyou.de/your-shop" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="35.52" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">92</text>
+    </svg>
+  </a></td><td class="score-cell"><a href="https://en.aboutyou.de/c/men/shoes-20215" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#ffa400" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="57.90" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">86</text>
+    </svg>
+  </a></td><td class="score-cell"><a href="https://en.aboutyou.de/p/adidas-originals/sneakers-handball-spezial-4114892" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#ffa400" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="57.24" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">86</text>
+    </svg>
+  </a></td></tr>
+    </table>
+  </div>
+</body>
+</html>
