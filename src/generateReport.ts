@@ -157,9 +157,6 @@ function generateHTMLTable(
       position: relative;
     }
     .audit-meta {
-      position: absolute;
-      top: 2rem;
-      right: 1rem;
       font-size: 0.8em;
       color: #666;
       padding: 0.3em 0.8em;
@@ -169,15 +166,35 @@ function generateHTMLTable(
     .timestamp { font-weight: bold; display: block; margin-top: 0.3rem; }
     .nav-arrows {
       margin-top: 0.4rem;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      justify-content: flex-end;
     }
-    .nav-arrows a {
+    .nav-arrow {
       font-size: 1.6rem;
-      margin: 0 0.4rem;
       color: #007acc;
       text-decoration: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.2em 0;
+      border-radius: 4px;
+      transition: background 0.2s;
     }
-    .nav-arrows a:hover {
-      text-decoration: underline;
+    .nav-arrow[aria-disabled="true"] {
+      color: #bbb;
+      cursor: not-allowed;
+      opacity: 0.5;
+      pointer-events: none;
+      background: none;
+    }
+    .nav-arrow:focus {
+      outline: 2px solid #007acc;
+      outline-offset: 2px;
+    }
+    .nav-arrow[aria-disabled="true"]:focus {
+      outline: none;
     }
     h1 { text-align: left; margin-top: 0; }
     table { border-collapse: collapse; margin: 2rem 0; background: #fff; box-shadow: 0 2px 8px #0001; table-layout: fixed; width: 100%; }
@@ -203,22 +220,17 @@ function generateHTMLTable(
   <div class="container">
     <div class="audit-meta">
       Axe audit (EN-301-549) <span class="timestamp">${dateStr}</span>
-      ${
-        prevReportDir || nextReportDir
-          ? `<div class="nav-arrows">
-  ${
-    prevReportDir
-      ? `<a href="../${prevReportDir}/index.html" title="Previous Report" aria-label="Previous Report">&#8592;</a>`
-      : ""
-  }
-  ${
-    nextReportDir
-      ? `<a href="../${nextReportDir}/index.html" title="Next Report" aria-label="Next Report">&#8594;</a>`
-      : ""
-  }
-</div>`
-          : ""
-      }
+      <div class="nav-arrows">
+        <a href="../${prevReportDir}/index.html" class="nav-arrow" title="Previous Report" aria-label="Previous Report">&#8592;</a>
+        ${
+          {
+            // Always show next arrow, but disable and dim if on newest
+            next: nextReportDir
+              ? `<a href="../${nextReportDir}/index.html" class="nav-arrow" title="Next Report" aria-label="Next Report">&#8594;</a>`
+              : `<span class="nav-arrow" aria-disabled="true" tabindex="-1" aria-label="Next Report">&#8594;</span>`,
+          }.next
+        }
+      </div>
     </div>
     <h1>Accessibility Comparison</h1>
     <table>

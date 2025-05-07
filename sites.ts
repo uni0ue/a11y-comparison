@@ -1,6 +1,12 @@
 export const sites = {
   home: {
     "galaxus.de": "https://www.galaxus.de",
+  },
+};
+
+export const sites2 = {
+  home: {
+    "galaxus.de": "https://www.galaxus.de",
     "amazon.de": "https://www.amazon.de",
     "otto.de": "https://www.otto.de",
     "home24.de": "https://www.home24.de",
