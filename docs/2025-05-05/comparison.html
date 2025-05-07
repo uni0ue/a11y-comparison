@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Accessibility Comparison</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";; background: #f8f9fa; margin: 0; }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+      box-sizing: border-box;
+      position: relative;
+    }
+    .audit-meta {
+      position: absolute;
+      top: 2rem;
+      right: 1rem;
+      font-size: 0.8em;
+      color: #666;
+      padding: 0.3em 0.8em;
+      z-index: 2;
+      text-align: right;
+    }
+    .timestamp { font-weight: bold; display: block; margin-top: 0.3rem; }
+    h1 { text-align: left; margin-top: 0; }
+    table { border-collapse: collapse; margin: 2rem 0; background: #fff; box-shadow: 0 2px 8px #0001; table-layout: fixed; width: 100%; }
+    th, td { border: 0px solid #ccc; padding: 0.7em 1.2em; text-align: left; }
+    th { background: #dbe6ee; color: #000; text-align: center; text-transform: capitalize; }
+    tr:nth-child(even) td { background: #f2f6fa; }
+    .score-cell { text-align: center; }
+    .site-link { color: #000; text-decoration: none; font-weight: bold; }
+    .gauge { display: block; margin: 0 auto; }
+    @media (max-width: 900px) {
+      .container { padding: 1rem 0.5rem; }
+      table, th, td { font-size: 0.95em; }
+    }
+    @media (max-width: 600px) {
+      .container { padding: 0.5rem 0.2rem; }
+      table, th, td { font-size: 0.85em; }
+      th, td { padding: 0.5em 0.3em; }
+      .audit-meta { position: static; display: block; margin-bottom: 0.5em; text-align: left; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="audit-meta">
+      Axe audit (EN-301-549) <span class="timestamp">05 May 2025 17:20</span>
+    </div>
+    <h1>Accessibility Comparison</h1>
+    <table>
+      <tr>
+        <th style="text-align: left;">Site</th>
+        <th>home</th><th>product list</th><th>product detail</th>
+      </tr>
+    <tr>
+      <td><a class="site-link" href="https://www.galaxus.de/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=galaxus.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:middle;margin-right:8px;object-fit:contain;">galaxus.de</a></td>
+<td class="score-cell"><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.galaxus.de/" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="20.71" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">97</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>DESKTOP</strong> <br/>(1280x800)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="galaxus.de_home_desktop.png"><img src="galaxus.de_home_desktop.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div><div style="height:1px;width:100%;background:#e0e0e0;margin:24px 0 24px 0;"></div><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.galaxus.de/" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="20.71" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">97</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>MOBILE</strong> <br/>(375x812)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="galaxus.de_home_mobile.png"><img src="galaxus.de_home_mobile.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div></td><td class="score-cell"><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.galaxus.de/de/s1/producttype/smartphone-24" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="20.71" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">97</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>DESKTOP</strong> <br/>(1280x800)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="galaxus.de_product_list_desktop.png"><img src="galaxus.de_product_list_desktop.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div><div style="height:1px;width:100%;background:#e0e0e0;margin:24px 0 24px 0;"></div><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.galaxus.de/de/s1/producttype/smartphone-24" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="20.71" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">97</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>MOBILE</strong> <br/>(375x812)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="galaxus.de_product_list_mobile.png"><img src="galaxus.de_product_list_mobile.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div></td><td class="score-cell"><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.galaxus.de/de/s1/product/apple-iphone-16-pro-max-256-gb-black-titanium-690-sim-esim-48-mpx-5g-smartphone-49221245" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="20.71" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">97</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>DESKTOP</strong> <br/>(1280x800)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="galaxus.de_product_detail_desktop.png"><img src="galaxus.de_product_detail_desktop.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div><div style="height:1px;width:100%;background:#e0e0e0;margin:24px 0 24px 0;"></div><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.galaxus.de/de/s1/product/apple-iphone-16-pro-max-256-gb-black-titanium-690-sim-esim-48-mpx-5g-smartphone-49221245" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="20.71" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">97</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>MOBILE</strong> <br/>(375x812)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="galaxus.de_product_detail_mobile.png"><img src="galaxus.de_product_detail_mobile.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div></td></tr>
+    <tr>
+      <td><a class="site-link" href="https://www.amazon.de/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=amazon.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:middle;margin-right:8px;object-fit:contain;">amazon.de</a></td>
+<td class="score-cell"><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.amazon.de/" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="35.19" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">92</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>DESKTOP</strong> <br/>(1280x800)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="amazon.de_home_desktop.png"><img src="amazon.de_home_desktop.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div><div style="height:1px;width:100%;background:#e0e0e0;margin:24px 0 24px 0;"></div><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.amazon.de/" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="40.13" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">91</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>MOBILE</strong> <br/>(375x812)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="amazon.de_home_mobile.png"><img src="amazon.de_home_mobile.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div></td><td class="score-cell"><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.amazon.de/s?i=electronics&srs=203868645031&rh=n%3A203868645031&s=popularity-rank&fs=true&ref=lp_203868645031_sar" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#ffa400" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="68.10" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">82</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>DESKTOP</strong> <br/>(1280x800)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="amazon.de_product_list_desktop.png"><img src="amazon.de_product_list_desktop.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div><div style="height:1px;width:100%;background:#e0e0e0;margin:24px 0 24px 0;"></div><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.amazon.de/s?i=electronics&srs=203868645031&rh=n%3A203868645031&s=popularity-rank&fs=true&ref=lp_203868645031_sar" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="40.13" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">91</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>MOBILE</strong> <br/>(375x812)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="amazon.de_product_list_mobile.png"><img src="amazon.de_product_list_mobile.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div></td><td class="score-cell"><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.amazon.de/Apple-iPhone-Pro-Kamerasteuerung-Batterielaufzeit/dp/B0DGHSG5D2/ref=sr_1_11?dib=eyJ2IjoiMSJ9.W8Mrw129fbePTpSFDllatT4PPySi1cPm89ZcnmApWUDpuP5chpUi8ZauKPhxQi4WxjSHP8uapfzML5lsnoOVjp5jm4RfCrGR7Y01h0LGFsZUU3aIuH2q1pe_QS_ghqETnbm6JBm9JGFDmZqKWrVnzxPGKQhrjFRmKqBZcMiCQRdX8YdAZPtxcq1TLesHkAbLF-8HxETfpFLvn-Gq-KkCKN1owQGH0CJRoMM57kEU4FLpyS-hGjsrnnhnOlHa3FEQY9rXJafUOtS56LUwXiEOBIp6dRsCVcXKRRfSSjWEgzs.Q7OXLdyqi38oMbytf4_ZoCj3Kzp2wEYcrm3DXoLwYm8&dib_tag=se&qid=1745412754&s=ce-de&sr=1-11&srs=203868645031&ufe=app_do%3Aamzn1.fos.4c706219-4fde-46cd-86d6-68fb316fcf3e&th=1" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#ffa400" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="76.99" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">80</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>DESKTOP</strong> <br/>(1280x800)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="amazon.de_product_detail_desktop.png"><img src="amazon.de_product_detail_desktop.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div><div style="height:1px;width:100%;background:#e0e0e0;margin:24px 0 24px 0;"></div><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.amazon.de/Apple-iPhone-Pro-Kamerasteuerung-Batterielaufzeit/dp/B0DGHSG5D2/ref=sr_1_11?dib=eyJ2IjoiMSJ9.W8Mrw129fbePTpSFDllatT4PPySi1cPm89ZcnmApWUDpuP5chpUi8ZauKPhxQi4WxjSHP8uapfzML5lsnoOVjp5jm4RfCrGR7Y01h0LGFsZUU3aIuH2q1pe_QS_ghqETnbm6JBm9JGFDmZqKWrVnzxPGKQhrjFRmKqBZcMiCQRdX8YdAZPtxcq1TLesHkAbLF-8HxETfpFLvn-Gq-KkCKN1owQGH0CJRoMM57kEU4FLpyS-hGjsrnnhnOlHa3FEQY9rXJafUOtS56LUwXiEOBIp6dRsCVcXKRRfSSjWEgzs.Q7OXLdyqi38oMbytf4_ZoCj3Kzp2wEYcrm3DXoLwYm8&dib_tag=se&qid=1745412754&s=ce-de&sr=1-11&srs=203868645031&ufe=app_do%3Aamzn1.fos.4c706219-4fde-46cd-86d6-68fb316fcf3e" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#ffa400" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="80.28" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">79</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>MOBILE</strong> <br/>(375x812)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="amazon.de_product_detail_mobile.png"><img src="amazon.de_product_detail_mobile.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div></td></tr>
+    <tr>
+      <td><a class="site-link" href="https://www.otto.de/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=otto.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:middle;margin-right:8px;object-fit:contain;">otto.de</a></td>
+<td class="score-cell"><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.otto.de/" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#ffa400" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="49.01" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">88</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>DESKTOP</strong> <br/>(1280x800)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="otto.de_home_desktop.png"><img src="otto.de_home_desktop.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div><div style="height:1px;width:100%;background:#e0e0e0;margin:24px 0 24px 0;"></div><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.otto.de/" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#ffa400" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="53.62" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">87</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>MOBILE</strong> <br/>(375x812)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="otto.de_home_mobile.png"><img src="otto.de_home_mobile.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div></td><td class="score-cell"><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.otto.de/technik/apple/iphone/" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#ffa400" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="44.41" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">90</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>DESKTOP</strong> <br/>(1280x800)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="otto.de_product_list_desktop.png"><img src="otto.de_product_list_desktop.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div><div style="height:1px;width:100%;background:#e0e0e0;margin:24px 0 24px 0;"></div><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.otto.de/technik/apple/iphone/" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#ffa400" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="44.41" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">90</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>MOBILE</strong> <br/>(375x812)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="otto.de_product_list_mobile.png"><img src="otto.de_product_list_mobile.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div></td><td class="score-cell"><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.otto.de/p/apple-iphone-16-pro-max-smartphone-17-4-cm-6-9-zoll-1000-gb-speicherplatz-48-mp-kamera-1909231830/#variationId=1909231565" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#ffa400" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="49.34" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">88</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>DESKTOP</strong> <br/>(1280x800)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="otto.de_product_detail_desktop.png"><img src="otto.de_product_detail_desktop.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div><div style="height:1px;width:100%;background:#e0e0e0;margin:24px 0 24px 0;"></div><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.otto.de/p/apple-iphone-16-pro-max-smartphone-17-4-cm-6-9-zoll-1000-gb-speicherplatz-48-mp-kamera-1909231830/#variationId=1909231565" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#ffa400" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="44.41" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">90</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>MOBILE</strong> <br/>(375x812)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="otto.de_product_detail_mobile.png"><img src="otto.de_product_detail_mobile.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div></td></tr>
+    <tr>
+      <td><a class="site-link" href="https://www.home24.de/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=home24.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:middle;margin-right:8px;object-fit:contain;">home24.de</a></td>
+<td class="score-cell"><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.home24.de/" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="30.58" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">94</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>DESKTOP</strong> <br/>(1280x800)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="home24.de_home_desktop.png"><img src="home24.de_home_desktop.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div><div style="height:1px;width:100%;background:#e0e0e0;margin:24px 0 24px 0;"></div><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.home24.de/" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="30.58" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">94</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>MOBILE</strong> <br/>(375x812)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="home24.de_home_mobile.png"><img src="home24.de_home_mobile.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div></td><td class="score-cell"><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.home24.de/eckcouches/" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="39.80" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">91</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>DESKTOP</strong> <br/>(1280x800)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="home24.de_product_list_desktop.png"><img src="home24.de_product_list_desktop.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div><div style="height:1px;width:100%;background:#e0e0e0;margin:24px 0 24px 0;"></div><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.home24.de/eckcouches/" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="39.80" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">91</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>MOBILE</strong> <br/>(375x812)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="home24.de_product_list_mobile.png"><img src="home24.de_product_list_mobile.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div></td><td class="score-cell"><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.home24.de/produkt/ecksofa-egret-dunkelgruen-armlehne-beidseitig-montierbar-ecke-davorstehend-links-ottomane-davorstehend-links" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="30.58" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">94</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>DESKTOP</strong> <br/>(1280x800)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="home24.de_product_detail_desktop.png"><img src="home24.de_product_detail_desktop.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div><div style="height:1px;width:100%;background:#e0e0e0;margin:24px 0 24px 0;"></div><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.home24.de/produkt/ecksofa-egret-dunkelgruen-armlehne-beidseitig-montierbar-ecke-davorstehend-links-ottomane-davorstehend-links" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="35.19" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">92</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>MOBILE</strong> <br/>(375x812)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="home24.de_product_detail_mobile.png"><img src="home24.de_product_detail_mobile.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div></td></tr>
+    <tr>
+      <td><a class="site-link" href="https://www.ebay.de/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=ebay.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:middle;margin-right:8px;object-fit:contain;">ebay.de</a></td>
+<td class="score-cell"><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.ebay.de/" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="35.52" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">92</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>DESKTOP</strong> <br/>(1280x800)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="ebay.de_home_desktop.png"><img src="ebay.de_home_desktop.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div><div style="height:1px;width:100%;background:#e0e0e0;margin:24px 0 24px 0;"></div><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.ebay.de/" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="30.58" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">94</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>MOBILE</strong> <br/>(375x812)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="ebay.de_home_mobile.png"><img src="ebay.de_home_mobile.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div></td><td class="score-cell"><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.ebay.de/b/Handys-Smartphones/9355/bn_466745" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#ffa400" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="44.41" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">90</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>DESKTOP</strong> <br/>(1280x800)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="ebay.de_product_list_desktop.png"><img src="ebay.de_product_list_desktop.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div><div style="height:1px;width:100%;background:#e0e0e0;margin:24px 0 24px 0;"></div><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;color:#bbb;margin:0 auto;">N/A</div></td><td class="score-cell"><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.ebay.de/itm/167464417497?_skw=iphone+pro+max&epid=9041711316&itmmeta=01JSHB4QRQ8FXMF4F8B84XA8MG&hash=item26fda838d9:g:UxkAAOSwDjhj7iXw&itmprp=enc%3AAQAKAAAA8FkggFvd1GGDu0w3yXCmi1dvz46ubMdxuQejt4OZlWwBXaTKwv%2BeD86kxgnLU4fI1SzZj%2Fk3QqSObqK2IzbD7V0BU%2F51QqGdVo6Oc10beX%2BL6K1Dmdg6RxNu9LvTIdBWyCXVwbs7oMkz9NcfoWO%2FD0t6phx%2BPiS0Pvi1c23W45Gm6PDyPMDi3xfXHRBrV2HHBumc%2Bu9ssQExbS33jznumEV%2F0rpuNjSM4dml8pAyZxbOgl7XKBTqv1SLhfzQMuN4pQs5oZ3Tmlh7Yr8oCpajq0tu7%2FyjrY2CndS3%2F2o71SVWkbLtfXdrl902QfcrGeSEow%3D%3D%7Ctkp%3ABk9SR-L8kqvMZQ" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#ffa400" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="48.36" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">88</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>DESKTOP</strong> <br/>(1280x800)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="ebay.de_product_detail_desktop.png"><img src="ebay.de_product_detail_desktop.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div><div style="height:1px;width:100%;background:#e0e0e0;margin:24px 0 24px 0;"></div><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;color:#bbb;margin:0 auto;">N/A</div></td></tr>
+    <tr>
+      <td><a class="site-link" href="https://www.ikea.com/de/de/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=ikea.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:middle;margin-right:8px;object-fit:contain;">ikea.de</a></td>
+<td class="score-cell"><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.ikea.com/de/de/" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="35.19" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">92</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>DESKTOP</strong> <br/>(1280x800)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="ikea.de_home_desktop.png"><img src="ikea.de_home_desktop.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div><div style="height:1px;width:100%;background:#e0e0e0;margin:24px 0 24px 0;"></div><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.ikea.com/de/de/" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="35.19" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">92</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>MOBILE</strong> <br/>(375x812)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="ikea.de_home_mobile.png"><img src="ikea.de_home_mobile.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div></td><td class="score-cell"><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.ikea.com/de/de/cat/regale-allzweckregale-st002/" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="25.65" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">95</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>DESKTOP</strong> <br/>(1280x800)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="ikea.de_product_list_desktop.png"><img src="ikea.de_product_list_desktop.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div><div style="height:1px;width:100%;background:#e0e0e0;margin:24px 0 24px 0;"></div><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.ikea.com/de/de/cat/regale-allzweckregale-st002/" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="25.65" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">95</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>MOBILE</strong> <br/>(375x812)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="ikea.de_product_list_mobile.png"><img src="ikea.de_product_list_mobile.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div></td><td class="score-cell"><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.ikea.com/de/de/p/kallax-regal-weiss-80275887/" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="30.58" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">94</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>DESKTOP</strong> <br/>(1280x800)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="ikea.de_product_detail_desktop.png"><img src="ikea.de_product_detail_desktop.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div><div style="height:1px;width:100%;background:#e0e0e0;margin:24px 0 24px 0;"></div><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.ikea.com/de/de/p/kallax-regal-weiss-80275887/" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="25.65" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">95</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>MOBILE</strong> <br/>(375x812)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="ikea.de_product_detail_mobile.png"><img src="ikea.de_product_detail_mobile.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div></td></tr>
+    <tr>
+      <td><a class="site-link" href="https://www.mediamarkt.de/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=mediamarkt.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:middle;margin-right:8px;object-fit:contain;">mediamarkt.de</a></td>
+<td class="score-cell"><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.mediamarkt.de/" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="35.52" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">92</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>DESKTOP</strong> <br/>(1280x800)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="mediamarkt.de_home_desktop.png"><img src="mediamarkt.de_home_desktop.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div><div style="height:1px;width:100%;background:#e0e0e0;margin:24px 0 24px 0;"></div><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.mediamarkt.de/" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="35.52" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">92</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>MOBILE</strong> <br/>(375x812)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="mediamarkt.de_home_mobile.png"><img src="mediamarkt.de_home_mobile.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div></td><td class="score-cell"><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.mediamarkt.de/de/category/smartphones-579.html" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#ffa400" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="52.63" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">87</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>DESKTOP</strong> <br/>(1280x800)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="mediamarkt.de_product_list_desktop.png"><img src="mediamarkt.de_product_list_desktop.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div><div style="height:1px;width:100%;background:#e0e0e0;margin:24px 0 24px 0;"></div><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.mediamarkt.de/de/category/smartphones-579.html" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#ffa400" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="49.01" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">88</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>MOBILE</strong> <br/>(375x812)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="mediamarkt.de_product_list_mobile.png"><img src="mediamarkt.de_product_list_mobile.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div></td><td class="score-cell"><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.mediamarkt.de/de/product/_apple-iphone-16-pro-max-5g-256-gb-titan-schwarz-dual-sim-2954329.html" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#ffa400" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="44.08" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">90</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>DESKTOP</strong> <br/>(1280x800)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="mediamarkt.de_product_detail_desktop.png"><img src="mediamarkt.de_product_detail_desktop.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div><div style="height:1px;width:100%;background:#e0e0e0;margin:24px 0 24px 0;"></div><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.mediamarkt.de/de/product/_apple-iphone-16-pro-max-5g-256-gb-titan-schwarz-dual-sim-2954329.html" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#ffa400" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="52.96" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">87</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>MOBILE</strong> <br/>(375x812)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="mediamarkt.de_product_detail_mobile.png"><img src="mediamarkt.de_product_detail_mobile.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div></td></tr>
+    <tr>
+      <td><a class="site-link" href="https://www.saturn.de/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=saturn.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:middle;margin-right:8px;object-fit:contain;">saturn.de</a></td>
+<td class="score-cell"><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.saturn.de/" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="25.65" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">95</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>DESKTOP</strong> <br/>(1280x800)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="saturn.de_home_desktop.png"><img src="saturn.de_home_desktop.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div><div style="height:1px;width:100%;background:#e0e0e0;margin:24px 0 24px 0;"></div><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.saturn.de/" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="21.04" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">97</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>MOBILE</strong> <br/>(375x812)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="saturn.de_home_mobile.png"><img src="saturn.de_home_mobile.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div></td><td class="score-cell"><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.saturn.de/de/brand/apple/iphone" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#ffa400" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="57.24" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">86</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>DESKTOP</strong> <br/>(1280x800)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="saturn.de_product_list_desktop.png"><img src="saturn.de_product_list_desktop.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div><div style="height:1px;width:100%;background:#e0e0e0;margin:24px 0 24px 0;"></div><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.saturn.de/de/brand/apple/iphone" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#ffa400" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="44.41" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">90</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>MOBILE</strong> <br/>(375x812)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="saturn.de_product_list_mobile.png"><img src="saturn.de_product_list_mobile.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div></td><td class="score-cell"><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.saturn.de/de/product/_apple-iphone-16-pro-max-5g-256-gb-titan-schwarz-dual-sim-2954329.html" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="21.04" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">97</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>DESKTOP</strong> <br/>(1280x800)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="saturn.de_product_detail_desktop.png"><img src="saturn.de_product_detail_desktop.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div><div style="height:1px;width:100%;background:#e0e0e0;margin:24px 0 24px 0;"></div><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.saturn.de/de/product/_apple-iphone-16-pro-max-5g-256-gb-titan-schwarz-dual-sim-2954329.html" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="21.04" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">97</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>MOBILE</strong> <br/>(375x812)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="saturn.de_product_detail_mobile.png"><img src="saturn.de_product_detail_mobile.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div></td></tr>
+    <tr>
+      <td><a class="site-link" href="https://www.bol.com/nl/nl/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=bol.nl&sz=48" alt="" style="width:20px;height:20px;vertical-align:middle;margin-right:8px;object-fit:contain;">bol.nl</a></td>
+<td class="score-cell"><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.bol.com/nl/nl/" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="35.19" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">92</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>DESKTOP</strong> <br/>(1280x800)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="bol.nl_home_desktop.png"><img src="bol.nl_home_desktop.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div><div style="height:1px;width:100%;background:#e0e0e0;margin:24px 0 24px 0;"></div><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.bol.com/nl/nl/" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="39.80" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">91</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>MOBILE</strong> <br/>(375x812)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="bol.nl_home_mobile.png"><img src="bol.nl_home_mobile.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div></td><td class="score-cell"><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.bol.com/nl/nl/l/smartphones/4010/" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#ffa400" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="56.58" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">86</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>DESKTOP</strong> <br/>(1280x800)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="bol.nl_product_list_desktop.png"><img src="bol.nl_product_list_desktop.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div><div style="height:1px;width:100%;background:#e0e0e0;margin:24px 0 24px 0;"></div><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.bol.com/nl/nl/l/smartphones/4010/" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#ffa400" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="49.01" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">88</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>MOBILE</strong> <br/>(375x812)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="bol.nl_product_list_mobile.png"><img src="bol.nl_product_list_mobile.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div></td><td class="score-cell"><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.bol.com/nl/nl/p/apple-iphone-16-pro-max-256gb-zwart-titanium/9300000189439873/?suggestionType=featured_product" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#ffa400" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="61.19" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">85</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>DESKTOP</strong> <br/>(1280x800)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="bol.nl_product_detail_desktop.png"><img src="bol.nl_product_detail_desktop.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div><div style="height:1px;width:100%;background:#e0e0e0;margin:24px 0 24px 0;"></div><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.bol.com/nl/nl/p/apple-iphone-16-pro-max-256gb-zwart-titanium/9300000189439873/?suggestionType=featured_product" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#ffa400" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="65.14" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">83</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>MOBILE</strong> <br/>(375x812)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="bol.nl_product_detail_mobile.png"><img src="bol.nl_product_detail_mobile.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div></td></tr>
+    <tr>
+      <td><a class="site-link" href="https://en.zalando.de/?_rfl=de" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=zalando.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:middle;margin-right:8px;object-fit:contain;">zalando.de</a></td>
+<td class="score-cell"><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://en.zalando.de/?_rfl=de" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="25.65" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">95</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>DESKTOP</strong> <br/>(1280x800)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="zalando.de_home_desktop.png"><img src="zalando.de_home_desktop.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div><div style="height:1px;width:100%;background:#e0e0e0;margin:24px 0 24px 0;"></div><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://en.zalando.de/?_rfl=de" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="30.58" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">94</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>MOBILE</strong> <br/>(375x812)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="zalando.de_home_mobile.png"><img src="zalando.de_home_mobile.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div></td><td class="score-cell"><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://en.zalando.de/mens-shoes/" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="30.58" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">94</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>DESKTOP</strong> <br/>(1280x800)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="zalando.de_product_list_desktop.png"><img src="zalando.de_product_list_desktop.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div><div style="height:1px;width:100%;background:#e0e0e0;margin:24px 0 24px 0;"></div><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://en.zalando.de/mens-shoes/" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="30.58" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">94</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>MOBILE</strong> <br/>(375x812)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="zalando.de_product_list_mobile.png"><img src="zalando.de_product_list_mobile.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div></td><td class="score-cell"><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://en.zalando.de/adidas-originals-samba-trainers-cream-whitecore-black-sand-strata-ad111a2ib-a11.html" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="35.19" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">92</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>DESKTOP</strong> <br/>(1280x800)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="zalando.de_product_detail_desktop.png"><img src="zalando.de_product_detail_desktop.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div><div style="height:1px;width:100%;background:#e0e0e0;margin:24px 0 24px 0;"></div><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://en.zalando.de/adidas-originals-samba-trainers-cream-whitecore-black-sand-strata-ad111a2ib-a11.html" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="35.19" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">92</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>MOBILE</strong> <br/>(375x812)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="zalando.de_product_detail_mobile.png"><img src="zalando.de_product_detail_mobile.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div></td></tr>
+    <tr>
+      <td><a class="site-link" href="https://en.aboutyou.de/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=aboutyou.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:middle;margin-right:8px;object-fit:contain;">aboutyou.de</a></td>
+<td class="score-cell"><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://en.aboutyou.de/" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="40.13" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">91</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>DESKTOP</strong> <br/>(1280x800)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="aboutyou.de_home_desktop.png"><img src="aboutyou.de_home_desktop.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div><div style="height:1px;width:100%;background:#e0e0e0;margin:24px 0 24px 0;"></div><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://en.aboutyou.de/" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#0cce6b" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="40.13" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">91</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>MOBILE</strong> <br/>(375x812)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="aboutyou.de_home_mobile.png"><img src="aboutyou.de_home_mobile.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div></td><td class="score-cell"><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://en.aboutyou.de/c/men/shoes-20215" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#ffa400" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="57.90" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">86</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>DESKTOP</strong> <br/>(1280x800)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="aboutyou.de_product_list_desktop.png"><img src="aboutyou.de_product_list_desktop.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div><div style="height:1px;width:100%;background:#e0e0e0;margin:24px 0 24px 0;"></div><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://en.aboutyou.de/c/men/shoes-20215" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#ffa400" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="57.90" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">86</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>MOBILE</strong> <br/>(375x812)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="aboutyou.de_product_list_mobile.png"><img src="aboutyou.de_product_list_mobile.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div></td><td class="score-cell"><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://en.aboutyou.de/p/adidas-originals/sneakers-handball-spezial-4114892" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#ffa400" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="61.19" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">85</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>DESKTOP</strong> <br/>(1280x800)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="aboutyou.de_product_detail_desktop.png"><img src="aboutyou.de_product_detail_desktop.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div><div style="height:1px;width:100%;background:#e0e0e0;margin:24px 0 24px 0;"></div><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://en.aboutyou.de/p/adidas-originals/sneakers-handball-spezial-4114892" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#ffa400" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="61.19" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">85</text>
+    </svg>
+  </a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>MOBILE</strong> <br/>(375x812)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="aboutyou.de_product_detail_mobile.png"><img src="aboutyou.de_product_detail_mobile.png" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div></div></td></tr>
+    </table>
+  </div>
+
+  <!-- Accessible Lightbox Modal -->
+  <div id="lightbox-modal" role="dialog" aria-modal="true" aria-label="Screenshot preview" tabindex="-1" style="display:none;position:fixed;z-index:10000;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.85);align-items:flex-start;justify-content:center;overflow:auto;">
+    <button id="lightbox-close" aria-label="Close dialog" style="position:fixed;top:24px;right:32px;background:#fff;border:none;border-radius:50%;width:44px;height:44px;font-size:2rem;line-height:1.2;cursor:pointer;box-shadow:0 2px 8px #0003;z-index:10001;">&times;</button>
+    <img id="lightbox-img" src="" alt="Full page screenshot" style="display:block;margin:80px auto 32px auto;border-radius:12px;box-shadow:0 4px 32px #0008;outline:4px solid #fff;" />
+  </div>
+  <script>
+    // Lightbox logic
+    const modal = document.getElementById('lightbox-modal');
+    const modalImg = document.getElementById('lightbox-img');
+    const closeBtn = document.getElementById('lightbox-close');
+    let lastActive = null;
+    document.querySelectorAll('.screenshot-thumb').forEach(thumb => {
+      thumb.addEventListener('click', function(e) {
+        e.preventDefault();
+        lastActive = document.activeElement;
+        modalImg.src = this.getAttribute('data-full');
+        modal.style.display = 'flex';
+        closeBtn.focus();
+        document.body.style.overflow = 'hidden';
+      });
+    });
+    function closeModal() {
+      modal.style.display = 'none';
+      modalImg.src = '';
+      document.body.style.overflow = '';
+      if (lastActive) lastActive.focus();
+    }
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', function(e) {
+      if (modal.style.display === 'flex' && (e.key === 'Escape' || e.key === 'Esc')) {
+        closeModal();
+      }
+      // Trap focus inside modal
+      if (modal.style.display === 'flex' && e.key === 'Tab') {
+        e.preventDefault();
+        closeBtn.focus();
+      }
+    });
+  </script>
+</body>
+</html>

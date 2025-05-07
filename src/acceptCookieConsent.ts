@@ -26,6 +26,7 @@ export async function acceptCookieConsent(page: any): Promise<boolean> {
       "privacy-accept-all",
       "cookiebanner-accept-button",
       "cookie-agree-button",
+      "sp-cc-accept",
     ];
     for (const id of knownAcceptButtonIds) {
       const clicked = await page.evaluate(
@@ -86,35 +87,35 @@ export async function acceptCookieConsent(page: any): Promise<boolean> {
       new Function(
         "texts",
         `
-      function getAllButtons(root) {
-        if (!root) root = document;
-        var buttons = [];
-        if (root.querySelectorAll) {
-          buttons = Array.prototype.slice.call(root.querySelectorAll('button'));
+      function getAllClickableElements(root) {
+      if (!root) root = document;
+      var elements = [];
+      if (root.querySelectorAll) {
+        elements = Array.prototype.slice.call(root.querySelectorAll('button, input[type="submit"]'));
+      }
+      var shadowElements = root.querySelectorAll ? root.querySelectorAll('*') : [];
+      for (var i = 0; i < shadowElements.length; i++) {
+        var el = shadowElements[i];
+        if (el.shadowRoot) {
+        elements = elements.concat(getAllClickableElements(el.shadowRoot));
         }
-        var elements = root.querySelectorAll ? root.querySelectorAll('*') : [];
-        for (var i = 0; i < elements.length; i++) {
-          var el = elements[i];
-          if (el.shadowRoot) {
-            buttons = buttons.concat(getAllButtons(el.shadowRoot));
-          }
-        }
-        return buttons;
+      }
+      return elements;
       }
       function normalize(text) {
-        return (text || "").trim().toLowerCase();
+      return (text || "").trim().toLowerCase();
       }
-      var allButtons = getAllButtons(document);
-      for (var i = 0; i < allButtons.length; i++) {
-        var btn = allButtons[i];
-        var text = normalize(btn.textContent || "");
-        for (var j = 0; j < texts.length; j++) {
-          var kw = texts[j];
-          if (text === kw || text.indexOf(kw) !== -1) {
-            btn.click();
-            return true;
-          }
+      var allElements = getAllClickableElements(document);
+      for (var i = 0; i < allElements.length; i++) {
+      var el = allElements[i];
+      var text = normalize(el.textContent || el.value || "");
+      for (var j = 0; j < texts.length; j++) {
+        var kw = texts[j];
+        if (text === kw || text.indexOf(kw) !== -1) {
+        el.click();
+        return true;
         }
+      }
       }
       return false;
     `

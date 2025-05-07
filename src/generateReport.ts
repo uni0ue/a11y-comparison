@@ -14,10 +14,8 @@ function getTodayDir() {
   return `${yyyy}-${mm}-${dd}`;
 }
 
-// Find all report-*.json files in the /reports/yyyy-mm-dd directory
-function getReportFiles(): string[] {
-  const todayDir = getTodayDir();
-  const reportsDir = path.join(process.cwd(), "reports", todayDir);
+// Find all report-*.json files in the /docs directory
+function getReportFiles(reportsDir: string): string[] {
   if (!fs.existsSync(reportsDir)) return [];
   const files = fs.readdirSync(reportsDir);
   return files
@@ -120,7 +118,9 @@ function generateHTMLTable(
     { pages: Record<string, Record<string, number>>; url: string }
   >,
   firstReportDate: Date,
-  reportsDir: string
+  reportsDir: string,
+  prevReportDir?: string,
+  nextReportDir?: string
 ): string {
   // Use the order of product types as defined in sites.ts
   const allPages = Object.keys(sites);
@@ -167,6 +167,18 @@ function generateHTMLTable(
       text-align: right;
     }
     .timestamp { font-weight: bold; display: block; margin-top: 0.3rem; }
+    .nav-arrows {
+      margin-top: 0.4rem;
+    }
+    .nav-arrows a {
+      font-size: 1.6rem;
+      margin: 0 0.4rem;
+      color: #007acc;
+      text-decoration: none;
+    }
+    .nav-arrows a:hover {
+      text-decoration: underline;
+    }
     h1 { text-align: left; margin-top: 0; }
     table { border-collapse: collapse; margin: 2rem 0; background: #fff; box-shadow: 0 2px 8px #0001; table-layout: fixed; width: 100%; }
     th, td { border: 0px solid #ccc; padding: 0.7em 1.2em; text-align: left; }
@@ -191,6 +203,22 @@ function generateHTMLTable(
   <div class="container">
     <div class="audit-meta">
       Axe audit (EN-301-549) <span class="timestamp">${dateStr}</span>
+      ${
+        prevReportDir || nextReportDir
+          ? `<div class="nav-arrows">
+  ${
+    prevReportDir
+      ? `<a href="../${prevReportDir}/index.html" title="Previous Report" aria-label="Previous Report">&#8592;</a>`
+      : ""
+  }
+  ${
+    nextReportDir
+      ? `<a href="../${nextReportDir}/index.html" title="Next Report" aria-label="Next Report">&#8594;</a>`
+      : ""
+  }
+</div>`
+          : ""
+      }
     </div>
     <h1>Accessibility Comparison</h1>
     <table>
@@ -233,12 +261,18 @@ function generateHTMLTable(
         const screenshotFilename = `${site}_${page.replace(
           / /g,
           "_"
-        )}_${device.toLowerCase()}.png`;
+        )}_${device.toLowerCase()}.webp`;
+        const thumbFilename = `${site}_${page.replace(
+          / /g,
+          "_"
+        )}_${device.toLowerCase()}_thumb.jpeg`;
         const screenshotPath = path.join(reportsDir, screenshotFilename);
+        const thumbPath = path.join(reportsDir, thumbFilename);
         let screenshotHtml = "";
-        if (fs.existsSync(screenshotPath)) {
+        if (fs.existsSync(thumbPath)) {
+          const relThumb = thumbFilename;
           const relScreenshot = screenshotFilename;
-          screenshotHtml = `<div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="${relScreenshot}"><img src="${relScreenshot}" alt="Screenshot thumbnail" style="width:120px;aspect-ratio:3/4;max-width:100%;border-radius:8px;box-shadow:0 2px 8px #0002;object-fit:cover;object-position:top;"></a></div>`;
+          screenshotHtml = `<div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="${relScreenshot}"><img src="${relThumb}" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div>`;
         }
         const vp = viewports[device.toUpperCase()];
         const labelText = vp
@@ -269,7 +303,7 @@ function generateHTMLTable(
   <!-- Accessible Lightbox Modal -->
   <div id="lightbox-modal" role="dialog" aria-modal="true" aria-label="Screenshot preview" tabindex="-1" style="display:none;position:fixed;z-index:10000;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.85);align-items:flex-start;justify-content:center;overflow:auto;">
     <button id="lightbox-close" aria-label="Close dialog" style="position:fixed;top:24px;right:32px;background:#fff;border:none;border-radius:50%;width:44px;height:44px;font-size:2rem;line-height:1.2;cursor:pointer;box-shadow:0 2px 8px #0003;z-index:10001;">&times;</button>
-    <img id="lightbox-img" src="" alt="Full page screenshot" style="display:block;margin:80px auto 32px auto;border-radius:12px;box-shadow:0 4px 32px #0008;outline:4px solid #fff;" />
+    <img id="lightbox-img" src="" alt="Full page screenshot" style="display:block;margin:80px auto 32px auto;border-radius:12px;box-shadow:0 4px 32px #0008;outline:4px solid #fff;max-width:100%;" />
   </div>
   <script>
     // Lightbox logic
@@ -307,6 +341,17 @@ function generateHTMLTable(
         closeBtn.focus();
       }
     });
+    // Arrow key navigation
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowLeft') {
+        const prev = document.querySelector('.nav-arrows a[title="Previous Report"]');
+        if (prev) window.location.href = prev.href;
+      }
+      if (e.key === 'ArrowRight') {
+        const next = document.querySelector('.nav-arrows a[title="Next Report"]');
+        if (next) window.location.href = next.href;
+      }
+    });
   </script>
 </body>
 </html>`;
@@ -315,8 +360,8 @@ function generateHTMLTable(
 
 function main() {
   const todayDir = getTodayDir();
-  const reportsDir = path.join(process.cwd(), "reports", todayDir);
-  const reportFiles = getReportFiles();
+  const reportsDir = path.join(process.cwd(), "docs", todayDir);
+  const reportFiles = getReportFiles(reportsDir);
   if (reportFiles.length === 0) {
     console.error("No report-*.json files found.");
     process.exit(1);
@@ -324,7 +369,6 @@ function main() {
   // Get the timestamp from the first report file's JSON
   const firstReportFile = reportFiles.slice().sort()[0];
   const firstReportJson = JSON.parse(fs.readFileSync(firstReportFile, "utf-8"));
-  // Find the first page and device key
   const firstPage = Object.keys(firstReportJson)[0];
   const firstDevice = firstPage
     ? Object.keys(firstReportJson[firstPage])[0]
@@ -338,12 +382,63 @@ function main() {
   }
   const firstReportDate = new Date(timestampStr);
   const data = parseReports(reportFiles);
-  const html = generateHTMLTable(data, firstReportDate, reportsDir);
-  if (!fs.existsSync(reportsDir)) fs.mkdirSync(reportsDir, { recursive: true });
-  fs.writeFileSync(path.join(reportsDir, "comparison.html"), html, "utf-8");
-  console.log(
-    `Accessibility comparison report generated at reports/${todayDir}/comparison.html`
+
+  // Generate/update docs/index.html with list of report links
+  const docsRoot = path.join(process.cwd(), "docs");
+  const reportDirs = fs
+    .readdirSync(docsRoot)
+    .filter(
+      (f) =>
+        /^\d{4}-\d{2}-\d{2}$/.test(f) &&
+        fs.statSync(path.join(docsRoot, f)).isDirectory()
+    )
+    .sort()
+    .reverse();
+
+  const currentIndex = reportDirs.indexOf(todayDir);
+  const prevReportDir = reportDirs[currentIndex + 1];
+  const nextReportDir = reportDirs[currentIndex - 1];
+
+  const html = generateHTMLTable(
+    data,
+    firstReportDate,
+    reportsDir,
+    prevReportDir,
+    nextReportDir
   );
+  if (!fs.existsSync(reportsDir)) fs.mkdirSync(reportsDir, { recursive: true });
+  fs.writeFileSync(path.join(reportsDir, "index.html"), html, "utf-8");
+  fs.writeFileSync(path.join(docsRoot, "index.html"), html, "utf-8");
+  console.log(
+    `Accessibility comparison report generated at docs/${todayDir}/index.html and docs/index.html`
+  );
+
+  const indexHtml = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Accessibility Reports Index</title>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; background: #f9f9f9; }
+    h1 { font-size: 1.8rem; }
+    ul { list-style: none; padding: 0; }
+    li { margin: 0.5rem 0; }
+    a { text-decoration: none; color: #007acc; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <h1>Accessibility Report History</h1>
+  <ul>
+    ${reportDirs
+      .map((dir) => `<li><a href="./${dir}/index.html">${dir}</a></li>`)
+      .join("\n")}
+  </ul>
+</body>
+</html>
+`;
+
+  fs.writeFileSync(path.join(docsRoot, "index.html"), indexHtml, "utf-8");
 }
 
 main();

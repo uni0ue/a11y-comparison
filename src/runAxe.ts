@@ -1,14 +1,15 @@
-import puppeteer, { type Viewport } from "puppeteer";
+import puppeteer, { type Viewport, type Browser } from "puppeteer";
 import fs from "fs/promises";
 import path from "path";
 import { AxePuppeteer } from "@axe-core/puppeteer";
 import { setTimeout } from "node:timers/promises";
 import { acceptCookieConsent } from "./acceptCookieConsent";
-import { scrollPageToBottom } from "puppeteer-autoscroll-down";
+import { scrollPageToBottom, scrollPageToTop } from "puppeteer-autoscroll-down";
 import { axeConfig, viewports } from "../config";
 import { sites } from "../sites";
 import { ignoreCountrySwitcher } from "./ignoreCountrySwitcher";
 import { KnownDevices } from "puppeteer";
+import { Jimp } from "jimp";
 
 async function runAxe(
   url: string,
@@ -17,13 +18,14 @@ async function runAxe(
   pageType?: string
 ) {
   console.log("Starting accessibility test for " + url);
-  let browser;
+  let browser: Browser | null = null;
   let screenshotPath: string | null = null;
   try {
     browser = await puppeteer.launch({
       headless: false,
       defaultViewport: viewports[viewport],
     });
+    console.log(puppeteer.executablePath());
     const page = await browser.newPage();
     const puppeteerDevices = KnownDevices;
 
@@ -76,6 +78,23 @@ async function runAxe(
         console.log("Loading cookies from file");
         const cookiesData = await fs.readFile(cookiesPath, "utf-8");
         const cookies = JSON.parse(cookiesData)
+          // Filter out invalid cookies
+          .filter((cookie) => cookie.name && cookie.value)
+          // Filter out expired cookies
+          .filter((cookie) => {
+            const expires = cookie.expires || 0;
+            return expires === 0 || expires > Math.floor(Date.now() / 1000);
+          })
+          // remove ak*
+          .filter((cookie) => {
+            const name = cookie.name || "";
+            return (
+              !name.startsWith("ak") &&
+              name !== "_abck" &&
+              name !== "bm_sv" &&
+              !["_uetsid", "_uetvid"].includes(name)
+            );
+          })
           .filter((cookie) => {
             // Filter out cookies with invalid or empty names
             if (!cookie.name || typeof cookie.name !== "string") {
@@ -223,6 +242,11 @@ async function runAxe(
       size: 1000,
       delay: 500,
     });
+    await scrollPageToTop(page, {
+      size: 10000,
+      delay: 500,
+    });
+    await setTimeout(2000);
     console.log("Page loaded, running accessibility tests");
 
     function withTimeout(promise, ms) {
@@ -243,21 +267,36 @@ async function runAxe(
     console.log(`Found ${results.violations.length} accessibility violations`);
     console.log(`Found ${results.passes.length} passes`);
 
-    // --- Screenshot logic ---
     // Use timestamp from results or now
     const auditTimestamp = results.timestamp || new Date().toISOString();
     const auditDate = new Date(auditTimestamp);
     const yyyy = auditDate.getFullYear();
     const mm = String(auditDate.getMonth() + 1).padStart(2, "0");
     const dd = String(auditDate.getDate()).padStart(2, "0");
-    const reportDir = path.join("reports", `${yyyy}-${mm}-${dd}`);
+    const reportDir = path.join("docs", `${yyyy}-${mm}-${dd}`);
     await fs.mkdir(reportDir, { recursive: true });
     // Screenshot filename: [domain]_[pageType]_[viewport].png
     const safePageTypeName = pageTypeName.replace(/\s+/g, "_");
-    const screenshotFilename = `${domainName}_${safePageTypeName}_${viewport.toLowerCase()}.png`;
+    const screenshotFilename = `${domainName}_${safePageTypeName}_${viewport.toLowerCase()}.webp`;
     screenshotPath = path.join(reportDir, screenshotFilename);
-    await page.screenshot({ path: screenshotPath, fullPage: true });
+    await page.screenshot({
+      path: screenshotPath,
+      fullPage: true,
+      type: "jpeg",
+    });
+
     console.log(`Screenshot saved: ${screenshotPath}`);
+    // Save viewport-sized screenshot for thumbnail
+    const thumbFilename =
+      `${domainName}_${safePageTypeName}_${viewport.toLowerCase()}_thumb.jpeg` as const;
+    const thumbPath = path.join(reportDir, thumbFilename) as `${string}.jpeg`;
+    await page.screenshot({ path: thumbPath, fullPage: false, type: "jpeg" });
+
+    const image = await Jimp.read(thumbPath);
+    await image
+      .resize({ w: 160 }) // Resize to 160x120
+      .write(thumbPath); // Save the image
+    console.log(`Thumbnail screenshot saved: ${thumbPath}`);
     // --- End screenshot logic ---
 
     return { ...results, screenshotPath, timestamp: auditTimestamp };
@@ -312,7 +351,7 @@ function getAllPageTypes(sitesConfig: typeof sites): string[] {
             const yyyy = auditDate.getFullYear();
             const mm = String(auditDate.getMonth() + 1).padStart(2, "0");
             const dd = String(auditDate.getDate()).padStart(2, "0");
-            const reportDir = path.join("reports", `${yyyy}-${mm}-${dd}`);
+            const reportDir = path.join("docs", `${yyyy}-${mm}-${dd}`);
             await fs.mkdir(reportDir, { recursive: true });
             await fs.writeFile(
               path.join(reportDir, `report-${domain.replace(/\./g, "_")}.json`),

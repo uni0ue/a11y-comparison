@@ -1,7 +1,7 @@
 export const viewports = {
   DESKTOP: {
     width: 1280,
-    height: 800,
+    height: 960,
     deviceScaleFactor: 1,
     isMobile: false,
     hasTouch: false,

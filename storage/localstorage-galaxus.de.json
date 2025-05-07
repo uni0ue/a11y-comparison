@@ -1,0 +1,21 @@
+{
+  "snowplowOutQueue_ub": "[]",
+  "__rtbh.lid": "{\"eventType\":\"lid\",\"id\":\"mn7GiecnT5ZKu34G2KPw\",\"expiryDate\":\"2026-05-06T15:08:56.588Z\"}",
+  "_uetvid_exp": "Sun, 31 May 2026 15:08:56 GMT",
+  "cto_bundle": "43CIll9FYWolMkZ0M0lLTzM5ajZ4cFNGbzZOTmd1Z0ViOFg5SnByUE9HMDlNTzZIVWtKQU1aUDFua2hyT1FOSWRNbFVBOHBLQ1NlRTRzOFplQ3ZlVDB0YXlMZFEyUVZzbVpPWHZkZ3g4bDE3VkcwVHdTMHRYenB0ZDd6cFcwNkN0T0FKQ0FIWlc2VWlCZ1VGeno3diUyQnV4ajhwQkhBMXl1Z0dCJTJGN3JFemdlWkZQczRPN00lM0Q",
+  "topicsLastReferenceTime": "1746544136632",
+  "reportedExperiments": "[\"OSA-45911-mobile-shop-settings\",\"osa-47653-content-recommender-without-language\",\"OSA-47963-free-the-anLager\",\"OSA-47064-pdp-eu-trust-follow-up\",\"OSA-46074-variant-group-filter-order\"]",
+  "retargeting": "{\"value\":{\"1\":[],\"2\":[],\"3\":[49221245],\"4\":[],\"5\":[],\"max\":5,\"excl\":[]},\"expires\":1747148936567}",
+  "ak_ax": "-1",
+  "_gcl_ls": "{\"schema\":\"gcl\",\"version\":1,\"gcl_ctr\":{\"value\":{\"value\":0,\"creationTimeMs\":1746532634425},\"expires\":1754308634425}}",
+  "_uetsid": "1b26787029c211f08030057755fdc9d4",
+  "SimilarProductsSessionProducts": "{\"products\":[49221245,49221245],\"sessionKey\":\"151ba2ff-cde0-4046-8f50-47166ab76603\"}",
+  "hasBuyItAgainShoppingListItems": "false",
+  "lastExternalReferrerTime": "1746544136629",
+  "_uetsid_exp": "Wed, 07 May 2025 15:08:56 GMT",
+  "__rtbh.uid": "{\"eventType\":\"uid\",\"id\":\"unknown\",\"expiryDate\":\"2026-05-06T15:08:56.590Z\"}",
+  "ak_a": "32D66C73CE39AC42CAAEF0C4E2F337F8",
+  "_uetvid": "1b26976029c211f085733f9b1e981341",
+  "lastExternalReferrer": "empty",
+  "RecentlyVisitedProducts": "49221245"
+}

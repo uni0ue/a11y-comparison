@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@axe-core/puppeteer": "^4.10.1",
+    "jimp": "^1.6.0",
     "puppeteer": "24.7.2",
     "puppeteer-autoscroll-down": "^2.0.0",
     "puppeteer-extra": "^3.3.6",
