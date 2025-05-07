@@ -139,6 +139,7 @@ function generateHTMLTable(
   // --- Table Head ---
   const tableHead = `
     <tr>
+      <th style="width:36px;"></th>
       <th style="text-align: left;">Site</th>
       ${allPages.map((page) => `<th>${page}</th>`).join("")}
     </tr>
@@ -151,14 +152,73 @@ function generateHTMLTable(
     const displaySite = site;
     const siteUrl =
       data[siteKey]?.url || sites.home[site] || `https://${displaySite}`;
-    tableBody += `<tr>\n<td><a class="site-link" href="${siteUrl}" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=${site}&sz=48" alt="" style="width:20px;height:20px;vertical-align:middle;margin-right:8px;object-fit:contain;">${displaySite}</a></td>`;
+    // Add expand/collapse arrow button
+    tableBody += `<style>
+    .expand-arrow {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      margin: 0 4px 0 0;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease-in-out;
+    }
+    .expand-arrow span {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-right: 2px solid #555;
+      border-bottom: 2px solid #555;
+      transform: rotate(-45deg);
+      transform-origin: center;
+      transition: transform 80ms ease-in-out;
+    }
+    tr[aria-expanded="true"] .expand-arrow span {
+      transform: rotate(45deg);
+    }
+    .expand-arrow:focus {
+      outline: 2px solid #007acc;
+      outline-offset: 2px;
+    }
+
+    .thumb {
+      margin-top: 6px;
+      display: none;
+    }
+
+    tr[aria-expanded="true"] .thumb {
+      display: block;
+    }
+    </style>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.expand-arrow').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const tr = btn.closest('tr');
+        const expanded = tr.getAttribute('aria-expanded') === 'true';
+        tr.setAttribute('aria-expanded', String(!expanded));
+       
+      });
+      });
+    });
+    </script>
+    `;
+    const expandBtn = `<button class="expand-arrow" aria-label="Expand/collapse row"><span></span></button>`;
+    tableBody += `<tr>\n<td style="width:36px;">${expandBtn}</td><td><a class="site-link" href="${siteUrl}" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=${site}&sz=48" alt="" style="width:20px;height:20px;vertical-align:top;margin-right:8px;object-fit:contain;">${displaySite}</a></td>`;
     for (const page of allPages) {
       tableBody += '<td class="score-cell">';
       let first = true;
       for (const device of deviceKeys) {
+        // Remove divider line between device scores
         if (!first) {
-          tableBody +=
-            '<div style="height:1px;width:100%;background:#e0e0e0;margin:24px 0 24px 0;"></div>';
+          //tableBody +=
+          //  '<div style="height:1px;width:100%;background:#e0e0e0;margin:24px 0 24px 0;"></div>';
         }
         first = false;
         const score = data[siteKey]?.pages[page.toLowerCase()]?.[device];
@@ -185,10 +245,65 @@ function generateHTMLTable(
         )}_${device.toLowerCase()}_thumb.jpeg`;
         const thumbPath = path.join(reportsDir, thumbFilename);
         let screenshotHtml = "";
+        let summaryHtml = "";
         if (fs.existsSync(thumbPath)) {
           const relThumb = thumbFilename;
           const relScreenshot = screenshotFilename;
-          screenshotHtml = `<div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="${relScreenshot}"><img src="${relThumb}" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div>`;
+          screenshotHtml = `<div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="${relScreenshot}"><img src="${relThumb}" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a>`;
+          // Issue summary (nested list by impact, listing rule ids)
+          const impactOrder = ["critical", "serious", "moderate", "minor"];
+          const impactLabels = {
+            critical: "critical issue",
+            serious: "serious issue",
+            moderate: "moderate issue",
+            minor: "minor issue",
+          };
+          const impactCounts = {};
+          const impactRules = {};
+          try {
+            const reportFile = path.join(reportsDir, `report-${siteKey}.json`);
+            if (fs.existsSync(reportFile)) {
+              const reportJson = JSON.parse(
+                fs.readFileSync(reportFile, "utf-8")
+              );
+              const deviceData = reportJson[page.toLowerCase()]?.[device];
+              if (deviceData && Array.isArray(deviceData.violations)) {
+                for (const v of deviceData.violations) {
+                  if (v.impact) {
+                    impactCounts[v.impact] = (impactCounts[v.impact] || 0) + 1;
+                    if (!impactRules[v.impact]) impactRules[v.impact] = [];
+                    impactRules[v.impact].push(v.id);
+                  }
+                }
+              }
+            }
+          } catch {}
+          const summaryParts = impactOrder
+            .filter((impact) => impactCounts[impact])
+            .map((impact) => {
+              const rules = impactRules[impact] || [];
+              return `<li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;">${
+                  impactCounts[impact]
+                } ${impactLabels[impact]}${
+                impactCounts[impact] > 1 ? "s" : ""
+              }</span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  ${rules
+                    .map(
+                      (rule) =>
+                        `<li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">${rule}</li>`
+                    )
+                    .join("")}
+                </ul>
+              </li>`;
+            });
+          if (summaryParts.length > 0) {
+            summaryHtml = `<ul class=\"issue-summary\" style=\"font-size:13px;color:#a00;margin-top:32px;text-align:left;list-style-type:disc;\">${summaryParts.join(
+              ""
+            )}</ul>`;
+          }
+          screenshotHtml += summaryHtml + "</div>";
         }
         const vp = viewports[device.toUpperCase()];
         const labelText = vp
@@ -249,6 +364,15 @@ function generateHTMLTable(
         const next = document.querySelector('.nav-arrows a[title="Next Report"]');
         if (next) window.location.href = next.href;
       }
+    });
+    // Expand/collapse arrow rotation
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.expand-arrow').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          btn.classList.toggle('expanded');
+        });
+      });
     });
   </script>
   `;

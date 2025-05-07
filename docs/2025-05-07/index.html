@@ -11,6 +11,12 @@
         background: #f8f9fa;
         margin: 0;
       }
+      ul,
+      li {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
       .container {
         max-width: 1200px;
         margin: 0 auto;
@@ -150,15 +156,106 @@
       padding: 0.5em 0.3em;
     }
   }
+  .row-thumbnails[hidden] {
+    display: none !important;
+  }
+  tr[aria-expanded="true"] .row-thumbnails {
+    display: block !important;
+  }
+  .expand-arrow {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0 8px 0 0;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+  }
+  .expand-arrow span {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-right: 3px solid #888;
+    border-bottom: 3px solid #888;
+    transform: rotate(45deg);
+    transition: transform 0.25s cubic-bezier(0.4, 2, 0.6, 1);
+    margin-top: 2px;
+  }
+  .expand-arrow.expanded span {
+    transform: rotate(135deg);
+  }
+  .expand-arrow:focus {
+    outline: 2px solid #007acc;
+  }
 </style>
 <table>
   
     <tr>
+      <th style="width:36px;"></th>
       <th style="text-align: left;">Site</th>
       <th>home</th>
     </tr>
-   <tr>
-<td><a class="site-link" href="https://www.galaxus.de/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=galaxus.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:middle;margin-right:8px;object-fit:contain;">galaxus.de</a></td><td class="score-cell"><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.galaxus.de/" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+   <style>
+    .expand-arrow {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      margin: 0 4px 0 0;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease-in-out;
+    }
+    .expand-arrow span {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-right: 2px solid #555;
+      border-bottom: 2px solid #555;
+      transform: rotate(-45deg);
+      transform-origin: center;
+      transition: transform 80ms ease-in-out;
+    }
+    tr[aria-expanded="true"] .expand-arrow span {
+      transform: rotate(45deg);
+    }
+    .expand-arrow:focus {
+      outline: 2px solid #007acc;
+      outline-offset: 2px;
+    }
+
+    .thumb {
+      margin-top: 6px;
+      display: none;
+    }
+
+    tr[aria-expanded="true"] .thumb {
+      display: block;
+    }
+    </style>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.expand-arrow').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const tr = btn.closest('tr');
+        const expanded = tr.getAttribute('aria-expanded') === 'true';
+        tr.setAttribute('aria-expanded', String(!expanded));
+       
+      });
+      });
+    });
+    </script>
+    <tr>
+<td style="width:36px;"><button class="expand-arrow" aria-label="Expand/collapse row"><span></span></button></td><td><a class="site-link" href="https://www.galaxus.de/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=galaxus.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:top;margin-right:8px;object-fit:contain;">galaxus.de</a></td><td class="score-cell"><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.galaxus.de/" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
   <circle
     cx="60"
     cy="60"
@@ -189,7 +286,12 @@
     95
   </text>
 </svg>
-</a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>DESKTOP</strong> <br/>(1280x960)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="galaxus.de_home_desktop.webp"><img src="galaxus.de_home_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div><div style="height:1px;width:100%;background:#e0e0e0;margin:24px 0 24px 0;"></div><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.galaxus.de/" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+</a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>DESKTOP</strong> <br/>(1280x960)</div><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="galaxus.de_home_desktop.webp"><img src="galaxus.de_home_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:32px;text-align:left;list-style-type:disc;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;">1 serious issue</span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style="margin-bottom:0.2em;font-size:13px;list-style-type:disc;">color-contrast</li>
+                </ul>
+              </li></ul></div></div><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.galaxus.de/" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
   <circle
     cx="60"
     cy="60"
@@ -220,7 +322,12 @@
     95
   </text>
 </svg>
-</a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>MOBILE</strong> <br/>(375x812)</div><div style="margin-top:6px;"><a href="#" class="screenshot-thumb" data-full="galaxus.de_home_mobile.webp"><img src="galaxus.de_home_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div></td></tr>
+</a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>MOBILE</strong> <br/>(375x812)</div><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="galaxus.de_home_mobile.webp"><img src="galaxus.de_home_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:32px;text-align:left;list-style-type:disc;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;">1 serious issue</span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style="margin-bottom:0.2em;font-size:13px;list-style-type:disc;">color-contrast</li>
+                </ul>
+              </li></ul></div></div></td></tr>
 
 </table>
 
@@ -329,6 +436,15 @@
         const next = document.querySelector('.nav-arrows a[title="Next Report"]');
         if (next) window.location.href = next.href;
       }
+    });
+    // Expand/collapse arrow rotation
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.expand-arrow').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          btn.classList.toggle('expanded');
+        });
+      });
     });
   </script>
   
