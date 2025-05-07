@@ -1,0 +1,31 @@
+<svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="{{color}}"
+    stroke-width="12"
+    stroke-dasharray="{{circumference}}"
+    stroke-dashoffset="{{gapLength}}"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    {{score}}
+  </text>
+</svg>

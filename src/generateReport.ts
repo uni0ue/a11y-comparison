@@ -4,6 +4,7 @@ import fs from "fs";
 import path from "path";
 import { sites } from "../sites";
 import { viewports } from "../config";
+import { importHtmlSnippet } from "./importHtmlSnippet";
 
 // Utility to get today's date as yyyy-mm-dd
 function getTodayDir() {
@@ -97,19 +98,13 @@ function getGaugeSVG(score: number): string {
   let color = "#ffa400"; // orange
   if (score >= 90) color = "#0cce6b"; // green
   else if (score < 50) color = "#ff4136"; // red
-  return `
-    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
-      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
-      <circle cx="60" cy="60" r="54" fill="none" stroke="${color}" stroke-width="12" stroke-dasharray="${circumference.toFixed(
-    3
-  )}" stroke-dashoffset="${gapLength.toFixed(
-    2
-  )}" stroke-linecap="round"></circle>
-      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">${score.toFixed(
-        0
-      )}</text>
-    </svg>
-  `;
+
+  return importHtmlSnippet("score.html", {
+    score: score.toFixed(0),
+    color,
+    circumference: circumference.toFixed(3),
+    gapLength: gapLength.toFixed(2),
+  });
 }
 
 function generateHTMLTable(
@@ -122,15 +117,13 @@ function generateHTMLTable(
   prevReportDir?: string,
   nextReportDir?: string
 ): string {
-  // Use the order of product types as defined in sites.ts
   const allPages = Object.keys(sites);
   const deviceKeys = Object.keys(viewports);
-  // Use the order from config.ts
   const sitesInOrder = Object.keys(sites.home);
 
   // Format date as '28 Apr 2025 at 14:47'
   const dateStr = firstReportDate
-    .toLocaleString("en-GB", {
+    .toLocaleString("de-CH", {
       day: "2-digit",
       month: "short",
       year: "numeric",
@@ -138,124 +131,37 @@ function generateHTMLTable(
       minute: "2-digit",
       hour12: false,
     })
-    .replace(",", "")
-    .replace(" ", " ")
-    .replace(":", ":");
+    .replace(",", "");
 
-  let html = `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Accessibility Comparison</title>
-  <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";; background: #f8f9fa; margin: 0; }
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 2rem 1rem;
-      box-sizing: border-box;
-      position: relative;
-    }
-    .audit-meta {
-      font-size: 0.8em;
-      color: #666;
-      padding: 0.3em 0.8em;
-      z-index: 2;
-      text-align: right;
-    }
-    .timestamp { font-weight: bold; display: block; margin-top: 0.3rem; }
-    .nav-arrows {
-      margin-top: 0.4rem;
-      display: flex;
-      gap: 1rem;
-      align-items: center;
-      justify-content: flex-end;
-    }
-    .nav-arrow {
-      font-size: 1.6rem;
-      color: #007acc;
-      text-decoration: none;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0.2em 0;
-      border-radius: 4px;
-      transition: background 0.2s;
-    }
-    .nav-arrow[aria-disabled="true"] {
-      color: #bbb;
-      cursor: not-allowed;
-      opacity: 0.5;
-      pointer-events: none;
-      background: none;
-    }
-    .nav-arrow:focus {
-      outline: 2px solid #007acc;
-      outline-offset: 2px;
-    }
-    .nav-arrow[aria-disabled="true"]:focus {
-      outline: none;
-    }
-    h1 { text-align: left; margin-top: 0; }
-    table { border-collapse: collapse; margin: 2rem 0; background: #fff; box-shadow: 0 2px 8px #0001; table-layout: fixed; width: 100%; }
-    th, td { border: 0px solid #ccc; padding: 0.7em 1.2em; text-align: left; }
-    th { background: #dbe6ee; color: #000; text-align: center; text-transform: capitalize; }
-    tr:nth-child(even) td { background: #f2f6fa; }
-    .score-cell { text-align: center; }
-    .site-link { color: #000; text-decoration: none; font-weight: bold; }
-    .gauge { display: block; margin: 0 auto; }
-    @media (max-width: 900px) {
-      .container { padding: 1rem 0.5rem; }
-      table, th, td { font-size: 0.95em; }
-    }
-    @media (max-width: 600px) {
-      .container { padding: 0.5rem 0.2rem; }
-      table, th, td { font-size: 0.85em; }
-      th, td { padding: 0.5em 0.3em; }
-      .audit-meta { position: static; display: block; margin-bottom: 0.5em; text-align: left; }
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <div class="audit-meta">
-      Axe audit (EN-301-549) <span class="timestamp">${dateStr}</span>
-      <div class="nav-arrows">
-        <a href="../${prevReportDir}/index.html" class="nav-arrow" title="Previous Report" aria-label="Previous Report">&#8592;</a>
-        ${
-          {
-            // Always show next arrow, but disable and dim if on newest
-            next: nextReportDir
-              ? `<a href="../${nextReportDir}/index.html" class="nav-arrow" title="Next Report" aria-label="Next Report">&#8594;</a>`
-              : `<span class="nav-arrow" aria-disabled="true" tabindex="-1" aria-label="Next Report">&#8594;</span>`,
-          }.next
-        }
-      </div>
-    </div>
-    <h1>Accessibility Comparison</h1>
-    <table>
-      <tr>
-        <th style="text-align: left;">Site</th>
-        ${allPages.map((page) => `<th>${page}</th>`).join("")}
-      </tr>
-`;
+  // Read lightbox HTML snippet using helper
+  const lightboxHtml = importHtmlSnippet("lightbox.html");
+
+  // --- Table Head ---
+  const tableHead = `
+    <tr>
+      <th style="text-align: left;">Site</th>
+      ${allPages.map((page) => `<th>${page}</th>`).join("")}
+    </tr>
+  `;
+
+  // --- Table Body ---
+  let tableBody = "";
   for (const site of sitesInOrder) {
     const siteKey = site.replace(/\./g, "_");
     const displaySite = site;
     const siteUrl =
       data[siteKey]?.url || sites.home[site] || `https://${displaySite}`;
-    html += `    <tr>\n      <td><a class="site-link" href="${siteUrl}" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=${site}&sz=48" alt="" style="width:20px;height:20px;vertical-align:middle;margin-right:8px;object-fit:contain;">${displaySite}</a></td>\n`;
+    tableBody += `<tr>\n<td><a class="site-link" href="${siteUrl}" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=${site}&sz=48" alt="" style="width:20px;height:20px;vertical-align:middle;margin-right:8px;object-fit:contain;">${displaySite}</a></td>`;
     for (const page of allPages) {
-      html += '<td class="score-cell">';
+      tableBody += '<td class="score-cell">';
       let first = true;
       for (const device of deviceKeys) {
         if (!first) {
-          html +=
+          tableBody +=
             '<div style="height:1px;width:100%;background:#e0e0e0;margin:24px 0 24px 0;"></div>';
         }
         first = false;
         const score = data[siteKey]?.pages[page.toLowerCase()]?.[device];
-        // Try to get the page URL from the report data (use correct reportsDir)
         let pageUrl = "";
         try {
           const reportFile = path.join(reportsDir, `report-${siteKey}.json`);
@@ -269,7 +175,6 @@ function generateHTMLTable(
             }
           }
         } catch {}
-        // Screenshot filename: [site]_[pageType]_[viewport].png
         const screenshotFilename = `${site}_${page.replace(
           / /g,
           "_"
@@ -278,7 +183,6 @@ function generateHTMLTable(
           / /g,
           "_"
         )}_${device.toLowerCase()}_thumb.jpeg`;
-        const screenshotPath = path.join(reportsDir, screenshotFilename);
         const thumbPath = path.join(reportsDir, thumbFilename);
         let screenshotHtml = "";
         if (fs.existsSync(thumbPath)) {
@@ -292,67 +196,49 @@ function generateHTMLTable(
           : device;
         const label = `<div style="font-size:11px;color:#888;margin:16px 0 16px 0;">${labelText}</div>`;
         if (score !== undefined && pageUrl) {
-          html += `<div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;">`;
-          html += `<a href="${pageUrl}" target="_blank" rel="noopener">${getGaugeSVG(
+          tableBody += `<div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;">`;
+          tableBody += `<a href="${pageUrl}" target="_blank" rel="noopener">${getGaugeSVG(
             score
           )}</a>${label}${screenshotHtml}`;
-          html += `</div>`;
+          tableBody += `</div>`;
         } else if (score !== undefined) {
-          html += `<div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;">`;
-          html += `${getGaugeSVG(score)}${label}${screenshotHtml}`;
-          html += `</div>`;
+          tableBody += `<div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;">`;
+          tableBody += `${getGaugeSVG(score)}${label}${screenshotHtml}`;
+          tableBody += `</div>`;
         } else {
-          html += `<div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;color:#bbb;margin:0 auto;">N/A</div>`;
+          tableBody += `<div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;color:#bbb;margin:0 auto;">N/A</div>`;
         }
       }
-      html += "</td>";
+      tableBody += "</td>";
     }
-    html += "</tr>\n";
+    tableBody += "</tr>\n";
   }
-  html += `    </table>
-  </div>
 
-  <!-- Accessible Lightbox Modal -->
-  <div id="lightbox-modal" role="dialog" aria-modal="true" aria-label="Screenshot preview" tabindex="-1" style="display:none;position:fixed;z-index:10000;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.85);align-items:flex-start;justify-content:center;overflow:auto;">
-    <button id="lightbox-close" aria-label="Close dialog" style="position:fixed;top:24px;right:32px;background:#fff;border:none;border-radius:50%;width:44px;height:44px;font-size:2rem;line-height:1.2;cursor:pointer;box-shadow:0 2px 8px #0003;z-index:10001;">&times;</button>
-    <img id="lightbox-img" src="" alt="Full page screenshot" style="display:block;margin:80px auto 32px auto;border-radius:12px;box-shadow:0 4px 32px #0008;outline:4px solid #fff;max-width:100%;" />
+  // --- Compose Table HTML ---
+  const tableHtml = importHtmlSnippet("table.html", {
+    table_head: tableHead,
+    table_body: tableBody,
+  });
+
+  // --- Compose Body Content ---
+  const bodyContent = `
+  <div class="container">
+    <div class="audit-meta">
+      Axe audit (EN-301-549) <span class="timestamp">${dateStr}</span>
+      <div class="nav-arrows">
+        <a href="../${prevReportDir}/index.html" class="nav-arrow" title="Previous Report" aria-label="Previous Report">&#8592;</a>
+        ${
+          nextReportDir
+            ? `<a href="../${nextReportDir}/index.html" class="nav-arrow" title="Next Report" aria-label="Next Report">&#8594;</a>`
+            : `<span class="nav-arrow" aria-disabled="true" tabindex="-1" aria-label="Next Report">&#8594;</span>`
+        }
+      </div>
+    </div>
+    <h1>Accessibility Comparison</h1>
+    ${tableHtml}
   </div>
+  ${lightboxHtml}
   <script>
-    // Lightbox logic
-    const modal = document.getElementById('lightbox-modal');
-    const modalImg = document.getElementById('lightbox-img');
-    const closeBtn = document.getElementById('lightbox-close');
-    let lastActive = null;
-    document.querySelectorAll('.screenshot-thumb').forEach(thumb => {
-      thumb.addEventListener('click', function(e) {
-        e.preventDefault();
-        lastActive = document.activeElement;
-        modalImg.src = this.getAttribute('data-full');
-        modal.style.display = 'flex';
-        closeBtn.focus();
-        document.body.style.overflow = 'hidden';
-      });
-    });
-    function closeModal() {
-      modal.style.display = 'none';
-      modalImg.src = '';
-      document.body.style.overflow = '';
-      if (lastActive) lastActive.focus();
-    }
-    closeBtn.addEventListener('click', closeModal);
-    modal.addEventListener('click', function(e) {
-      if (e.target === modal) closeModal();
-    });
-    document.addEventListener('keydown', function(e) {
-      if (modal.style.display === 'flex' && (e.key === 'Escape' || e.key === 'Esc')) {
-        closeModal();
-      }
-      // Trap focus inside modal
-      if (modal.style.display === 'flex' && e.key === 'Tab') {
-        e.preventDefault();
-        closeBtn.focus();
-      }
-    });
     // Arrow key navigation
     document.addEventListener('keydown', function(e) {
       if (e.key === 'ArrowLeft') {
@@ -365,8 +251,13 @@ function generateHTMLTable(
       }
     });
   </script>
-</body>
-</html>`;
+  `;
+
+  // --- Compose Final HTML Layout ---
+  const html = importHtmlSnippet("layout.html", {
+    head: "",
+    body: bodyContent,
+  });
   return html;
 }
 

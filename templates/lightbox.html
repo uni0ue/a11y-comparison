@@ -1,0 +1,92 @@
+<style>
+  #lightbox-modal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    align-items: flex-start;
+    justify-content: center;
+    overflow: auto;
+  }
+  #lightbox-modal[open],
+  #lightbox-modal.show {
+    display: flex;
+  }
+  #lightbox-close {
+    position: fixed;
+    top: 24px;
+    right: 32px;
+    background: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    font-size: 2rem;
+    line-height: 1.2;
+    cursor: pointer;
+    box-shadow: 0 2px 8px #0003;
+    z-index: 10001;
+  }
+  #lightbox-img {
+    display: block;
+    margin: 80px auto 32px auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 32px #0008;
+    outline: 4px solid #fff;
+    max-width: 100%;
+  }
+</style>
+<div
+  id="lightbox-modal"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Screenshot preview"
+  tabindex="-1"
+>
+  <button id="lightbox-close" aria-label="Close dialog">&times;</button>
+  <img id="lightbox-img" src="" alt="Full page screenshot" />
+</div>
+<script>
+  // Lightbox logic
+  const modal = document.getElementById("lightbox-modal");
+  const modalImg = document.getElementById("lightbox-img");
+  const closeBtn = document.getElementById("lightbox-close");
+  let lastActive = null;
+  document.querySelectorAll(".screenshot-thumb").forEach((thumb) => {
+    thumb.addEventListener("click", function (e) {
+      e.preventDefault();
+      lastActive = document.activeElement;
+      modalImg.src = this.getAttribute("data-full");
+      modal.style.display = "flex";
+      closeBtn.focus();
+      document.body.style.overflow = "hidden";
+    });
+  });
+  function closeModal() {
+    modal.style.display = "none";
+    modalImg.src = "";
+    document.body.style.overflow = "";
+    if (lastActive) lastActive.focus();
+  }
+  closeBtn.addEventListener("click", closeModal);
+  modal.addEventListener("click", function (e) {
+    if (e.target === modal) closeModal();
+  });
+  document.addEventListener("keydown", function (e) {
+    if (
+      modal.style.display === "flex" &&
+      (e.key === "Escape" || e.key === "Esc")
+    ) {
+      closeModal();
+    }
+    // Trap focus inside modal
+    if (modal.style.display === "flex" && e.key === "Tab") {
+      e.preventDefault();
+      closeBtn.focus();
+    }
+  });
+</script>
