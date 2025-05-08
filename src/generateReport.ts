@@ -210,7 +210,7 @@ function generateHTMLTable(
     </script>
     `;
     const expandBtn = `<button class="expand-arrow" aria-label="Expand/collapse row"><span></span></button>`;
-    tableBody += `<tr>\n<td style="width:36px;">${expandBtn}</td><td><a class="site-link" href="${siteUrl}" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=${site}&sz=48" alt="" style="width:20px;height:20px;vertical-align:top;margin-right:8px;object-fit:contain;">${displaySite}</a></td>`;
+    tableBody += `<tr>\n<td style="width:36px; vertical-align: top; padding-top: 120px;">${expandBtn}</td><td style="vertical-align: top; padding-top: 120px;"><a class="site-link" href="${siteUrl}" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=${site}&sz=48" alt="" style="width:20px;height:20px;vertical-align:top;margin-right:8px;object-fit:contain;">${displaySite}</a></td>`;
     for (const page of allPages) {
       tableBody += '<td class="score-cell">';
       let first = true;
@@ -390,7 +390,7 @@ function main() {
   const reportsDir = path.join(process.cwd(), "docs", todayDir);
   const reportFiles = getReportFiles(reportsDir);
   if (reportFiles.length === 0) {
-    console.error("No report-*.json files found.");
+    console.error("No report found for today. Run an audit first.");
     process.exit(1);
   }
   // Get the timestamp from the first report file's JSON
