@@ -102,6 +102,77 @@
   </head>
   <body>
     
+  <style>
+    .score-cell {
+      padding: 0;
+      vertical-align: top;
+    }
+    .score-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 12px;
+      align-items: start;
+    }
+      .score-expander {
+        display: grid;
+        grid-template-rows: 0fr;
+        overflow: hidden;
+        transition: grid-template-rows 100ms ease-in-out;
+      }
+     tr[aria-expanded="true"] .score-expander {
+      grid-template-rows: 1fr;
+      } 
+
+      .score-expander-content {
+        min-height: 0;
+        transition: visibility 100ms ease-in-out;
+        visibility: hidden;
+      }
+
+      tr[aria-expanded="true"] .score-expander-content {
+        visibility: visible;
+      }
+
+    .score-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px 6px 14px 6px;
+      min-width: 0;
+      word-break: break-word;
+    }
+    .score-label {
+      font-size: 14px;
+      margin-bottom: 6px;
+      text-align: center;
+    }
+    .score-gauge {
+      margin-bottom: 24px;
+    }
+    .score-summary {
+      font-size: 12px;
+      margin-bottom: 8px;
+      width: 100%;
+    }
+    .score-screenshot {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+    /* Show summary only when row is expanded */
+    .score-summary .issue-summary {
+      display: none;
+    }
+    tr[aria-expanded="true"] .score-summary .issue-summary {
+      display: block !important;
+      
+    }
+    @media (max-width: 600px) {
+      .score-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
   <div class="container">
     <div class="audit-meta">
       Axe audit (EN-301-549) <span class="timestamp">06. Mai 2025 17:21</span>
@@ -255,7 +326,9 @@
     });
     </script>
     <tr>
-<td style="width:36px; vertical-align: top; padding-top: 120px;"><button class="expand-arrow" aria-label="Expand/collapse row"><span></span></button></td><td style="vertical-align: top; padding-top: 120px;"><a class="site-link" href="https://www.galaxus.de/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=galaxus.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:top;margin-right:8px;object-fit:contain;">galaxus.de</a></td><td class="score-cell"><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.galaxus.de/" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+<td style="width:36px; vertical-align: top; padding-top: 120px;"><button class="expand-arrow" aria-label="Expand/collapse row"><span></span></button></td><td style="vertical-align: top; padding-top: 120px;"><a class="site-link" href="https://www.galaxus.de/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=galaxus.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:top;margin-right:8px;object-fit:contain;">galaxus.de</a></td><td class="score-cell"><div class="score-grid"><div class="score-col">
+ <div class="score-label"><strong>DESKTOP</strong> <br/>(1280x960)</div>
+          <div class="score-gauge"><a href="https://www.galaxus.de/" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
   <circle
     cx="60"
     cy="60"
@@ -286,12 +359,17 @@
     95
   </text>
 </svg>
-</a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>DESKTOP</strong> <br/>(1280x960)</div><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="galaxus.de_home_desktop.webp"><img src="galaxus.de_home_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:32px;text-align:left;list-style-type:disc;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="galaxus.de_home_desktop.webp"><img src="galaxus.de_home_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
                 <span style="display:inline-block;min-width:120px;">1 serious issue</span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
-                  <li style="margin-bottom:0.2em;font-size:13px;list-style-type:disc;">color-contrast</li>
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">color-contrast</li>
                 </ul>
-              </li></ul></div></div><div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;"><a href="https://www.galaxus.de/" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+              </li></ul></div>
+        </div> </div> </div><div class="score-col">
+ <div class="score-label"><strong>MOBILE</strong> <br/>(375x812)</div>
+          <div class="score-gauge"><a href="https://www.galaxus.de/" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
   <circle
     cx="60"
     cy="60"
@@ -322,12 +400,15 @@
     95
   </text>
 </svg>
-</a><div style="font-size:11px;color:#888;margin:16px 0 16px 0;"><strong>MOBILE</strong> <br/>(375x812)</div><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="galaxus.de_home_mobile.webp"><img src="galaxus.de_home_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:32px;text-align:left;list-style-type:disc;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="galaxus.de_home_mobile.webp"><img src="galaxus.de_home_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
                 <span style="display:inline-block;min-width:120px;">1 serious issue</span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
-                  <li style="margin-bottom:0.2em;font-size:13px;list-style-type:disc;">color-contrast</li>
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">color-contrast</li>
                 </ul>
-              </li></ul></div></div></td></tr>
+              </li></ul></div>
+        </div> </div> </div></div></td></tr>
 
 </table>
 

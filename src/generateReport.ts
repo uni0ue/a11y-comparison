@@ -213,14 +213,9 @@ function generateHTMLTable(
     tableBody += `<tr>\n<td style="width:36px; vertical-align: top; padding-top: 120px;">${expandBtn}</td><td style="vertical-align: top; padding-top: 120px;"><a class="site-link" href="${siteUrl}" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=${site}&sz=48" alt="" style="width:20px;height:20px;vertical-align:top;margin-right:8px;object-fit:contain;">${displaySite}</a></td>`;
     for (const page of allPages) {
       tableBody += '<td class="score-cell">';
-      let first = true;
+      // Begin grid container for device columns
+      tableBody += `<div class="score-grid">`;
       for (const device of deviceKeys) {
-        // Remove divider line between device scores
-        if (!first) {
-          //tableBody +=
-          //  '<div style="height:1px;width:100%;background:#e0e0e0;margin:24px 0 24px 0;"></div>';
-        }
-        first = false;
         const score = data[siteKey]?.pages[page.toLowerCase()]?.[device];
         let pageUrl = "";
         try {
@@ -249,7 +244,7 @@ function generateHTMLTable(
         if (fs.existsSync(thumbPath)) {
           const relThumb = thumbFilename;
           const relScreenshot = screenshotFilename;
-          screenshotHtml = `<div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="${relScreenshot}"><img src="${relThumb}" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a>`;
+          screenshotHtml = `<div class=\"row-thumbnails\" hidden><a href=\"#\" class=\"screenshot-thumb\" data-full=\"${relScreenshot}\"><img src=\"${relThumb}\" alt=\"Screenshot thumbnail\" style=\"max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;\"></a></div>`;
           // Issue summary (nested list by impact, listing rule ids)
           const impactOrder = ["critical", "serious", "moderate", "minor"];
           const impactLabels = {
@@ -282,48 +277,43 @@ function generateHTMLTable(
             .filter((impact) => impactCounts[impact])
             .map((impact) => {
               const rules = impactRules[impact] || [];
-              return `<li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">${
-                  impactCounts[impact]
-                } ${impactLabels[impact]}${
+              return `<li style=\"margin-bottom: 0.4em;list-style-type:none;position:relative;\">\n                <span style=\"display:inline-block;min-width:120px;\">${
+                impactCounts[impact]
+              } ${impactLabels[impact]}${
                 impactCounts[impact] > 1 ? "s" : ""
-              }</span>
-                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
-                  ${rules
-                    .map(
-                      (rule) =>
-                        `<li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">${rule}</li>`
-                    )
-                    .join("")}
-                </ul>
-              </li>`;
+              }</span>\n                <ul style=\"margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;\">\n                  ${rules
+                .map(
+                  (rule) =>
+                    `<li style=\\\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\\\">${rule}</li>`
+                )
+                .join("")}\n                </ul>\n              </li>`;
             });
           if (summaryParts.length > 0) {
-            summaryHtml = `<ul class=\"issue-summary\" style=\"font-size:13px;color:#a00;margin-top:32px;text-align:left;list-style-type:disc;\">${summaryParts.join(
+            summaryHtml = `<ul class=\"issue-summary\" style=\"font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;\">${summaryParts.join(
               ""
             )}</ul>`;
           }
-          screenshotHtml += summaryHtml + "</div>";
         }
         const vp = viewports[device.toUpperCase()];
         const labelText = vp
           ? `<strong>${device}</strong> <br/>(${vp.width}x${vp.height})`
           : device;
-        const label = `<div style="font-size:11px;color:#888;margin:16px 0 16px 0;">${labelText}</div>`;
-        if (score !== undefined && pageUrl) {
-          tableBody += `<div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;">`;
-          tableBody += `<a href="${pageUrl}" target="_blank" rel="noopener">${getGaugeSVG(
-            score
-          )}</a>${label}${screenshotHtml}`;
-          tableBody += `</div>`;
-        } else if (score !== undefined) {
-          tableBody += `<div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;margin:0 auto;">`;
-          tableBody += `${getGaugeSVG(score)}${label}${screenshotHtml}`;
-          tableBody += `</div>`;
-        } else {
-          tableBody += `<div style="display:block;vertical-align:top;text-align:center;width:130px;max-width:100%;color:#bbb;margin:0 auto;">N/A</div>`;
-        }
+        // Responsive column: label above gauge, then screenshot, then summary (summary hidden by default)
+        tableBody += `<div class=\"score-col\">\n <div class=\"score-label\">${labelText}</div>\n          <div class=\"score-gauge\">${
+          score !== undefined && pageUrl
+            ? `<a href=\"${pageUrl}\" target=\"_blank\" rel=\"noopener\">${getGaugeSVG(
+                score
+              )}</a>`
+            : score !== undefined
+            ? getGaugeSVG(score)
+            : `<div style=\\\"color:#bbb;\\\">N/A</div>`
+        }</div>\n  <div class=\"score-expander\"> <div class=\"score-expander-content\"> <div class=\"score-screenshot\">${
+          screenshotHtml || ""
+        }</div>\n          ${
+          summaryHtml ? `<div class=\"score-summary\">${summaryHtml}</div>` : ""
+        }\n        </div> </div> </div>`;
       }
+      tableBody += `</div>`; // end .score-grid
       tableBody += "</td>";
     }
     tableBody += "</tr>\n";
@@ -337,6 +327,77 @@ function generateHTMLTable(
 
   // --- Compose Body Content ---
   const bodyContent = `
+  <style>
+    .score-cell {
+      padding: 0;
+      vertical-align: top;
+    }
+    .score-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 12px;
+      align-items: start;
+    }
+      .score-expander {
+        display: grid;
+        grid-template-rows: 0fr;
+        overflow: hidden;
+        transition: grid-template-rows 100ms ease-in-out;
+      }
+     tr[aria-expanded="true"] .score-expander {
+      grid-template-rows: 1fr;
+      } 
+
+      .score-expander-content {
+        min-height: 0;
+        transition: visibility 100ms ease-in-out;
+        visibility: hidden;
+      }
+
+      tr[aria-expanded="true"] .score-expander-content {
+        visibility: visible;
+      }
+
+    .score-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px 6px 14px 6px;
+      min-width: 0;
+      word-break: break-word;
+    }
+    .score-label {
+      font-size: 14px;
+      margin-bottom: 6px;
+      text-align: center;
+    }
+    .score-gauge {
+      margin-bottom: 24px;
+    }
+    .score-summary {
+      font-size: 12px;
+      margin-bottom: 8px;
+      width: 100%;
+    }
+    .score-screenshot {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+    /* Show summary only when row is expanded */
+    .score-summary .issue-summary {
+      display: none;
+    }
+    tr[aria-expanded="true"] .score-summary .issue-summary {
+      display: block !important;
+      
+    }
+    @media (max-width: 600px) {
+      .score-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
   <div class="container">
     <div class="audit-meta">
       Axe audit (EN-301-549) <span class="timestamp">${dateStr}</span>
