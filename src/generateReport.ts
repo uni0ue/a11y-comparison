@@ -152,63 +152,7 @@ function generateHTMLTable(
     const displaySite = site;
     const siteUrl =
       data[siteKey]?.url || sites.home[site] || `https://${displaySite}`;
-    // Add expand/collapse arrow button
-    tableBody += `<style>
-    .expand-arrow {
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0;
-      margin: 0 4px 0 0;
-      width: 24px;
-      height: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform 0.3s ease-in-out;
-    }
-    .expand-arrow span {
-      display: inline-block;
-      width: 10px;
-      height: 10px;
-      border-right: 2px solid #555;
-      border-bottom: 2px solid #555;
-      transform: rotate(-45deg);
-      transform-origin: center;
-      transition: transform 80ms ease-in-out;
-    }
-    tr[aria-expanded="true"] .expand-arrow span {
-      transform: rotate(45deg);
-    }
-    .expand-arrow:focus {
-      outline: 2px solid #007acc;
-      outline-offset: 2px;
-    }
 
-    .thumb {
-      margin-top: 6px;
-      display: none;
-    }
-
-    tr[aria-expanded="true"] .thumb {
-      display: block;
-    }
-    </style>
-    
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      document.querySelectorAll('.expand-arrow').forEach(function(btn) {
-      btn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        const tr = btn.closest('tr');
-        const expanded = tr.getAttribute('aria-expanded') === 'true';
-        tr.setAttribute('aria-expanded', String(!expanded));
-       
-      });
-      });
-    });
-    </script>
-    `;
     const expandBtn = `<button class="expand-arrow" aria-label="Expand/collapse row"><span></span></button>`;
     tableBody += `<tr>\n<td style="width:36px; vertical-align: top; padding-top: 120px;">${expandBtn}</td><td style="vertical-align: top; padding-top: 120px;"><a class="site-link" href="${siteUrl}" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=${site}&sz=48" alt="" style="width:20px;height:20px;vertical-align:top;margin-right:8px;object-fit:contain;">${displaySite}</a></td>`;
     for (const page of allPages) {

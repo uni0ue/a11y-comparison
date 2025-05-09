@@ -22,6 +22,7 @@
   tr:nth-child(even) td {
     background: #f2f6fa;
   }
+
   .score-cell {
     text-align: center;
   }
@@ -54,31 +55,55 @@
     border: none;
     cursor: pointer;
     padding: 0;
-    margin: 0 8px 0 0;
-    width: 28px;
-    height: 28px;
+    margin: 0 4px 0 0;
+    width: 24px;
+    height: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.2s;
+    transition: transform 0.3s ease-in-out;
   }
   .expand-arrow span {
     display: inline-block;
-    width: 16px;
-    height: 16px;
-    border-right: 3px solid #888;
-    border-bottom: 3px solid #888;
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid #555;
+    border-bottom: 2px solid #555;
+    transform: rotate(-45deg);
+    transform-origin: center;
+    transition: transform 80ms ease-in-out;
+  }
+  tr[aria-expanded="true"] .expand-arrow span {
     transform: rotate(45deg);
-    transition: transform 0.25s cubic-bezier(0.4, 2, 0.6, 1);
-    margin-top: 2px;
   }
-  .expand-arrow.expanded span {
-    transform: rotate(135deg);
-  }
-  .expand-arrow:focus {
+  .expand-arrow:focus-visible {
     outline: 2px solid #007acc;
+    outline-offset: 2px;
+    border-radius: 50%;
+  }
+
+  .thumb {
+    margin-top: 6px;
+    display: none;
+  }
+
+  tr[aria-expanded="true"] .thumb {
+    display: block;
   }
 </style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".expand-arrow").forEach(function (btn) {
+      btn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        const tr = btn.closest("tr");
+        const expanded = tr.getAttribute("aria-expanded") === "true";
+        tr.setAttribute("aria-expanded", String(!expanded));
+      });
+    });
+  });
+</script>
 <table>
   {{table_head}} {{table_body}}
 </table>
