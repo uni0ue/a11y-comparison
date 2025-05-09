@@ -137,14 +137,15 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 10px 6px 14px 6px;
+      padding: 16px 8px;
       min-width: 0;
       word-break: break-word;
     }
     .score-label {
-      font-size: 14px;
-      margin-bottom: 6px;
+      font-size: 12px;
+      margin-bottom: 8px;
       text-align: center;
+      color: #485b68;
     }
     .score-gauge {
       margin-bottom: 24px;
@@ -208,7 +209,12 @@
   }
 
   .score-cell {
+    border-right: 1px solid #dbe6ee;
+    padding: 0 8px;
     text-align: center;
+  }
+  .score-cell:last-child {
+    border-right: none;
   }
   @media (max-width: 900px) {
     table,
@@ -292,11 +298,11 @@
   
     <tr>
       <th style="width:36px;"></th>
-      <th style="text-align: left;">Site</th>
+      <th style="text-align: left; width: 15%;">Site</th>
       <th>home</th><th>product list</th><th>product detail</th>
     </tr>
    <tr>
-<td style="width:36px; vertical-align: top; padding-top: 120px;"><button class="expand-arrow" aria-label="Expand/collapse row"><span></span></button></td><td style="vertical-align: top; padding-top: 120px;"><a class="site-link" href="https://www.galaxus.de/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=galaxus.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:top;margin-right:8px;object-fit:contain;">galaxus.de</a></td><td class="score-cell"><div class="score-grid"><div class="score-col">
+<td style="width:36px; vertical-align: top; padding-top: 64px;"><button class="expand-arrow" aria-label="Expand/collapse row"><span></span></button></td><td style="vertical-align: top; padding-top: 64px;"><a class="site-link" href="https://www.galaxus.de/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=galaxus.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:top;margin-right:8px;object-fit:contain;">galaxus.de</a></td><td class="score-cell"><div class="score-grid"><div class="score-col">
  <div class="score-label"><strong>DESKTOP</strong> <br/>(1280x960)</div>
           <div class="score-gauge"><a href="https://www.galaxus.de/" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
   <circle
@@ -332,7 +338,7 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="galaxus.de_home_desktop.webp"><img src="galaxus.de_home_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">1 serious issue</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 serious issue</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">color-contrast</li>
                 </ul>
@@ -373,7 +379,7 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="galaxus.de_home_mobile.webp"><img src="galaxus.de_home_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">1 serious issue</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 serious issue</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">color-contrast</li>
                 </ul>
@@ -522,14 +528,14 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="galaxus.de_product_detail_mobile.webp"><img src="galaxus.de_product_detail_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">1 serious issue</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 serious issue</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">color-contrast</li>
                 </ul>
               </li></ul></div>
         </div> </div> </div></div></td></tr>
 <tr>
-<td style="width:36px; vertical-align: top; padding-top: 120px;"><button class="expand-arrow" aria-label="Expand/collapse row"><span></span></button></td><td style="vertical-align: top; padding-top: 120px;"><a class="site-link" href="https://www.amazon.de/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=amazon.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:top;margin-right:8px;object-fit:contain;">amazon.de</a></td><td class="score-cell"><div class="score-grid"><div class="score-col">
+<td style="width:36px; vertical-align: top; padding-top: 64px;"><button class="expand-arrow" aria-label="Expand/collapse row"><span></span></button></td><td style="vertical-align: top; padding-top: 64px;"><a class="site-link" href="https://www.amazon.de/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=amazon.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:top;margin-right:8px;object-fit:contain;">amazon.de</a></td><td class="score-cell"><div class="score-grid"><div class="score-col">
  <div class="score-label"><strong>DESKTOP</strong> <br/>(1280x960)</div>
           <div class="score-gauge"><a href="https://www.amazon.de/" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
   <circle
@@ -565,12 +571,12 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="amazon.de_home_desktop.webp"><img src="amazon.de_home_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">1 critical issue</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 critical issue</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-allowed-attr</li>
                 </ul>
               </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">1 serious issue</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 serious issue</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">list</li>
                 </ul>
@@ -647,12 +653,12 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="amazon.de_product_list_desktop.webp"><img src="amazon.de_product_list_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">4 critical issues</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">4 critical issues</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-allowed-attr</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-required-attr</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-valid-attr-value</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">label</li>
                 </ul>
               </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">4 serious issues</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">4 serious issues</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-command-name</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">link-name</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">list</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">listitem</li>
                 </ul>
@@ -693,7 +699,7 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="amazon.de_product_list_mobile.webp"><img src="amazon.de_product_list_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">2 critical issues</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">2 critical issues</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-allowed-attr</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-valid-attr-value</li>
                 </ul>
@@ -734,12 +740,12 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="amazon.de_product_detail_desktop.webp"><img src="amazon.de_product_detail_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">2 critical issues</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">2 critical issues</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-allowed-attr</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-required-attr</li>
                 </ul>
               </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">7 serious issues</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">7 serious issues</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-progressbar-name</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">definition-list</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">link-in-text-block</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">link-name</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">list</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">listitem</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">nested-interactive</li>
                 </ul>
@@ -780,19 +786,19 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="amazon.de_product_detail_mobile.webp"><img src="amazon.de_product_detail_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">3 critical issues</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">3 critical issues</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-allowed-attr</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-required-attr</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-valid-attr-value</li>
                 </ul>
               </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">6 serious issues</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">6 serious issues</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-prohibited-attr</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">definition-list</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">link-name</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">list</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">listitem</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">scrollable-region-focusable</li>
                 </ul>
               </li></ul></div>
         </div> </div> </div></div></td></tr>
 <tr>
-<td style="width:36px; vertical-align: top; padding-top: 120px;"><button class="expand-arrow" aria-label="Expand/collapse row"><span></span></button></td><td style="vertical-align: top; padding-top: 120px;"><a class="site-link" href="https://www.otto.de/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=otto.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:top;margin-right:8px;object-fit:contain;">otto.de</a></td><td class="score-cell"><div class="score-grid"><div class="score-col">
+<td style="width:36px; vertical-align: top; padding-top: 64px;"><button class="expand-arrow" aria-label="Expand/collapse row"><span></span></button></td><td style="vertical-align: top; padding-top: 64px;"><a class="site-link" href="https://www.otto.de/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=otto.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:top;margin-right:8px;object-fit:contain;">otto.de</a></td><td class="score-cell"><div class="score-grid"><div class="score-col">
  <div class="score-label"><strong>DESKTOP</strong> <br/>(1280x960)</div>
           <div class="score-gauge"><a href="https://www.otto.de/" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
   <circle
@@ -828,12 +834,12 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="otto.de_home_desktop.webp"><img src="otto.de_home_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">2 critical issues</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">2 critical issues</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">button-name</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">image-alt</li>
                 </ul>
               </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">4 serious issues</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">4 serious issues</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">color-contrast</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">frame-title</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">link-name</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">svg-img-alt</li>
                 </ul>
@@ -874,12 +880,12 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="otto.de_home_mobile.webp"><img src="otto.de_home_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">2 critical issues</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">2 critical issues</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">button-name</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">image-alt</li>
                 </ul>
               </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">2 serious issues</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">2 serious issues</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">color-contrast</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">svg-img-alt</li>
                 </ul>
@@ -920,12 +926,12 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="otto.de_product_list_desktop.webp"><img src="otto.de_product_list_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">2 critical issues</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">2 critical issues</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">button-name</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">image-alt</li>
                 </ul>
               </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">2 serious issues</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">2 serious issues</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">color-contrast</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">svg-img-alt</li>
                 </ul>
@@ -966,12 +972,12 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="otto.de_product_list_mobile.webp"><img src="otto.de_product_list_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">2 critical issues</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">2 critical issues</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">button-name</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">image-alt</li>
                 </ul>
               </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">3 serious issues</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">3 serious issues</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">color-contrast</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">scrollable-region-focusable</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">svg-img-alt</li>
                 </ul>
@@ -1012,12 +1018,12 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="otto.de_product_detail_desktop.webp"><img src="otto.de_product_detail_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">1 critical issue</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 critical issue</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">button-name</li>
                 </ul>
               </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">3 serious issues</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">3 serious issues</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-prohibited-attr</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">color-contrast</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">svg-img-alt</li>
                 </ul>
@@ -1058,19 +1064,19 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="otto.de_product_detail_mobile.webp"><img src="otto.de_product_detail_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">1 critical issue</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 critical issue</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">button-name</li>
                 </ul>
               </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">2 serious issues</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">2 serious issues</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">color-contrast</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">svg-img-alt</li>
                 </ul>
               </li></ul></div>
         </div> </div> </div></div></td></tr>
 <tr>
-<td style="width:36px; vertical-align: top; padding-top: 120px;"><button class="expand-arrow" aria-label="Expand/collapse row"><span></span></button></td><td style="vertical-align: top; padding-top: 120px;"><a class="site-link" href="https://www.home24.de/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=home24.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:top;margin-right:8px;object-fit:contain;">home24.de</a></td><td class="score-cell"><div class="score-grid"><div class="score-col">
+<td style="width:36px; vertical-align: top; padding-top: 64px;"><button class="expand-arrow" aria-label="Expand/collapse row"><span></span></button></td><td style="vertical-align: top; padding-top: 64px;"><a class="site-link" href="https://www.home24.de/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=home24.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:top;margin-right:8px;object-fit:contain;">home24.de</a></td><td class="score-cell"><div class="score-grid"><div class="score-col">
  <div class="score-label"><strong>DESKTOP</strong> <br/>(1280x960)</div>
           <div class="score-gauge"><a href="https://www.home24.de/" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
   <circle
@@ -1106,7 +1112,7 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="home24.de_home_desktop.webp"><img src="home24.de_home_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">1 critical issue</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 critical issue</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">image-alt</li>
                 </ul>
@@ -1183,7 +1189,7 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="home24.de_product_list_desktop.webp"><img src="home24.de_product_list_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">2 serious issues</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">2 serious issues</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-prohibited-attr</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">color-contrast</li>
                 </ul>
@@ -1224,7 +1230,7 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="home24.de_product_list_mobile.webp"><img src="home24.de_product_list_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">2 serious issues</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">2 serious issues</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-prohibited-attr</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">color-contrast</li>
                 </ul>
@@ -1265,7 +1271,7 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="home24.de_product_detail_desktop.webp"><img src="home24.de_product_detail_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">1 serious issue</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 serious issue</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-prohibited-attr</li>
                 </ul>
@@ -1306,14 +1312,14 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="home24.de_product_detail_mobile.webp"><img src="home24.de_product_detail_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">1 serious issue</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 serious issue</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-prohibited-attr</li>
                 </ul>
               </li></ul></div>
         </div> </div> </div></div></td></tr>
 <tr>
-<td style="width:36px; vertical-align: top; padding-top: 120px;"><button class="expand-arrow" aria-label="Expand/collapse row"><span></span></button></td><td style="vertical-align: top; padding-top: 120px;"><a class="site-link" href="https://www.ebay.de/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=ebay.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:top;margin-right:8px;object-fit:contain;">ebay.de</a></td><td class="score-cell"><div class="score-grid"><div class="score-col">
+<td style="width:36px; vertical-align: top; padding-top: 64px;"><button class="expand-arrow" aria-label="Expand/collapse row"><span></span></button></td><td style="vertical-align: top; padding-top: 64px;"><a class="site-link" href="https://www.ebay.de/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=ebay.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:top;margin-right:8px;object-fit:contain;">ebay.de</a></td><td class="score-cell"><div class="score-grid"><div class="score-col">
  <div class="score-label"><strong>DESKTOP</strong> <br/>(1280x960)</div>
           <div class="score-gauge"><a href="https://www.ebay.de/" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
   <circle
@@ -1349,17 +1355,17 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="ebay.de_home_desktop.webp"><img src="ebay.de_home_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">1 critical issue</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 critical issue</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">image-alt</li>
                 </ul>
               </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">3 serious issues</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">3 serious issues</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-command-name</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-hidden-focus</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">frame-title</li>
                 </ul>
               </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">1 moderate issue</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 moderate issue</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">html-xml-lang-mismatch</li>
                 </ul>
@@ -1400,7 +1406,7 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="ebay.de_home_mobile.webp"><img src="ebay.de_home_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">2 serious issues</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">2 serious issues</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-prohibited-attr</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">color-contrast</li>
                 </ul>
@@ -1441,12 +1447,12 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="ebay.de_product_list_desktop.webp"><img src="ebay.de_product_list_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">1 critical issue</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 critical issue</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">meta-viewport</li>
                 </ul>
               </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">2 serious issues</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">2 serious issues</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-hidden-focus</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">color-contrast</li>
                 </ul>
@@ -1487,12 +1493,12 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="ebay.de_product_list_mobile.webp"><img src="ebay.de_product_list_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">1 critical issue</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 critical issue</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">meta-viewport</li>
                 </ul>
               </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">2 serious issues</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">2 serious issues</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-hidden-focus</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">color-contrast</li>
                 </ul>
@@ -1533,7 +1539,7 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="ebay.de_product_detail_desktop.webp"><img src="ebay.de_product_detail_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">1 serious issue</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 serious issue</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-hidden-focus</li>
                 </ul>
@@ -1574,19 +1580,19 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="ebay.de_product_detail_mobile.webp"><img src="ebay.de_product_detail_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">1 critical issue</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 critical issue</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">button-name</li>
                 </ul>
               </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">3 serious issues</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">3 serious issues</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-prohibited-attr</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">color-contrast</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">role-img-alt</li>
                 </ul>
               </li></ul></div>
         </div> </div> </div></div></td></tr>
 <tr>
-<td style="width:36px; vertical-align: top; padding-top: 120px;"><button class="expand-arrow" aria-label="Expand/collapse row"><span></span></button></td><td style="vertical-align: top; padding-top: 120px;"><a class="site-link" href="https://www.ikea.com/de/de/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=ikea.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:top;margin-right:8px;object-fit:contain;">ikea.de</a></td><td class="score-cell"><div class="score-grid"><div class="score-col">
+<td style="width:36px; vertical-align: top; padding-top: 64px;"><button class="expand-arrow" aria-label="Expand/collapse row"><span></span></button></td><td style="vertical-align: top; padding-top: 64px;"><a class="site-link" href="https://www.ikea.com/de/de/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=ikea.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:top;margin-right:8px;object-fit:contain;">ikea.de</a></td><td class="score-cell"><div class="score-grid"><div class="score-col">
  <div class="score-label"><strong>DESKTOP</strong> <br/>(1280x960)</div>
           <div class="score-gauge"><a href="https://www.ikea.com/de/de/" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
   <circle
@@ -1622,7 +1628,7 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="ikea.de_home_desktop.webp"><img src="ikea.de_home_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">2 serious issues</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">2 serious issues</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-command-name</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">link-name</li>
                 </ul>
@@ -1663,7 +1669,7 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="ikea.de_home_mobile.webp"><img src="ikea.de_home_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">2 serious issues</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">2 serious issues</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-command-name</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">link-name</li>
                 </ul>
@@ -1740,7 +1746,7 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="ikea.de_product_list_mobile.webp"><img src="ikea.de_product_list_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">1 serious issue</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 serious issue</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-hidden-focus</li>
                 </ul>
@@ -1781,7 +1787,7 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="ikea.de_product_detail_desktop.webp"><img src="ikea.de_product_detail_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">1 serious issue</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 serious issue</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">scrollable-region-focusable</li>
                 </ul>
@@ -1822,14 +1828,14 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="ikea.de_product_detail_mobile.webp"><img src="ikea.de_product_detail_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">1 serious issue</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 serious issue</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">scrollable-region-focusable</li>
                 </ul>
               </li></ul></div>
         </div> </div> </div></div></td></tr>
 <tr>
-<td style="width:36px; vertical-align: top; padding-top: 120px;"><button class="expand-arrow" aria-label="Expand/collapse row"><span></span></button></td><td style="vertical-align: top; padding-top: 120px;"><a class="site-link" href="https://www.mediamarkt.de/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=mediamarkt.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:top;margin-right:8px;object-fit:contain;">mediamarkt.de</a></td><td class="score-cell"><div class="score-grid"><div class="score-col">
+<td style="width:36px; vertical-align: top; padding-top: 64px;"><button class="expand-arrow" aria-label="Expand/collapse row"><span></span></button></td><td style="vertical-align: top; padding-top: 64px;"><a class="site-link" href="https://www.mediamarkt.de/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=mediamarkt.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:top;margin-right:8px;object-fit:contain;">mediamarkt.de</a></td><td class="score-cell"><div class="score-grid"><div class="score-col">
  <div class="score-label"><strong>DESKTOP</strong> <br/>(1280x960)</div>
           <div class="score-gauge"><a href="https://www.mediamarkt.de/" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
   <circle
@@ -1865,7 +1871,7 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="mediamarkt.de_home_desktop.webp"><img src="mediamarkt.de_home_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">1 serious issue</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 serious issue</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-hidden-focus</li>
                 </ul>
@@ -1906,7 +1912,7 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="mediamarkt.de_home_mobile.webp"><img src="mediamarkt.de_home_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">2 serious issues</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">2 serious issues</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-hidden-focus</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">scrollable-region-focusable</li>
                 </ul>
@@ -1947,12 +1953,12 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="mediamarkt.de_product_list_desktop.webp"><img src="mediamarkt.de_product_list_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">2 critical issues</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">2 critical issues</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-valid-attr-value</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">button-name</li>
                 </ul>
               </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">2 serious issues</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">2 serious issues</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-hidden-focus</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">nested-interactive</li>
                 </ul>
@@ -1993,12 +1999,12 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="mediamarkt.de_product_list_mobile.webp"><img src="mediamarkt.de_product_list_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">1 critical issue</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 critical issue</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">select-name</li>
                 </ul>
               </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">3 serious issues</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">3 serious issues</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-hidden-focus</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">nested-interactive</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">scrollable-region-focusable</li>
                 </ul>
@@ -2039,12 +2045,12 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="mediamarkt.de_product_detail_desktop.webp"><img src="mediamarkt.de_product_detail_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">1 critical issue</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 critical issue</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-required-parent</li>
                 </ul>
               </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">4 serious issues</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">4 serious issues</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-hidden-focus</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-input-field-name</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-progressbar-name</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">role-img-alt</li>
                 </ul>
@@ -2085,19 +2091,19 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="mediamarkt.de_product_detail_mobile.webp"><img src="mediamarkt.de_product_detail_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">1 critical issue</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 critical issue</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">button-name</li>
                 </ul>
               </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">3 serious issues</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">3 serious issues</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-hidden-focus</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">role-img-alt</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">scrollable-region-focusable</li>
                 </ul>
               </li></ul></div>
         </div> </div> </div></div></td></tr>
 <tr>
-<td style="width:36px; vertical-align: top; padding-top: 120px;"><button class="expand-arrow" aria-label="Expand/collapse row"><span></span></button></td><td style="vertical-align: top; padding-top: 120px;"><a class="site-link" href="https://www.saturn.de/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=saturn.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:top;margin-right:8px;object-fit:contain;">saturn.de</a></td><td class="score-cell"><div class="score-grid"><div class="score-col">
+<td style="width:36px; vertical-align: top; padding-top: 64px;"><button class="expand-arrow" aria-label="Expand/collapse row"><span></span></button></td><td style="vertical-align: top; padding-top: 64px;"><a class="site-link" href="https://www.saturn.de/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=saturn.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:top;margin-right:8px;object-fit:contain;">saturn.de</a></td><td class="score-cell"><div class="score-grid"><div class="score-col">
  <div class="score-label"><strong>DESKTOP</strong> <br/>(1280x960)</div>
           <div class="score-gauge"><a href="https://www.saturn.de/" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
   <circle
@@ -2133,7 +2139,7 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="saturn.de_home_desktop.webp"><img src="saturn.de_home_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">1 serious issue</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 serious issue</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-hidden-focus</li>
                 </ul>
@@ -2174,7 +2180,7 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="saturn.de_home_mobile.webp"><img src="saturn.de_home_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">1 serious issue</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 serious issue</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-hidden-focus</li>
                 </ul>
@@ -2215,12 +2221,12 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="saturn.de_product_list_desktop.webp"><img src="saturn.de_product_list_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">2 critical issues</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">2 critical issues</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-valid-attr-value</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">button-name</li>
                 </ul>
               </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">2 serious issues</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">2 serious issues</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-hidden-focus</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">nested-interactive</li>
                 </ul>
@@ -2261,12 +2267,12 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="saturn.de_product_list_mobile.webp"><img src="saturn.de_product_list_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">1 critical issue</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 critical issue</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">select-name</li>
                 </ul>
               </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">2 serious issues</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">2 serious issues</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-hidden-focus</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">nested-interactive</li>
                 </ul>
@@ -2307,12 +2313,12 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="saturn.de_product_detail_desktop.webp"><img src="saturn.de_product_detail_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">1 critical issue</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 critical issue</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-required-parent</li>
                 </ul>
               </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">4 serious issues</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">4 serious issues</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-hidden-focus</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-input-field-name</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-progressbar-name</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">role-img-alt</li>
                 </ul>
@@ -2353,19 +2359,19 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="saturn.de_product_detail_mobile.webp"><img src="saturn.de_product_detail_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">1 critical issue</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 critical issue</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">button-name</li>
                 </ul>
               </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">2 serious issues</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">2 serious issues</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-hidden-focus</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">role-img-alt</li>
                 </ul>
               </li></ul></div>
         </div> </div> </div></div></td></tr>
 <tr>
-<td style="width:36px; vertical-align: top; padding-top: 120px;"><button class="expand-arrow" aria-label="Expand/collapse row"><span></span></button></td><td style="vertical-align: top; padding-top: 120px;"><a class="site-link" href="https://en.zalando.de/?_rfl=de" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=zalando.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:top;margin-right:8px;object-fit:contain;">zalando.de</a></td><td class="score-cell"><div class="score-grid"><div class="score-col">
+<td style="width:36px; vertical-align: top; padding-top: 64px;"><button class="expand-arrow" aria-label="Expand/collapse row"><span></span></button></td><td style="vertical-align: top; padding-top: 64px;"><a class="site-link" href="https://en.zalando.de/?_rfl=de" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=zalando.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:top;margin-right:8px;object-fit:contain;">zalando.de</a></td><td class="score-cell"><div class="score-grid"><div class="score-col">
  <div class="score-label"><strong>DESKTOP</strong> <br/>(1280x960)</div>
           <div class="score-gauge"><a href="https://en.zalando.de/?_rfl=de" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
   <circle
@@ -2401,7 +2407,7 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="zalando.de_home_desktop.webp"><img src="zalando.de_home_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">1 critical issue</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 critical issue</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-allowed-attr</li>
                 </ul>
@@ -2442,7 +2448,7 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="zalando.de_home_mobile.webp"><img src="zalando.de_home_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">1 critical issue</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 critical issue</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-allowed-attr</li>
                 </ul>
@@ -2483,12 +2489,12 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="zalando.de_product_list_desktop.webp"><img src="zalando.de_product_list_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">2 critical issues</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">2 critical issues</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-allowed-attr</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">button-name</li>
                 </ul>
               </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">1 serious issue</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 serious issue</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">scrollable-region-focusable</li>
                 </ul>
@@ -2529,12 +2535,12 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="zalando.de_product_list_mobile.webp"><img src="zalando.de_product_list_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">1 critical issue</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 critical issue</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-allowed-attr</li>
                 </ul>
               </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">1 serious issue</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 serious issue</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">scrollable-region-focusable</li>
                 </ul>
@@ -2575,7 +2581,7 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="zalando.de_product_detail_desktop.webp"><img src="zalando.de_product_detail_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">2 critical issues</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">2 critical issues</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-allowed-attr</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">button-name</li>
                 </ul>
@@ -2616,19 +2622,19 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="zalando.de_product_detail_mobile.webp"><img src="zalando.de_product_detail_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">1 critical issue</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 critical issue</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-allowed-attr</li>
                 </ul>
               </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">1 serious issue</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 serious issue</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">scrollable-region-focusable</li>
                 </ul>
               </li></ul></div>
         </div> </div> </div></div></td></tr>
 <tr>
-<td style="width:36px; vertical-align: top; padding-top: 120px;"><button class="expand-arrow" aria-label="Expand/collapse row"><span></span></button></td><td style="vertical-align: top; padding-top: 120px;"><a class="site-link" href="https://en.aboutyou.de/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=aboutyou.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:top;margin-right:8px;object-fit:contain;">aboutyou.de</a></td><td class="score-cell"><div class="score-grid"><div class="score-col">
+<td style="width:36px; vertical-align: top; padding-top: 64px;"><button class="expand-arrow" aria-label="Expand/collapse row"><span></span></button></td><td style="vertical-align: top; padding-top: 64px;"><a class="site-link" href="https://en.aboutyou.de/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=aboutyou.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:top;margin-right:8px;object-fit:contain;">aboutyou.de</a></td><td class="score-cell"><div class="score-grid"><div class="score-col">
  <div class="score-label"><strong>DESKTOP</strong> <br/>(1280x960)</div>
           <div class="score-gauge"><a href="https://en.aboutyou.de/" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
   <circle
@@ -2664,12 +2670,12 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="aboutyou.de_home_desktop.webp"><img src="aboutyou.de_home_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">1 critical issue</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 critical issue</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">button-name</li>
                 </ul>
               </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">2 serious issues</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">2 serious issues</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">color-contrast</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">link-name</li>
                 </ul>
@@ -2710,12 +2716,12 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="aboutyou.de_home_mobile.webp"><img src="aboutyou.de_home_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">1 critical issue</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 critical issue</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">button-name</li>
                 </ul>
               </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">3 serious issues</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">3 serious issues</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-prohibited-attr</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">color-contrast</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">link-name</li>
                 </ul>
@@ -2756,12 +2762,12 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="aboutyou.de_product_list_desktop.webp"><img src="aboutyou.de_product_list_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">1 critical issue</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 critical issue</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">button-name</li>
                 </ul>
               </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">6 serious issues</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">6 serious issues</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-progressbar-name</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">color-contrast</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">link-name</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">list</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">listitem</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">scrollable-region-focusable</li>
                 </ul>
@@ -2802,12 +2808,12 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="aboutyou.de_product_list_mobile.webp"><img src="aboutyou.de_product_list_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">1 critical issue</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 critical issue</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">button-name</li>
                 </ul>
               </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">7 serious issues</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">7 serious issues</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-progressbar-name</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-prohibited-attr</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">color-contrast</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">link-name</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">list</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">listitem</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">scrollable-region-focusable</li>
                 </ul>
@@ -2848,12 +2854,12 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="aboutyou.de_product_detail_desktop.webp"><img src="aboutyou.de_product_detail_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">2 critical issues</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">2 critical issues</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-allowed-attr</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">button-name</li>
                 </ul>
               </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">5 serious issues</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">5 serious issues</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-hidden-focus</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">color-contrast</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">link-name</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">list</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">listitem</li>
                 </ul>
@@ -2894,12 +2900,12 @@
 </a></div>
   <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="aboutyou.de_product_detail_mobile.webp"><img src="aboutyou.de_product_detail_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
           <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">2 critical issues</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">2 critical issues</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-allowed-attr</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">button-name</li>
                 </ul>
               </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
-                <span style="display:inline-block;min-width:120px;">6 serious issues</span>
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">6 serious issues</strong></span>
                 <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
                   <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-hidden-focus</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-prohibited-attr</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">color-contrast</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">link-name</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">listitem</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">scrollable-region-focusable</li>
                 </ul>

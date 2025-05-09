@@ -140,7 +140,7 @@ function generateHTMLTable(
   const tableHead = `
     <tr>
       <th style="width:36px;"></th>
-      <th style="text-align: left;">Site</th>
+      <th style="text-align: left; width: 15%;">Site</th>
       ${allPages.map((page) => `<th>${page}</th>`).join("")}
     </tr>
   `;
@@ -154,7 +154,7 @@ function generateHTMLTable(
       data[siteKey]?.url || sites.home[site] || `https://${displaySite}`;
 
     const expandBtn = `<button class="expand-arrow" aria-label="Expand/collapse row"><span></span></button>`;
-    tableBody += `<tr>\n<td style="width:36px; vertical-align: top; padding-top: 120px;">${expandBtn}</td><td style="vertical-align: top; padding-top: 120px;"><a class="site-link" href="${siteUrl}" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=${site}&sz=48" alt="" style="width:20px;height:20px;vertical-align:top;margin-right:8px;object-fit:contain;">${displaySite}</a></td>`;
+    tableBody += `<tr>\n<td style="width:36px; vertical-align: top; padding-top: 64px;">${expandBtn}</td><td style="vertical-align: top; padding-top: 64px;"><a class="site-link" href="${siteUrl}" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=${site}&sz=48" alt="" style="width:20px;height:20px;vertical-align:top;margin-right:8px;object-fit:contain;">${displaySite}</a></td>`;
     for (const page of allPages) {
       tableBody += '<td class="score-cell">';
       // Begin grid container for device columns
@@ -221,11 +221,11 @@ function generateHTMLTable(
             .filter((impact) => impactCounts[impact])
             .map((impact) => {
               const rules = impactRules[impact] || [];
-              return `<li style=\"margin-bottom: 0.4em;list-style-type:none;position:relative;\">\n                <span style=\"display:inline-block;min-width:120px;\">${
+              return `<li style=\"margin-bottom: 0.4em;list-style-type:none;position:relative;\">\n                <span style=\"display:inline-block;min-width:120px;\"><strong style="display: block; margin-top: 8px;">${
                 impactCounts[impact]
               } ${impactLabels[impact]}${
                 impactCounts[impact] > 1 ? "s" : ""
-              }</span>\n                <ul style=\"margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;\">\n                  ${rules
+              }</strong></span>\n                <ul style=\"margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;\">\n                  ${rules
                 .map(
                   (rule) =>
                     `<li style=\\\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\\\">${rule}</li>`
@@ -306,14 +306,15 @@ function generateHTMLTable(
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 10px 6px 14px 6px;
+      padding: 16px 8px;
       min-width: 0;
       word-break: break-word;
     }
     .score-label {
-      font-size: 14px;
-      margin-bottom: 6px;
+      font-size: 12px;
+      margin-bottom: 8px;
       text-align: center;
+      color: #485b68;
     }
     .score-gauge {
       margin-bottom: 24px;
