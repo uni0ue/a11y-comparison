@@ -174,11 +174,12 @@ function generateHTMLTable(
             }
           }
         } catch {}
-        const screenshotFilename = `${site}_${page.replace(
+        // Use screenshots from the 'screenshots' subfolder
+        const screenshotFilename = `screenshots/${site}_${page.replace(
           / /g,
           "_"
         )}_${device.toLowerCase()}.webp`;
-        const thumbFilename = `${site}_${page.replace(
+        const thumbFilename = `screenshots/${site}_${page.replace(
           / /g,
           "_"
         )}_${device.toLowerCase()}_thumb.jpeg`;
