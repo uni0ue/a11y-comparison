@@ -24,16 +24,75 @@ function getReportFiles(reportsDir: string): string[] {
     .map((f) => path.join(reportsDir, f));
 }
 
-// Calculate Deque accessibility score
-function calculateScore(
-  passes: number,
-  inapplicable: number,
-  violations: number,
-  incomplete: number
-): number {
-  const total = passes + inapplicable + violations + incomplete;
-  if (total === 0) return 0;
-  return Math.round(((passes + inapplicable) / total) * 1000) / 10;
+// Calculate Deque accessibility score based on https://docs.cypress.io/accessibility/core-concepts/accessibility-score
+function calculateScore(deviceData: any): number {
+  // Collect all unique rule IDs from passes, violations, incomplete, inapplicable
+  const allRuleIds = new Set<string>();
+  ["passes", "violations", "incomplete", "inapplicable"].forEach((section) => {
+    if (Array.isArray(deviceData[section])) {
+      for (const item of deviceData[section]) {
+        if (item && item.id) allRuleIds.add(item.id);
+      }
+    }
+  });
+
+  // Assign weights by impact
+  const impactWeight = {
+    critical: 10,
+    serious: 7,
+    moderate: 3,
+    minor: 1,
+    default: 1,
+  };
+
+  // Calculate failed weights (unique rule IDs in violations, highest impact wins)
+  const failedRuleWeights = new Map<string, number>();
+  if (Array.isArray(deviceData.violations)) {
+    for (const v of deviceData.violations) {
+      if (v && v.id) {
+        const weight = impactWeight[v.impact] || impactWeight.default;
+        if (
+          !failedRuleWeights.has(v.id) ||
+          failedRuleWeights.get(v.id)! < weight
+        ) {
+          failedRuleWeights.set(v.id, weight);
+        }
+      }
+    }
+  }
+  const failedWeight = Array.from(failedRuleWeights.values()).reduce(
+    (a, b) => a + b,
+    0
+  );
+
+  // Calculate passed weights (all unique rule IDs minus failed, weight by impact if available in passes/incomplete/inapplicable)
+  let passedWeight = 0;
+  for (const ruleId of allRuleIds) {
+    if (!failedRuleWeights.has(ruleId)) {
+      // Find the impact in passes/incomplete/inapplicable (if any)
+      let foundImpact: string | undefined;
+      for (const section of ["passes", "incomplete", "inapplicable"]) {
+        if (Array.isArray(deviceData[section])) {
+          const found = deviceData[section].find(
+            (item: any) => item && item.id === ruleId && item.impact
+          );
+          if (found && found.impact) {
+            foundImpact = found.impact;
+            break;
+          }
+        }
+      }
+      const weight = foundImpact
+        ? impactWeight[foundImpact] || impactWeight.default
+        : impactWeight.default;
+      passedWeight += weight;
+    }
+  }
+
+  const totalWeight = passedWeight + failedWeight;
+  if (totalWeight === 0) return 100.0;
+  const score = (passedWeight / totalWeight) * 100;
+  return Math.max(0, Math.round(score * 10) / 10);
 }
 
 // Read and parse all reports
@@ -63,16 +122,8 @@ function parseReports(reportFiles: string[]) {
       data[site].pages[pageKey] = {};
       for (const device of Object.keys(json[page])) {
         const deviceData = json[page][device];
-        const passes = deviceData.passes?.length || 0;
-        const inapplicable = deviceData.inapplicable?.length || 0;
-        const violations = deviceData.violations?.length || 0;
-        const incomplete = deviceData.incomplete?.length || 0;
-        data[site].pages[pageKey][device] = calculateScore(
-          passes,
-          inapplicable,
-          violations,
-          incomplete
-        );
+        // Pass the full deviceData object to calculateScore
+        data[site].pages[pageKey][device] = calculateScore(deviceData);
       }
     }
   }
