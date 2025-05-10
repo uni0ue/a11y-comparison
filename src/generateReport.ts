@@ -430,8 +430,8 @@ function main() {
     .reverse();
 
   const currentIndex = reportDirs.indexOf(todayDir);
-  const prevReportDir = reportDirs[currentIndex + 1];
-  const nextReportDir = reportDirs[currentIndex - 1];
+  const prevReportDir = reportDirs[currentIndex + 1]; // older
+  const nextReportDir = reportDirs[currentIndex - 1]; // newer
 
   const html = generateHTMLTable(
     data,
