@@ -277,8 +277,11 @@ async function runAxe(
     await fs.mkdir(reportDir, { recursive: true });
     // Screenshot filename: [domain]_[pageType]_[viewport].png
     const safePageTypeName = pageTypeName.replace(/\s+/g, "_");
+    // Ensure screenshots are stored in a subfolder "screenshots"
+    const screenshotsDir = path.join(reportDir, "screenshots");
+    await fs.mkdir(screenshotsDir, { recursive: true });
     const screenshotFilename = `${domainName}_${safePageTypeName}_${viewport.toLowerCase()}.webp`;
-    screenshotPath = path.join(reportDir, screenshotFilename);
+    screenshotPath = path.join(screenshotsDir, screenshotFilename);
     await page.screenshot({
       path: screenshotPath,
       fullPage: true,
@@ -289,7 +292,10 @@ async function runAxe(
     // Save viewport-sized screenshot for thumbnail
     const thumbFilename =
       `${domainName}_${safePageTypeName}_${viewport.toLowerCase()}_thumb.jpeg` as const;
-    const thumbPath = path.join(reportDir, thumbFilename) as `${string}.jpeg`;
+    const thumbPath = path.join(
+      screenshotsDir,
+      thumbFilename
+    ) as `${string}.jpeg`;
     await page.screenshot({ path: thumbPath, fullPage: false, type: "jpeg" });
 
     const image = await Jimp.read(thumbPath);
