@@ -3,7 +3,7 @@
 import fs from "fs";
 import path from "path";
 import { sites } from "../sites";
-import { viewports } from "../config";
+import { axeConfig, viewports } from "../config";
 import { importHtmlSnippet } from "./importHtmlSnippet";
 
 // Utility to get today's date as yyyy-mm-dd
@@ -48,7 +48,7 @@ function parseReports(reportFiles: string[]) {
     const raw = fs.readFileSync(file, "utf-8");
     const json = JSON.parse(raw);
     const site = file.replace(/^.*report-/, "").replace(/\.json$/, "");
-    console.log("site key used:", site);
+    console.log("generate report for", site);
     let url = "";
     const firstPage = Object.keys(json)[0];
     if (firstPage) {
@@ -346,9 +346,15 @@ function generateHTMLTable(
   </style>
   <div class="container">
     <div class="audit-meta">
-      Axe audit (EN-301-549) <span class="timestamp">${dateStr}</span>
+      Axe audit (${axeConfig.tags.join(
+        ", "
+      )}) <span class="timestamp">${dateStr}</span>
       <div class="nav-arrows">
-        <a href="../${prevReportDir}/index.html" class="nav-arrow" title="Previous Report" aria-label="Previous Report">&#8592;</a>
+        ${
+          prevReportDir
+            ? `<a href="../${prevReportDir}/index.html" class="nav-arrow" title="Previous Report" aria-label="Previous Report">&#8592;</a>`
+            : `<span class="nav-arrow" aria-disabled="true" tabindex="-1" aria-label="Previous Report">&#8592;</span>`
+        }
         ${
           nextReportDir
             ? `<a href="../${nextReportDir}/index.html" class="nav-arrow" title="Next Report" aria-label="Next Report">&#8594;</a>`
@@ -392,13 +398,14 @@ function generateHTMLTable(
   return html;
 }
 
-function main() {
-  const todayDir = getTodayDir();
+// Export main for use in generateAllReports.ts
+export function main(reportDate?: string) {
+  const todayDir = reportDate || getTodayDir();
   const reportsDir = path.join(process.cwd(), "docs", todayDir);
   const reportFiles = getReportFiles(reportsDir);
   if (reportFiles.length === 0) {
-    console.error("No report found for today. Run an audit first.");
-    process.exit(1);
+    console.error("No report found for this date. Run an audit first.");
+    return;
   }
   // Get the timestamp from the first report file's JSON
   const firstReportFile = reportFiles.slice().sort()[0];
@@ -475,4 +482,7 @@ function main() {
   fs.writeFileSync(path.join(docsRoot, "index.html"), indexHtml, "utf-8");
 }
 
-main();
+// If run directly, call main() for today
+if (import.meta.url === `file://${process.argv[1]}`) {
+  main();
+}

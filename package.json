@@ -6,6 +6,7 @@
   "scripts": {
     "axe": "node --import tsx ./src/runAxe.ts",
     "report": "node --import tsx ./src/generateReport.ts",
+    "report:all": "node --import tsx ./src/generateAllReports.ts",
     "start": "npm run axe && npm run report"
   },
   "dependencies": {
