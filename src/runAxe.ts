@@ -22,7 +22,7 @@ async function runAxe(
   let screenshotPath: string | null = null;
   try {
     browser = await puppeteer.launch({
-      headless: false,
+      headless: true,
       defaultViewport: viewports[viewport],
     });
     console.log(puppeteer.executablePath());
