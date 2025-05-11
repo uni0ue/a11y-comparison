@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Accessibility Comparison</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";; background: #f8f9fa; margin: 0; }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+      box-sizing: border-box;
+      position: relative;
+    }
+    .audit-meta {
+      position: absolute;
+      top: 2rem;
+      right: 1rem;
+      font-size: 0.8em;
+      color: #666;
+      padding: 0.3em 0.8em;
+      z-index: 2;
+      text-align: right;
+    }
+    .timestamp { font-weight: bold; display: block; margin-top: 0.3rem; }
+    h1 { text-align: left; margin-top: 0; }
+    table { border-collapse: collapse; margin: 2rem 0; background: #fff; box-shadow: 0 2px 8px #0001; table-layout: fixed; width: 100%; }
+    th, td { border: 0px solid #ccc; padding: 0.7em 1.2em; text-align: left; }
+    th { background: #dbe6ee; color: #000; text-align: center; text-transform: capitalize; }
+    tr:nth-child(even) td { background: #f2f6fa; }
+    .score-cell { text-align: center; }
+    .site-link { color: #000; text-decoration: none; font-weight: bold; }
+    .gauge { display: block; margin: 0 auto; }
+    @media (max-width: 900px) {
+      .container { padding: 1rem 0.5rem; }
+      table, th, td { font-size: 0.95em; }
+    }
+    @media (max-width: 600px) {
+      .container { padding: 0.5rem 0.2rem; }
+      table, th, td { font-size: 0.85em; }
+      th, td { padding: 0.5em 0.3em; }
+      .audit-meta { position: static; display: block; margin-bottom: 0.5em; text-align: left; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="audit-meta">
+      Axe audit (EN-301-549) <span class="timestamp">30 Apr 2025 16:43</span>
+    </div>
+    <h1>Accessibility Comparison</h1>
+    <table>
+      <tr>
+        <th style="text-align: left;">Site</th>
+        <th>home</th><th>product list</th><th>product detail</th>
+      </tr>
+    <tr>
+      <td><a class="site-link" href="https://en.aboutyou.de/your-shop" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=aboutyou.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:middle;margin-right:8px;object-fit:contain;">aboutyou.de</a></td>
+<td class="score-cell"><a href="https://en.aboutyou.de/your-shop" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#ffa400" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="44.41" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">90</text>
+    </svg>
+  </a></td><td class="score-cell"><a href="https://en.aboutyou.de/c/men/shoes-20215" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#ffa400" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="57.90" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">86</text>
+    </svg>
+  </a></td><td class="score-cell"><a href="https://en.aboutyou.de/p/adidas-originals/sneakers-handball-spezial-4114892" target="_blank" rel="noopener">
+    <svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+      <circle cx="60" cy="60" r="54" fill="#fff" stroke="#eee" stroke-width="12"></circle>
+      <circle cx="60" cy="60" r="54" fill="none" stroke="#ffa400" stroke-width="12" stroke-dasharray="339.292" stroke-dashoffset="57.24" stroke-linecap="round"></circle>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" font-size="36" fill="#222">86</text>
+    </svg>
+  </a></td></tr>
+    </table>
+  </div>
+</body>
+</html>
