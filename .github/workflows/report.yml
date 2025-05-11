@@ -21,6 +21,9 @@ jobs:
     - name: Install dependencies
       run: npm ci
 
+    - name: Disable Puppeteer sandbox
+      run: echo "PUPPETEER_DISABLE_SANDBOX=true" >> $GITHUB_ENV
+
     - name: Run accessibility audit and generate report
       run: npm start
 
