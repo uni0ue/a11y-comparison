@@ -1,0 +1,32 @@
+name: Daily Accessibility Report
+
+on:
+  schedule:
+  - cron: '0 3 * * *' # Runs every day at 03:00 UTC
+  workflow_dispatch:
+    # Allow manual runs
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Run accessibility audit and generate report
+      run: npm start
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs
+        publish_branch: gh-pages
