@@ -24,6 +24,7 @@ async function runAxe(
     browser = await puppeteer.launch({
       headless: true,
       defaultViewport: viewports[viewport],
+      args: ["--no-sandbox", "--disable-setuid-sandbox"],
     });
     console.log(puppeteer.executablePath());
     const page = await browser.newPage();
