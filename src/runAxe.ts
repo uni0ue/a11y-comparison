@@ -21,12 +21,22 @@ async function runAxe(
   let browser: Browser | null = null;
   let screenshotPath: string | null = null;
   try {
+    // Use CHROME_BIN or PUPPETEER_EXECUTABLE_PATH if set (for CI environments like browser-actions/setup-chrome)
+    const executablePath =
+      process.env.PUPPETEER_EXECUTABLE_PATH ||
+      process.env.CHROME_BIN ||
+      undefined;
+
     browser = await puppeteer.launch({
       headless: true,
+      executablePath,
       defaultViewport: viewports[viewport],
       args: ["--no-sandbox", "--disable-setuid-sandbox"],
     });
-    console.log(puppeteer.executablePath());
+    console.log(
+      "Puppeteer executablePath:",
+      executablePath || puppeteer.executablePath()
+    );
     const page = await browser.newPage();
     const puppeteerDevices = KnownDevices;
 
