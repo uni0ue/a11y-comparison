@@ -485,11 +485,17 @@ export function main(reportDate?: string) {
         fs.statSync(path.join(docsRoot, f)).isDirectory()
     )
     .sort()
-    .reverse();
+    .reverse(); // Newest first
 
+  // Find the current report's index in the sorted list
   const currentIndex = reportDirs.indexOf(todayDir);
-  const prevReportDir = reportDirs[currentIndex + 1]; // older
-  const nextReportDir = reportDirs[currentIndex - 1]; // newer
+  // Previous report is the next index (older), next report is previous index (newer)
+  const prevReportDir =
+    currentIndex >= 0 && currentIndex + 1 < reportDirs.length
+      ? reportDirs[currentIndex + 1]
+      : undefined;
+  const nextReportDir =
+    currentIndex > 0 ? reportDirs[currentIndex - 1] : undefined;
 
   const html = generateHTMLTable(
     data,
