@@ -251,7 +251,7 @@ async function runAxe(
     // Scroll down to the end of the page using puppeteer-autoscroll-down
     await scrollPageToBottom(page, {
       size: 1000,
-      delay: 500,
+      delay: 2000,
     });
     await scrollPageToTop(page, {
       size: 10000,
