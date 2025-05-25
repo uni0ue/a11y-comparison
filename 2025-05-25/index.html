@@ -1,0 +1,2997 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Accessibility Comparison</title>
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+          "Segoe UI Symbol";
+        background: #f8f9fa;
+        margin: 0;
+      }
+      ul,
+      li {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      a:link,
+      a:visited {
+        color: #007acc;
+      }
+      a:hover {
+        color: #0098ff;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+        box-sizing: border-box;
+        position: relative;
+      }
+      .audit-meta {
+        font-size: 0.8em;
+        color: #666;
+        padding: 0.3em 0.8em;
+        z-index: 2;
+        text-align: right;
+      }
+      .timestamp {
+        font-weight: bold;
+        display: block;
+        margin-top: 0.3rem;
+      }
+      .nav-arrows {
+        margin-top: 0.4rem;
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        justify-content: flex-end;
+      }
+      .nav-arrow {
+        font-size: 1.6rem;
+        color: #007acc;
+        text-decoration: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0.2em 0;
+        transition: background 0.2s;
+      }
+      .nav-arrow[aria-disabled="true"] {
+        color: #bbb;
+        cursor: not-allowed;
+        opacity: 0.5;
+        pointer-events: none;
+        background: none;
+      }
+
+      .nav-arrow:focus {
+        outline: 2px solid #007acc;
+        outline-offset: 2px;
+      }
+      .nav-arrow[aria-disabled="true"]:focus {
+        outline: none;
+      }
+      h1 {
+        text-align: left;
+        margin-top: 0;
+      }
+      .site-link {
+        color: #000;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      .gauge {
+        display: block;
+        margin: 0 auto;
+      }
+      @media (max-width: 900px) {
+        .container {
+          padding: 1rem 0.5rem;
+        }
+      }
+      @media (max-width: 600px) {
+        .container {
+          padding: 0.5rem 0.2rem;
+        }
+        .audit-meta {
+          position: static;
+          display: block;
+          margin-bottom: 0.5em;
+          text-align: left;
+        }
+      }
+    </style>
+    
+  </head>
+  <body>
+    
+  <style>
+    .score-cell {
+      padding: 0;
+      vertical-align: top;
+    }
+    .score-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 12px;
+      align-items: start;
+    }
+      .score-expander {
+        display: grid;
+        grid-template-rows: 0fr;
+        overflow: hidden;
+        transition: grid-template-rows 100ms ease-in-out;
+      }
+     tr[aria-expanded="true"] .score-expander {
+      grid-template-rows: 1fr;
+      } 
+
+      .score-expander-content {
+        min-height: 0;
+        transition: visibility 100ms ease-in-out;
+        visibility: hidden;
+      }
+
+      tr[aria-expanded="true"] .score-expander-content {
+        visibility: visible;
+      }
+
+    .score-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 16px 8px;
+      min-width: 0;
+      word-break: break-word;
+    }
+    .score-label {
+      font-size: 12px;
+      margin-bottom: 8px;
+      text-align: center;
+      color: #485b68;
+    }
+    .score-gauge {
+      margin-bottom: 24px;
+    }
+    .score-summary {
+      font-size: 12px;
+      margin-bottom: 8px;
+      width: 100%;
+    }
+    .score-screenshot {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+    /* Show summary only when row is expanded */
+    .score-summary .issue-summary {
+      display: none;
+    }
+    tr[aria-expanded="true"] .score-summary .issue-summary {
+      display: block !important;
+      
+    }
+    @media (max-width: 600px) {
+      .score-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+  <div class="container">
+    <div class="audit-meta">
+      Axe audit (EN-301-549) <span class="timestamp">25. Mai 2025 03:49</span>
+      <div class="nav-arrows">
+        <a href="../2025-05-10/index.html" class="nav-arrow" title="Previous Report" aria-label="Previous Report">&#8592;</a>
+        <span class="nav-arrow" aria-disabled="true" tabindex="-1" aria-label="Next Report">&#8594;</span>
+      </div>
+    </div>
+    <h1>Accessibility Comparison</h1>
+    <style>
+  table {
+    border-collapse: collapse;
+    margin: 2rem 0;
+    background: #fff;
+    box-shadow: 0 2px 8px #0001;
+    table-layout: fixed;
+    width: 100%;
+  }
+  th,
+  td {
+    border: 0px solid #ccc;
+    padding: 0.7em 1.2em;
+    text-align: left;
+  }
+  th {
+    background: #dbe6ee;
+    color: #000;
+    text-align: center;
+    text-transform: capitalize;
+  }
+  tr:nth-child(even) td {
+    background: #f2f6fa;
+  }
+
+  .score-cell {
+    border-right: 1px solid #dbe6ee;
+    padding: 0 8px;
+    text-align: center;
+  }
+  .score-cell:last-child {
+    border-right: none;
+  }
+  @media (max-width: 900px) {
+    table,
+    th,
+    td {
+      font-size: 0.95em;
+    }
+  }
+  @media (max-width: 600px) {
+    table,
+    th,
+    td {
+      font-size: 0.85em;
+    }
+    th,
+    td {
+      padding: 0.5em 0.3em;
+    }
+  }
+  .row-thumbnails[hidden] {
+    display: none !important;
+  }
+  tr[aria-expanded="true"] .row-thumbnails {
+    display: block !important;
+  }
+  .expand-arrow {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0 4px 0 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease-in-out;
+  }
+  .expand-arrow span {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid #555;
+    border-bottom: 2px solid #555;
+    transform: rotate(-45deg);
+    transform-origin: center;
+    transition: transform 80ms ease-in-out;
+  }
+  tr[aria-expanded="true"] .expand-arrow span {
+    transform: rotate(45deg);
+  }
+  .expand-arrow:focus-visible {
+    outline: 2px solid #007acc;
+    outline-offset: 2px;
+    border-radius: 50%;
+  }
+
+  .thumb {
+    margin-top: 6px;
+    display: none;
+  }
+
+  tr[aria-expanded="true"] .thumb {
+    display: block;
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".expand-arrow").forEach(function (btn) {
+      btn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        const tr = btn.closest("tr");
+        const expanded = tr.getAttribute("aria-expanded") === "true";
+        tr.setAttribute("aria-expanded", String(!expanded));
+      });
+    });
+  });
+</script>
+<table>
+  
+    <tr>
+      <th style="width:36px;"></th>
+      <th style="text-align: left; width: 15%;">Site</th>
+      <th>home</th><th>product list</th><th>product detail</th>
+    </tr>
+   <tr>
+<td style="width:36px; vertical-align: top; padding-top: 64px;"><button class="expand-arrow" aria-label="Expand/collapse row"><span></span></button></td><td style="vertical-align: top; padding-top: 64px;"><a class="site-link" href="https://www.galaxus.de/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=galaxus.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:top;margin-right:8px;object-fit:contain;">galaxus.de</a></td><td class="score-cell"><div class="score-grid"><div class="score-col">
+ <div class="score-label"><strong>DESKTOP</strong> <br/>(1280x960)</div>
+          <div class="score-gauge"><a href="https://www.galaxus.de/" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#0cce6b"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="0.00"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    100
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/galaxus.de_home_desktop.webp"><img src="screenshots/galaxus.de_home_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          
+        </div> </div> </div><div class="score-col">
+ <div class="score-label"><strong>MOBILE</strong> <br/>(375x812)</div>
+          <div class="score-gauge"><a href="https://www.galaxus.de/" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#0cce6b"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="0.00"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    100
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/galaxus.de_home_mobile.webp"><img src="screenshots/galaxus.de_home_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          
+        </div> </div> </div></div></td><td class="score-cell"><div class="score-grid"><div class="score-col">
+ <div class="score-label"><strong>DESKTOP</strong> <br/>(1280x960)</div>
+          <div class="score-gauge"><a href="https://www.galaxus.de/de/s1/producttype/smartphone-24" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#0cce6b"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="0.00"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    100
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/galaxus.de_product_list_desktop.webp"><img src="screenshots/galaxus.de_product_list_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          
+        </div> </div> </div><div class="score-col">
+ <div class="score-label"><strong>MOBILE</strong> <br/>(375x812)</div>
+          <div class="score-gauge"><a href="https://www.galaxus.de/de/s1/producttype/smartphone-24" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#0cce6b"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="0.00"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    100
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/galaxus.de_product_list_mobile.webp"><img src="screenshots/galaxus.de_product_list_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          
+        </div> </div> </div></div></td><td class="score-cell"><div class="score-grid"><div class="score-col">
+ <div class="score-label"><strong>DESKTOP</strong> <br/>(1280x960)</div>
+          <div class="score-gauge"><a href="https://www.galaxus.de/de/s1/product/apple-iphone-16-pro-max-256-gb-black-titanium-690-sim-esim-48-mpx-5g-smartphone-49221245" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#0cce6b"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="0.00"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    100
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/galaxus.de_product_detail_desktop.webp"><img src="screenshots/galaxus.de_product_detail_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          
+        </div> </div> </div><div class="score-col">
+ <div class="score-label"><strong>MOBILE</strong> <br/>(375x812)</div>
+          <div class="score-gauge"><a href="https://www.galaxus.de/de/s1/product/apple-iphone-16-pro-max-256-gb-black-titanium-690-sim-esim-48-mpx-5g-smartphone-49221245" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#0cce6b"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="0.00"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    100
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/galaxus.de_product_detail_mobile.webp"><img src="screenshots/galaxus.de_product_detail_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          
+        </div> </div> </div></div></td></tr>
+<tr>
+<td style="width:36px; vertical-align: top; padding-top: 64px;"><button class="expand-arrow" aria-label="Expand/collapse row"><span></span></button></td><td style="vertical-align: top; padding-top: 64px;"><a class="site-link" href="https://www.amazon.de/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=amazon.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:top;margin-right:8px;object-fit:contain;">amazon.de</a></td><td class="score-cell"><div class="score-grid"><div class="score-col">
+ <div class="score-label"><strong>DESKTOP</strong> <br/>(1280x960)</div>
+          <div class="score-gauge"><a href="https://www.amazon.de/" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#ffa400"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="83.90"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    78
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/amazon.de_home_desktop.webp"><img src="screenshots/amazon.de_home_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 critical issue</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">image-alt</li>
+                </ul>
+              </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 serious issue</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">color-contrast</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div><div class="score-col">
+ <div class="score-label"><strong>MOBILE</strong> <br/>(375x812)</div>
+          <div class="score-gauge"><a href="https://www.amazon.de/" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#ffa400"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="83.90"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    78
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/amazon.de_home_mobile.webp"><img src="screenshots/amazon.de_home_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 critical issue</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">image-alt</li>
+                </ul>
+              </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 serious issue</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">color-contrast</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div></div></td><td class="score-cell"><div class="score-grid"><div class="score-col">
+ <div class="score-label"><strong>DESKTOP</strong> <br/>(1280x960)</div>
+          <div class="score-gauge"><a href="https://www.amazon.de/s?i=electronics&srs=203868645031&rh=n%3A203868645031&s=popularity-rank&fs=true&ref=lp_203868645031_sar" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#ffa400"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="44.41"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    90
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/amazon.de_product_list_desktop.webp"><img src="screenshots/amazon.de_product_list_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 serious issue</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">html-has-lang</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div><div class="score-col">
+ <div class="score-label"><strong>MOBILE</strong> <br/>(375x812)</div>
+          <div class="score-gauge"><a href="https://www.amazon.de/s?i=electronics&srs=203868645031&rh=n%3A203868645031&s=popularity-rank&fs=true&ref=lp_203868645031_sar" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#ffa400"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="44.41"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    90
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/amazon.de_product_list_mobile.webp"><img src="screenshots/amazon.de_product_list_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 serious issue</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">html-has-lang</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div></div></td><td class="score-cell"><div class="score-grid"><div class="score-col">
+ <div class="score-label"><strong>DESKTOP</strong> <br/>(1280x960)</div>
+          <div class="score-gauge"><a href="https://www.amazon.de/Apple-iPhone-Pro-Kamerasteuerung-Batterielaufzeit/dp/B0DGHSG5D2/ref=sr_1_11?dib=eyJ2IjoiMSJ9.W8Mrw129fbePTpSFDllatT4PPySi1cPm89ZcnmApWUDpuP5chpUi8ZauKPhxQi4WxjSHP8uapfzML5lsnoOVjp5jm4RfCrGR7Y01h0LGFsZUU3aIuH2q1pe_QS_ghqETnbm6JBm9JGFDmZqKWrVnzxPGKQhrjFRmKqBZcMiCQRdX8YdAZPtxcq1TLesHkAbLF-8HxETfpFLvn-Gq-KkCKN1owQGH0CJRoMM57kEU4FLpyS-hGjsrnnhnOlHa3FEQY9rXJafUOtS56LUwXiEOBIp6dRsCVcXKRRfSSjWEgzs.Q7OXLdyqi38oMbytf4_ZoCj3Kzp2wEYcrm3DXoLwYm8&dib_tag=se&qid=1745412754&s=ce-de&sr=1-11&srs=203868645031&ufe=app_do%3Aamzn1.fos.4c706219-4fde-46cd-86d6-68fb316fcf3e" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#ffa400"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="83.90"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    78
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/amazon.de_product_detail_desktop.webp"><img src="screenshots/amazon.de_product_detail_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 critical issue</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">image-alt</li>
+                </ul>
+              </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 serious issue</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">color-contrast</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div><div class="score-col">
+ <div class="score-label"><strong>MOBILE</strong> <br/>(375x812)</div>
+          <div class="score-gauge"><a href="https://www.amazon.de/Apple-iPhone-Pro-Kamerasteuerung-Batterielaufzeit/dp/B0DGHSG5D2/ref=sr_1_11?dib=eyJ2IjoiMSJ9.W8Mrw129fbePTpSFDllatT4PPySi1cPm89ZcnmApWUDpuP5chpUi8ZauKPhxQi4WxjSHP8uapfzML5lsnoOVjp5jm4RfCrGR7Y01h0LGFsZUU3aIuH2q1pe_QS_ghqETnbm6JBm9JGFDmZqKWrVnzxPGKQhrjFRmKqBZcMiCQRdX8YdAZPtxcq1TLesHkAbLF-8HxETfpFLvn-Gq-KkCKN1owQGH0CJRoMM57kEU4FLpyS-hGjsrnnhnOlHa3FEQY9rXJafUOtS56LUwXiEOBIp6dRsCVcXKRRfSSjWEgzs.Q7OXLdyqi38oMbytf4_ZoCj3Kzp2wEYcrm3DXoLwYm8&dib_tag=se&qid=1745412754&s=ce-de&sr=1-11&srs=203868645031&ufe=app_do%3Aamzn1.fos.4c706219-4fde-46cd-86d6-68fb316fcf3e" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#ffa400"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="83.90"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    78
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/amazon.de_product_detail_mobile.webp"><img src="screenshots/amazon.de_product_detail_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 critical issue</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">image-alt</li>
+                </ul>
+              </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 serious issue</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">color-contrast</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div></div></td></tr>
+<tr>
+<td style="width:36px; vertical-align: top; padding-top: 64px;"><button class="expand-arrow" aria-label="Expand/collapse row"><span></span></button></td><td style="vertical-align: top; padding-top: 64px;"><a class="site-link" href="https://www.otto.de/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=otto.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:top;margin-right:8px;object-fit:contain;">otto.de</a></td><td class="score-cell"><div class="score-grid"><div class="score-col">
+ <div class="score-label"><strong>DESKTOP</strong> <br/>(1280x960)</div>
+          <div class="score-gauge"><a href="https://www.otto.de/" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#ffa400"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="147.42"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    58
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/otto.de_home_desktop.webp"><img src="screenshots/otto.de_home_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">2 critical issues</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">button-name</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">image-alt</li>
+                </ul>
+              </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">4 serious issues</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">color-contrast</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">frame-title</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">link-name</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">svg-img-alt</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div><div class="score-col">
+ <div class="score-label"><strong>MOBILE</strong> <br/>(375x812)</div>
+          <div class="score-gauge"><a href="https://www.otto.de/" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#ffa400"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="118.79"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    67
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/otto.de_home_mobile.webp"><img src="screenshots/otto.de_home_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">2 critical issues</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">button-name</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">image-alt</li>
+                </ul>
+              </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">2 serious issues</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">color-contrast</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">svg-img-alt</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div></div></td><td class="score-cell"><div class="score-grid"><div class="score-col">
+ <div class="score-label"><strong>DESKTOP</strong> <br/>(1280x960)</div>
+          <div class="score-gauge"><a href="https://www.otto.de/technik/apple/iphone/" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#ffa400"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="118.79"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    67
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/otto.de_product_list_desktop.webp"><img src="screenshots/otto.de_product_list_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">2 critical issues</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">button-name</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">image-alt</li>
+                </ul>
+              </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">2 serious issues</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">color-contrast</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">svg-img-alt</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div><div class="score-col">
+ <div class="score-label"><strong>MOBILE</strong> <br/>(375x812)</div>
+          <div class="score-gauge"><a href="https://www.otto.de/technik/apple/iphone/" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#ffa400"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="141.17"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    60
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/otto.de_product_list_mobile.webp"><img src="screenshots/otto.de_product_list_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">2 critical issues</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">button-name</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">image-alt</li>
+                </ul>
+              </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">3 serious issues</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">color-contrast</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">scrollable-region-focusable</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">svg-img-alt</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div></div></td><td class="score-cell"><div class="score-grid"><div class="score-col">
+ <div class="score-label"><strong>DESKTOP</strong> <br/>(1280x960)</div>
+          <div class="score-gauge"><a href="https://www.otto.de/p/apple-iphone-16-pro-max-smartphone-17-4-cm-6-9-zoll-1000-gb-speicherplatz-48-mp-kamera-1909231830/#variationId=1909231565" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#ffa400"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="109.24"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    70
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/otto.de_product_detail_desktop.webp"><img src="screenshots/otto.de_product_detail_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 critical issue</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">button-name</li>
+                </ul>
+              </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">3 serious issues</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-prohibited-attr</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">color-contrast</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">svg-img-alt</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div><div class="score-col">
+ <div class="score-label"><strong>MOBILE</strong> <br/>(375x812)</div>
+          <div class="score-gauge"><a href="https://www.otto.de/p/apple-iphone-16-pro-max-smartphone-17-4-cm-6-9-zoll-1000-gb-speicherplatz-48-mp-kamera-1909231830/#variationId=1909231565" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#ffa400"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="103.65"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    72
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/otto.de_product_detail_mobile.webp"><img src="screenshots/otto.de_product_detail_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 critical issue</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">button-name</li>
+                </ul>
+              </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">3 serious issues</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">color-contrast</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">scrollable-region-focusable</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">svg-img-alt</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div></div></td></tr>
+<tr>
+<td style="width:36px; vertical-align: top; padding-top: 64px;"><button class="expand-arrow" aria-label="Expand/collapse row"><span></span></button></td><td style="vertical-align: top; padding-top: 64px;"><a class="site-link" href="https://www.mediamarkt.de/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=mediamarkt.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:top;margin-right:8px;object-fit:contain;">mediamarkt.de</a></td><td class="score-cell"><div class="score-grid"><div class="score-col">
+ <div class="score-label"><strong>DESKTOP</strong> <br/>(1280x960)</div>
+          <div class="score-gauge"><a href="https://www.mediamarkt.de/" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#0cce6b"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="36.51"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    92
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/mediamarkt.de_home_desktop.webp"><img src="screenshots/mediamarkt.de_home_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 serious issue</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-hidden-focus</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div><div class="score-col">
+ <div class="score-label"><strong>MOBILE</strong> <br/>(375x812)</div>
+          <div class="score-gauge"><a href="https://www.mediamarkt.de/" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#ffa400"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="79.29"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    79
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/mediamarkt.de_home_mobile.webp"><img src="screenshots/mediamarkt.de_home_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">3 serious issues</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-hidden-focus</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">link-name</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">scrollable-region-focusable</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div></div></td><td class="score-cell"><div class="score-grid"><div class="score-col">
+ <div class="score-label"><strong>DESKTOP</strong> <br/>(1280x960)</div>
+          <div class="score-gauge"><a href="https://www.mediamarkt.de/de/category/smartphones-579.html" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#ffa400"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="104.96"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    71
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/mediamarkt.de_product_list_desktop.webp"><img src="screenshots/mediamarkt.de_product_list_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 critical issue</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">button-name</li>
+                </ul>
+              </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">4 serious issues</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-hidden-focus</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">link-name</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">nested-interactive</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">role-img-alt</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div><div class="score-col">
+ <div class="score-label"><strong>MOBILE</strong> <br/>(375x812)</div>
+          <div class="score-gauge"><a href="https://www.mediamarkt.de/de/category/smartphones-579.html" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#ffa400"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="106.28"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    71
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/mediamarkt.de_product_list_mobile.webp"><img src="screenshots/mediamarkt.de_product_list_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 critical issue</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">select-name</li>
+                </ul>
+              </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">4 serious issues</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-hidden-focus</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">link-name</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">role-img-alt</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">scrollable-region-focusable</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div></div></td><td class="score-cell"><div class="score-grid"><div class="score-col">
+ <div class="score-label"><strong>DESKTOP</strong> <br/>(1280x960)</div>
+          <div class="score-gauge"><a href="https://www.mediamarkt.de/de/product/_apple-iphone-16-pro-max-5g-256-gb-titan-schwarz-dual-sim-2954329.html" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#ffa400"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="126.68"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    65
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/mediamarkt.de_product_detail_desktop.webp"><img src="screenshots/mediamarkt.de_product_detail_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 critical issue</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-required-parent</li>
+                </ul>
+              </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">5 serious issues</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-hidden-focus</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-input-field-name</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-progressbar-name</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">link-name</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">role-img-alt</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div><div class="score-col">
+ <div class="score-label"><strong>MOBILE</strong> <br/>(375x812)</div>
+          <div class="score-gauge"><a href="https://www.mediamarkt.de/de/product/_apple-iphone-16-pro-max-5g-256-gb-titan-schwarz-dual-sim-2954329.html" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#ffa400"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="118.79"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    67
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/mediamarkt.de_product_detail_mobile.webp"><img src="screenshots/mediamarkt.de_product_detail_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 critical issue</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">button-name</li>
+                </ul>
+              </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">4 serious issues</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-hidden-focus</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">link-name</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">role-img-alt</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">scrollable-region-focusable</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div></div></td></tr>
+<tr>
+<td style="width:36px; vertical-align: top; padding-top: 64px;"><button class="expand-arrow" aria-label="Expand/collapse row"><span></span></button></td><td style="vertical-align: top; padding-top: 64px;"><a class="site-link" href="https://www.saturn.de/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=saturn.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:top;margin-right:8px;object-fit:contain;">saturn.de</a></td><td class="score-cell"><div class="score-grid"><div class="score-col">
+ <div class="score-label"><strong>DESKTOP</strong> <br/>(1280x960)</div>
+          <div class="score-gauge"><a href="https://www.saturn.de/" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#0cce6b"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="38.15"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    92
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/saturn.de_home_desktop.webp"><img src="screenshots/saturn.de_home_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 serious issue</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-hidden-focus</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div><div class="score-col">
+ <div class="score-label"><strong>MOBILE</strong> <br/>(375x812)</div>
+          <div class="score-gauge"><a href="https://www.saturn.de/" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#ffa400"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="62.51"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    84
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/saturn.de_home_mobile.webp"><img src="screenshots/saturn.de_home_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">2 serious issues</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-hidden-focus</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">link-name</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div></div></td><td class="score-cell"><div class="score-grid"><div class="score-col">
+ <div class="score-label"><strong>DESKTOP</strong> <br/>(1280x960)</div>
+          <div class="score-gauge"><a href="https://www.saturn.de/de/brand/apple/iphone" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#ffa400"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="79.62"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    79
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/saturn.de_product_list_desktop.webp"><img src="screenshots/saturn.de_product_list_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 critical issue</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">button-name</li>
+                </ul>
+              </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">2 serious issues</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-hidden-focus</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">nested-interactive</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div><div class="score-col">
+ <div class="score-label"><strong>MOBILE</strong> <br/>(375x812)</div>
+          <div class="score-gauge"><a href="https://www.saturn.de/de/brand/apple/iphone" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#ffa400"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="62.84"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    84
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/saturn.de_product_list_mobile.webp"><img src="screenshots/saturn.de_product_list_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 critical issue</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">select-name</li>
+                </ul>
+              </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 serious issue</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-hidden-focus</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div></div></td><td class="score-cell"><div class="score-grid"><div class="score-col">
+ <div class="score-label"><strong>DESKTOP</strong> <br/>(1280x960)</div>
+          <div class="score-gauge"><a href="https://www.saturn.de/de/product/_apple-iphone-16-pro-max-5g-256-gb-titan-schwarz-dual-sim-2954329.html" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#ffa400"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="132.61"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    63
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/saturn.de_product_detail_desktop.webp"><img src="screenshots/saturn.de_product_detail_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 critical issue</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-required-parent</li>
+                </ul>
+              </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">5 serious issues</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-hidden-focus</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-input-field-name</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-progressbar-name</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">link-name</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">role-img-alt</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div><div class="score-col">
+ <div class="score-label"><strong>MOBILE</strong> <br/>(375x812)</div>
+          <div class="score-gauge"><a href="https://www.saturn.de/de/product/_apple-iphone-16-pro-max-5g-256-gb-titan-schwarz-dual-sim-2954329.html" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#ffa400"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="91.47"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    75
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/saturn.de_product_detail_mobile.webp"><img src="screenshots/saturn.de_product_detail_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 critical issue</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">button-name</li>
+                </ul>
+              </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">2 serious issues</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">link-name</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">role-img-alt</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div></div></td></tr>
+<tr>
+<td style="width:36px; vertical-align: top; padding-top: 64px;"><button class="expand-arrow" aria-label="Expand/collapse row"><span></span></button></td><td style="vertical-align: top; padding-top: 64px;"><a class="site-link" href="https://en.zalando.de/?_rfl=de" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=zalando.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:top;margin-right:8px;object-fit:contain;">zalando.de</a></td><td class="score-cell"><div class="score-grid"><div class="score-col">
+ <div class="score-label"><strong>DESKTOP</strong> <br/>(1280x960)</div>
+          <div class="score-gauge"><a href="https://en.zalando.de/?_rfl=de" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#ffa400"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="51.98"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    87
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/zalando.de_home_desktop.webp"><img src="screenshots/zalando.de_home_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 critical issue</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-allowed-attr</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div><div class="score-col">
+ <div class="score-label"><strong>MOBILE</strong> <br/>(375x812)</div>
+          <div class="score-gauge"><a href="https://en.zalando.de/?_rfl=de" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#ffa400"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="51.98"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    87
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/zalando.de_home_mobile.webp"><img src="screenshots/zalando.de_home_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 critical issue</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-allowed-attr</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div></div></td><td class="score-cell"><div class="score-grid"><div class="score-col">
+ <div class="score-label"><strong>DESKTOP</strong> <br/>(1280x960)</div>
+          <div class="score-gauge"><a href="https://en.zalando.de/mens-shoes/" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#ffa400"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="49.01"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    88
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/zalando.de_product_list_desktop.webp"><img src="screenshots/zalando.de_product_list_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 critical issue</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-allowed-attr</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div><div class="score-col">
+ <div class="score-label"><strong>MOBILE</strong> <br/>(375x812)</div>
+          <div class="score-gauge"><a href="https://en.zalando.de/mens-shoes/" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#ffa400"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="46.38"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    89
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/zalando.de_product_list_mobile.webp"><img src="screenshots/zalando.de_product_list_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 critical issue</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-allowed-attr</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div></div></td><td class="score-cell"><div class="score-grid"><div class="score-col">
+ <div class="score-label"><strong>DESKTOP</strong> <br/>(1280x960)</div>
+          <div class="score-gauge"><a href="https://en.zalando.de/adidas-originals-samba-trainers-cream-whitecore-black-sand-strata-ad111a2ib-a11.html" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#ffa400"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="46.38"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    89
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/zalando.de_product_detail_desktop.webp"><img src="screenshots/zalando.de_product_detail_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 critical issue</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-allowed-attr</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div><div class="score-col">
+ <div class="score-label"><strong>MOBILE</strong> <br/>(375x812)</div>
+          <div class="score-gauge"><a href="https://en.zalando.de/adidas-originals-samba-trainers-cream-whitecore-black-sand-strata-ad111a2ib-a11.html" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#ffa400"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="67.77"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    83
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/zalando.de_product_detail_mobile.webp"><img src="screenshots/zalando.de_product_detail_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 critical issue</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-allowed-attr</li>
+                </ul>
+              </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 serious issue</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">scrollable-region-focusable</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div></div></td></tr>
+<tr>
+<td style="width:36px; vertical-align: top; padding-top: 64px;"><button class="expand-arrow" aria-label="Expand/collapse row"><span></span></button></td><td style="vertical-align: top; padding-top: 64px;"><a class="site-link" href="https://en.aboutyou.de/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=aboutyou.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:top;margin-right:8px;object-fit:contain;">aboutyou.de</a></td><td class="score-cell"><div class="score-grid"><div class="score-col">
+ <div class="score-label"><strong>DESKTOP</strong> <br/>(1280x960)</div>
+          <div class="score-gauge"><a href="https://en.aboutyou.de/" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#ffa400"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="126.03"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    65
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/aboutyou.de_home_desktop.webp"><img src="screenshots/aboutyou.de_home_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 critical issue</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">button-name</li>
+                </ul>
+              </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">3 serious issues</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">color-contrast</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">link-name</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">list</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div><div class="score-col">
+ <div class="score-label"><strong>MOBILE</strong> <br/>(375x812)</div>
+          <div class="score-gauge"><a href="https://en.aboutyou.de/" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#ffa400"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="126.03"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    65
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/aboutyou.de_home_mobile.webp"><img src="screenshots/aboutyou.de_home_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 critical issue</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">button-name</li>
+                </ul>
+              </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">3 serious issues</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">color-contrast</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">link-name</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">list</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div></div></td><td class="score-cell"><div class="score-grid"><div class="score-col">
+ <div class="score-label"><strong>DESKTOP</strong> <br/>(1280x960)</div>
+          <div class="score-gauge"><a href="https://en.aboutyou.de/c/men/shoes-20215" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#ffa400"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="73.37"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    81
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/aboutyou.de_product_list_desktop.webp"><img src="screenshots/aboutyou.de_product_list_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">2 serious issues</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-progressbar-name</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">color-contrast</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div><div class="score-col">
+ <div class="score-label"><strong>MOBILE</strong> <br/>(375x812)</div>
+          <div class="score-gauge"><a href="https://en.aboutyou.de/c/men/shoes-20215" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#ffa400"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="97.72"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    73
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/aboutyou.de_product_list_mobile.webp"><img src="screenshots/aboutyou.de_product_list_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">3 serious issues</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-progressbar-name</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">color-contrast</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">scrollable-region-focusable</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div></div></td><td class="score-cell"><div class="score-grid"><div class="score-col">
+ <div class="score-label"><strong>DESKTOP</strong> <br/>(1280x960)</div>
+          <div class="score-gauge"><a href="https://en.aboutyou.de/p/adidas-originals/sneakers-handball-spezial-4114892" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#0cce6b"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="40.46"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    91
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/aboutyou.de_product_detail_desktop.webp"><img src="screenshots/aboutyou.de_product_detail_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 serious issue</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">color-contrast</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div><div class="score-col">
+ <div class="score-label"><strong>MOBILE</strong> <br/>(375x812)</div>
+          <div class="score-gauge"><a href="https://en.aboutyou.de/p/adidas-originals/sneakers-handball-spezial-4114892" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#ffa400"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="66.46"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    83
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/aboutyou.de_product_detail_mobile.webp"><img src="screenshots/aboutyou.de_product_detail_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">2 serious issues</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">color-contrast</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">scrollable-region-focusable</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div></div></td></tr>
+<tr>
+<td style="width:36px; vertical-align: top; padding-top: 64px;"><button class="expand-arrow" aria-label="Expand/collapse row"><span></span></button></td><td style="vertical-align: top; padding-top: 64px;"><a class="site-link" href="https://www.home24.de/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=home24.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:top;margin-right:8px;object-fit:contain;">home24.de</a></td><td class="score-cell"><div class="score-grid"><div class="score-col">
+ <div class="score-label"><strong>DESKTOP</strong> <br/>(1280x960)</div>
+          <div class="score-gauge"><a href="https://www.home24.de/" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#ffa400"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="49.01"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    88
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/home24.de_home_desktop.webp"><img src="screenshots/home24.de_home_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 critical issue</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">image-alt</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div><div class="score-col">
+ <div class="score-label"><strong>MOBILE</strong> <br/>(375x812)</div>
+          <div class="score-gauge"><a href="https://www.home24.de/" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#0cce6b"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="0.00"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    100
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/home24.de_home_mobile.webp"><img src="screenshots/home24.de_home_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          
+        </div> </div> </div></div></td><td class="score-cell"><div class="score-grid"><div class="score-col">
+ <div class="score-label"><strong>DESKTOP</strong> <br/>(1280x960)</div>
+          <div class="score-gauge"><a href="https://www.home24.de/eckcouches/" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#ffa400"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="62.51"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    84
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/home24.de_product_list_desktop.webp"><img src="screenshots/home24.de_product_list_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">2 serious issues</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-prohibited-attr</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">color-contrast</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div><div class="score-col">
+ <div class="score-label"><strong>MOBILE</strong> <br/>(375x812)</div>
+          <div class="score-gauge"><a href="https://www.home24.de/eckcouches/" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#ffa400"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="62.51"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    84
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/home24.de_product_list_mobile.webp"><img src="screenshots/home24.de_product_list_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">2 serious issues</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-prohibited-attr</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">color-contrast</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div></div></td><td class="score-cell"><div class="score-grid"><div class="score-col">
+ <div class="score-label"><strong>DESKTOP</strong> <br/>(1280x960)</div>
+          <div class="score-gauge"><a href="https://www.home24.de/produkt/ecksofa-links-egret-dunkelgruen-armlehne-beidseitig-montierbar-ecke-davorstehend-links-ottomane-davorstehend-links" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#ffa400"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="62.51"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    84
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/home24.de_product_detail_desktop.webp"><img src="screenshots/home24.de_product_detail_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">2 serious issues</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-command-name</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-prohibited-attr</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div><div class="score-col">
+ <div class="score-label"><strong>MOBILE</strong> <br/>(375x812)</div>
+          <div class="score-gauge"><a href="https://www.home24.de/produkt/ecksofa-links-egret-dunkelgruen-armlehne-beidseitig-montierbar-ecke-davorstehend-links-ottomane-davorstehend-links" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#ffa400"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="62.51"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    84
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/home24.de_product_detail_mobile.webp"><img src="screenshots/home24.de_product_detail_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">2 serious issues</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-command-name</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-prohibited-attr</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div></div></td></tr>
+<tr>
+<td style="width:36px; vertical-align: top; padding-top: 64px;"><button class="expand-arrow" aria-label="Expand/collapse row"><span></span></button></td><td style="vertical-align: top; padding-top: 64px;"><a class="site-link" href="https://www.ebay.de/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=ebay.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:top;margin-right:8px;object-fit:contain;">ebay.de</a></td><td class="score-cell"><div class="score-grid"><div class="score-col">
+ <div class="score-label"><strong>DESKTOP</strong> <br/>(1280x960)</div>
+          <div class="score-gauge"><a href="https://www.ebay.de/" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#ffa400"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="99.04"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    73
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/ebay.de_home_desktop.webp"><img src="screenshots/ebay.de_home_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 critical issue</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">image-alt</li>
+                </ul>
+              </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">3 serious issues</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-command-name</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-hidden-focus</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">frame-title</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div><div class="score-col">
+ <div class="score-label"><strong>MOBILE</strong> <br/>(375x812)</div>
+          <div class="score-gauge"><a href="https://www.ebay.de/" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#0cce6b"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="41.77"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    90
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/ebay.de_home_mobile.webp"><img src="screenshots/ebay.de_home_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 serious issue</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-prohibited-attr</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div></div></td><td class="score-cell"><div class="score-grid"><div class="score-col">
+ <div class="score-label"><strong>DESKTOP</strong> <br/>(1280x960)</div>
+          <div class="score-gauge"><a href="https://www.ebay.de/b/Handys-Smartphones/9355/bn_466745" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#ffa400"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="106.61"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    71
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/ebay.de_product_list_desktop.webp"><img src="screenshots/ebay.de_product_list_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 critical issue</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">meta-viewport</li>
+                </ul>
+              </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">2 serious issues</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-hidden-focus</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">color-contrast</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div><div class="score-col">
+ <div class="score-label"><strong>MOBILE</strong> <br/>(375x812)</div>
+          <div class="score-gauge"><a href="https://www.ebay.de/b/Handys-Smartphones/9355/bn_466745" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#ffa400"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="71.72"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    81
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/ebay.de_product_list_mobile.webp"><img src="screenshots/ebay.de_product_list_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 critical issue</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">meta-viewport</li>
+                </ul>
+              </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 serious issue</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-hidden-focus</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div></div></td><td class="score-cell"><div class="score-grid"><div class="score-col">
+ <div class="score-label"><strong>DESKTOP</strong> <br/>(1280x960)</div>
+          <div class="score-gauge"><a href="https://www.ebay.de/itm/167464417497?_skw=iphone+pro+max&epid=9041711316&itmmeta=01JSHB4QRQ8FXMF4F8B84XA8MG&hash=item26fda838d9:g:UxkAAOSwDjhj7iXw&itmprp=enc%3AAQAKAAAA8FkggFvd1GGDu0w3yXCmi1dvz46ubMdxuQejt4OZlWwBXaTKwv%2BeD86kxgnLU4fI1SzZj%2Fk3QqSObqK2IzbD7V0BU%2F51QqGdVo6Oc10beX%2BL6K1Dmdg6RxNu9LvTIdBWyCXVwbs7oMkz9NcfoWO%2FD0t6phx%2BPiS0Pvi1c23W45Gm6PDyPMDi3xfXHRBrV2HHBumc%2Bu9ssQExbS33jznumEV%2F0rpuNjSM4dml8pAyZxbOgl7XKBTqv1SLhfzQMuN4pQs5oZ3Tmlh7Yr8oCpajq0tu7%2FyjrY2CndS3%2F2o71SVWkbLtfXdrl902QfcrGeSEow%3D%3D%7Ctkp%3ABk9SR-L8kqvMZQ" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#0cce6b"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="39.47"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    91
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/ebay.de_product_detail_desktop.webp"><img src="screenshots/ebay.de_product_detail_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 serious issue</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-hidden-focus</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div><div class="score-col">
+ <div class="score-label"><strong>MOBILE</strong> <br/>(375x812)</div>
+          <div class="score-gauge"><a href="https://www.ebay.de/itm/167464417497?_skw=iphone+pro+max&epid=9041711316&itmmeta=01JSHB4QRQ8FXMF4F8B84XA8MG&hash=item26fda838d9:g:UxkAAOSwDjhj7iXw&itmprp=enc%3AAQAKAAAA8FkggFvd1GGDu0w3yXCmi1dvz46ubMdxuQejt4OZlWwBXaTKwv%2BeD86kxgnLU4fI1SzZj%2Fk3QqSObqK2IzbD7V0BU%2F51QqGdVo6Oc10beX%2BL6K1Dmdg6RxNu9LvTIdBWyCXVwbs7oMkz9NcfoWO%2FD0t6phx%2BPiS0Pvi1c23W45Gm6PDyPMDi3xfXHRBrV2HHBumc%2Bu9ssQExbS33jznumEV%2F0rpuNjSM4dml8pAyZxbOgl7XKBTqv1SLhfzQMuN4pQs5oZ3Tmlh7Yr8oCpajq0tu7%2FyjrY2CndS3%2F2o71SVWkbLtfXdrl902QfcrGeSEow%3D%3D%7Ctkp%3ABk9SR-L8kqvMZQ" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#ffa400"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="86.86"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    77
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/ebay.de_product_detail_mobile.webp"><img src="screenshots/ebay.de_product_detail_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 critical issue</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">button-name</li>
+                </ul>
+              </li><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">2 serious issues</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-prohibited-attr</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">role-img-alt</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div></div></td></tr>
+<tr>
+<td style="width:36px; vertical-align: top; padding-top: 64px;"><button class="expand-arrow" aria-label="Expand/collapse row"><span></span></button></td><td style="vertical-align: top; padding-top: 64px;"><a class="site-link" href="https://www.ikea.com/de/de/" target="_blank" rel="noopener"><img src="https://www.google.com/s2/favicons?domain=ikea.de&sz=48" alt="" style="width:20px;height:20px;vertical-align:top;margin-right:8px;object-fit:contain;">ikea.de</a></td><td class="score-cell"><div class="score-grid"><div class="score-col">
+ <div class="score-label"><strong>DESKTOP</strong> <br/>(1280x960)</div>
+          <div class="score-gauge"><a href="https://www.ikea.com/de/de/" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#ffa400"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="59.22"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    85
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/ikea.de_home_desktop.webp"><img src="screenshots/ikea.de_home_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">2 serious issues</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-command-name</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">link-name</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div><div class="score-col">
+ <div class="score-label"><strong>MOBILE</strong> <br/>(375x812)</div>
+          <div class="score-gauge"><a href="https://www.ikea.com/de/de/" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#ffa400"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="59.22"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    85
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/ikea.de_home_mobile.webp"><img src="screenshots/ikea.de_home_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">2 serious issues</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-command-name</li><li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">link-name</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div></div></td><td class="score-cell"><div class="score-grid"><div class="score-col">
+ <div class="score-label"><strong>DESKTOP</strong> <br/>(1280x960)</div>
+          <div class="score-gauge"><a href="https://www.ikea.com/de/de/cat/regale-allzweckregale-st002/" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#0cce6b"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="0.00"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    100
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/ikea.de_product_list_desktop.webp"><img src="screenshots/ikea.de_product_list_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          
+        </div> </div> </div><div class="score-col">
+ <div class="score-label"><strong>MOBILE</strong> <br/>(375x812)</div>
+          <div class="score-gauge"><a href="https://www.ikea.com/de/de/cat/regale-allzweckregale-st002/" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#0cce6b"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="36.51"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    92
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/ikea.de_product_list_mobile.webp"><img src="screenshots/ikea.de_product_list_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 serious issue</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">aria-hidden-focus</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div></div></td><td class="score-cell"><div class="score-grid"><div class="score-col">
+ <div class="score-label"><strong>DESKTOP</strong> <br/>(1280x960)</div>
+          <div class="score-gauge"><a href="https://www.ikea.com/de/de/p/kallax-regal-weiss-80275887/" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#0cce6b"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="36.51"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    92
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/ikea.de_product_detail_desktop.webp"><img src="screenshots/ikea.de_product_detail_desktop_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 serious issue</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">scrollable-region-focusable</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div><div class="score-col">
+ <div class="score-label"><strong>MOBILE</strong> <br/>(375x812)</div>
+          <div class="score-gauge"><a href="https://www.ikea.com/de/de/p/kallax-regal-weiss-80275887/" target="_blank" rel="noopener"><svg class="gauge" viewBox="0 0 120 120" width="60" height="60">
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="#fff"
+    stroke="#eee"
+    stroke-width="12"
+  ></circle>
+  <circle
+    cx="60"
+    cy="60"
+    r="54"
+    fill="none"
+    stroke="#0cce6b"
+    stroke-width="12"
+    stroke-dasharray="339.292"
+    stroke-dashoffset="36.51"
+    stroke-linecap="round"
+  ></circle>
+  <text
+    x="60"
+    y="60"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-size="36"
+    fill="#222"
+  >
+    92
+  </text>
+</svg>
+</a></div>
+  <div class="score-expander"> <div class="score-expander-content"> <div class="score-screenshot"><div class="row-thumbnails" hidden><a href="#" class="screenshot-thumb" data-full="screenshots/ikea.de_product_detail_mobile.webp"><img src="screenshots/ikea.de_product_detail_mobile_thumb.jpeg" alt="Screenshot thumbnail" style="max-height:80px; max-width: 120px; border-radius:8px;box-shadow:0 2px 8px #0002;"></a></div></div>
+          <div class="score-summary"><ul class="issue-summary" style="font-size:13px;color:#a00;margin-top:12px;text-align:left;list-style-type:disc;display:none;"><li style="margin-bottom: 0.4em;list-style-type:none;position:relative;">
+                <span style="display:inline-block;min-width:120px;"><strong style="display: block; margin-top: 8px;">1 serious issue</strong></span>
+                <ul style="margin:0.3em 0 0 0.5em;padding:0;list-style-type:disc;font-size:12px;color:#a00;position:relative;left:0.5em;">
+                  <li style=\"margin-bottom:0.2em;font-size:13px;list-style-type:disc;\">scrollable-region-focusable</li>
+                </ul>
+              </li></ul></div>
+        </div> </div> </div></div></td></tr>
+
+</table>
+
+  </div>
+  <style>
+  #lightbox-modal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    align-items: flex-start;
+    justify-content: center;
+    overflow: auto;
+  }
+  #lightbox-modal[open],
+  #lightbox-modal.show {
+    display: flex;
+  }
+  #lightbox-close {
+    position: fixed;
+    top: 24px;
+    right: 32px;
+    background: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    font-size: 2rem;
+    line-height: 1.2;
+    cursor: pointer;
+    box-shadow: 0 2px 8px #0003;
+    z-index: 10001;
+  }
+  #lightbox-img {
+    display: block;
+    margin: 80px auto 32px auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 32px #0008;
+    outline: 4px solid #fff;
+    max-width: 100%;
+  }
+</style>
+<div
+  id="lightbox-modal"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Screenshot preview"
+  tabindex="-1"
+>
+  <button id="lightbox-close" aria-label="Close dialog">&times;</button>
+  <img id="lightbox-img" src="" alt="Full page screenshot" />
+</div>
+<script>
+  // Lightbox logic
+  const modal = document.getElementById("lightbox-modal");
+  const modalImg = document.getElementById("lightbox-img");
+  const closeBtn = document.getElementById("lightbox-close");
+  let lastActive = null;
+  document.querySelectorAll(".screenshot-thumb").forEach((thumb) => {
+    thumb.addEventListener("click", function (e) {
+      e.preventDefault();
+      lastActive = document.activeElement;
+      modalImg.src = this.getAttribute("data-full");
+      modal.style.display = "flex";
+      closeBtn.focus();
+      document.body.style.overflow = "hidden";
+    });
+  });
+  function closeModal() {
+    modal.style.display = "none";
+    modalImg.src = "";
+    document.body.style.overflow = "";
+    if (lastActive) lastActive.focus();
+  }
+  closeBtn.addEventListener("click", closeModal);
+  modal.addEventListener("click", function (e) {
+    if (e.target === modal) closeModal();
+  });
+  document.addEventListener("keydown", function (e) {
+    if (
+      modal.style.display === "flex" &&
+      (e.key === "Escape" || e.key === "Esc")
+    ) {
+      closeModal();
+    }
+    // Trap focus inside modal
+    if (modal.style.display === "flex" && e.key === "Tab") {
+      e.preventDefault();
+      closeBtn.focus();
+    }
+  });
+</script>
+
+  <script>
+    // Arrow key navigation
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowLeft') {
+        const prev = document.querySelector('.nav-arrows a[title="Previous Report"]');
+        if (prev) window.location.href = prev.href;
+      }
+      if (e.key === 'ArrowRight') {
+        const next = document.querySelector('.nav-arrows a[title="Next Report"]');
+        if (next) window.location.href = next.href;
+      }
+    });
+    // Expand/collapse arrow rotation
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.expand-arrow').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          btn.classList.toggle('expanded');
+        });
+      });
+    });
+  </script>
+  
+  </body>
+</html>
