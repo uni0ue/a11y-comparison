@@ -1,8 +1,8 @@
-name: Daily Accessibility Report
+name: Bi-weekly Accessibility Report
 
 on:
   schedule:
-  - cron: '0 3 * * *' # Runs every day at 03:00 UTC
+  - cron: '0 3 1,15 * *' # Runs on the 1st and 15th of each month at 03:00 UTC
   workflow_dispatch:
 
 
