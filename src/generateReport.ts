@@ -537,6 +537,11 @@ export function main(reportDate?: string) {
 `;
 
   fs.writeFileSync(path.join(docsRoot, "index.html"), indexHtml, "utf-8");
+
+  if (!reportDate && prevReportDir) {
+    // Update previous report so its forward navigation points to this one
+    main(prevReportDir);
+  }
 }
 
 // If run directly, call main() for today
