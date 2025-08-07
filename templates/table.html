@@ -1,11 +1,17 @@
 <style>
+  .table-container {
+    overflow: auto;
+    width: 100%;
+    flex: 1;
+    margin: 0;
+  }
   table {
     border-collapse: collapse;
-    margin: 2rem 0;
     background: #fff;
     box-shadow: 0 2px 8px #0001;
     table-layout: fixed;
     width: 100%;
+    min-width: 1380px;
   }
   th,
   td {
@@ -14,7 +20,7 @@
     text-align: left;
   }
   th {
-    background: #dbe6ee;
+    background: #fff;
     color: #000;
     text-align: center;
     text-transform: capitalize;
@@ -109,6 +115,8 @@
     });
   });
 </script>
-<table>
-  {{table_head}} {{table_body}}
-</table>
+<div class="table-container">
+  <table>
+    {{table_head}} {{table_body}}
+  </table>
+</div>

@@ -159,10 +159,36 @@ function getGaugeSVG(score: number): string {
 }
 
 // Get historical data for all sites across all available report dates
-function getHistoricalData(): Record<
-  string,
-  Array<{ date: string; score: number }>
-> {
+// Cache the historical data to avoid re-parsing all files every time
+function getHistoricalData(
+  skipCache: boolean = false
+): Record<string, Array<{ date: string; score: number }>> {
+  const cacheFile = path.join(process.cwd(), ".cache", "historical-data.json");
+  const now = Date.now();
+
+  // Try to load cache from disk if not skipping cache
+  if (!skipCache && fs.existsSync(cacheFile)) {
+    try {
+      const cacheData = JSON.parse(fs.readFileSync(cacheFile, "utf-8"));
+      const cacheAge = now - cacheData.timestamp;
+
+      // Use cache if less than 60 seconds old
+      if (cacheAge < 60000) {
+        console.log(
+          `📋 Using cached historical data (${Math.round(
+            cacheAge / 1000
+          )}s old)`
+        );
+        return cacheData.data;
+      }
+    } catch (error) {
+      console.log("⚠️ Cache file corrupted, rebuilding...");
+    }
+  }
+
+  console.log("📊 Building historical data cache...");
+  const startTime = Date.now();
+
   const docsRoot = path.join(process.cwd(), "docs");
   const reportDirs = fs
     .readdirSync(docsRoot)
@@ -214,6 +240,27 @@ function getHistoricalData(): Record<
       }
     }
   }
+
+  // Cache the result to disk
+  const cacheData = {
+    timestamp: now,
+    data: historicalData,
+  };
+
+  // Ensure cache directory exists
+  const cacheDir = path.dirname(cacheFile);
+  if (!fs.existsSync(cacheDir)) {
+    fs.mkdirSync(cacheDir, { recursive: true });
+  }
+
+  try {
+    fs.writeFileSync(cacheFile, JSON.stringify(cacheData), "utf-8");
+  } catch (error) {
+    console.log("⚠️ Failed to save cache:", error);
+  }
+
+  const endTime = Date.now();
+  console.log(`✅ Historical data cached in ${endTime - startTime}ms`);
 
   return historicalData;
 }
@@ -368,7 +415,7 @@ function generateHTMLTable(
 
   // --- Table Head ---
   const tableHead = `
-    <tr>
+    <tr style="background-color: #fff; position: sticky; top: 0; box-shadow: 0px 2px 9px rgb(144 156 165 / 20%); z-index: 1;">
       <th style="width:36px;"></th>
       <th style="text-align: left; width: 12%;">Site</th>
       ${allPages
@@ -511,94 +558,9 @@ function generateHTMLTable(
 
   // --- Compose Body Content ---
   const bodyContent = `
-  <style>
-    table {
-      table-layout: auto;
-    }
-    .score-cell {
-      padding: 0;
-      vertical-align: top;
-      min-width: 500px;
-    }
-    .history-cell {
-      padding: 8px;
-      vertical-align: top;
-      text-align: center;
-      background: #fafafa;
-      min-width: 220px;
-    }
-    .score-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      align-items: start;
-    }
-      .score-expander {
-        display: grid;
-        grid-template-rows: 0fr;
-        overflow: hidden;
-        transition: grid-template-rows 100ms ease-in-out;
-      }
-     tr[aria-expanded="true"] .score-expander {
-      grid-template-rows: 1fr;
-      } 
-
-      .score-expander-content {
-        min-height: 0;
-        transition: visibility 100ms ease-in-out;
-        visibility: hidden;
-      }
-
-      tr[aria-expanded="true"] .score-expander-content {
-        visibility: visible;
-      }
-
-    .score-col {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 16px 8px;
-      min-width: 0;
-      word-break: break-word;
-    }
-    .score-label {
-      font-size: 12px;
-      margin-bottom: 8px;
-      text-align: center;
-      color: #485b68;
-    }
-    .score-gauge {
-      margin-bottom: 24px;
-    }
-    .score-summary {
-      font-size: 12px;
-      margin-bottom: 8px;
-      width: 100%;
-    }
-    .score-screenshot {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-    }
-    /* Show summary only when row is expanded */
-    .score-summary .issue-summary {
-      display: none;
-    }
-    tr[aria-expanded="true"] .score-summary .issue-summary {
-      display: block !important;
-      
-    }
-    @media (max-width: 600px) {
-      .score-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 8px;
-      }
-      .score-col {
-        padding: 12px 4px;
-      }
-    }
-  </style>
   <div class="container">
+  <header>
+  <h1>Accessibility Comparison</h1>
     <div class="audit-meta">
       Axe audit (${axeConfig.tags.join(
         ", "
@@ -616,7 +578,7 @@ function generateHTMLTable(
         }
       </div>
     </div>
-    <h1>Accessibility Comparison</h1>
+    </header>
     ${tableHtml}
   </div>
   ${lightboxHtml}
@@ -653,14 +615,51 @@ function generateHTMLTable(
 }
 
 // Export main for use in generateAllReports.ts
-export function main(reportDate?: string) {
-  const todayDir = reportDate || getTodayDir();
+export function main(reportDate?: string, latestOnly: boolean = false) {
+  let todayDir: string;
+
+  if (latestOnly) {
+    // Find the most recent report directory
+    const docsRoot = path.join(process.cwd(), "docs");
+    if (!fs.existsSync(docsRoot)) {
+      console.error(
+        "No docs directory found. Run an audit first with 'npm run axe'."
+      );
+      return;
+    }
+
+    const reportDirs = fs
+      .readdirSync(docsRoot)
+      .filter(
+        (f) =>
+          /^\d{4}-\d{2}-\d{2}$/.test(f) &&
+          fs.statSync(path.join(docsRoot, f)).isDirectory()
+      )
+      .sort(); // Chronological order
+
+    if (reportDirs.length === 0) {
+      console.error(
+        "No report directories found. Run an audit first with 'npm run axe'."
+      );
+      return;
+    }
+
+    todayDir = reportDirs[reportDirs.length - 1]; // Get the latest
+    console.log(`🚀 Latest report mode: Using ${todayDir}`);
+  } else {
+    todayDir = reportDate || getTodayDir();
+  }
+
   const reportsDir = path.join(process.cwd(), "docs", todayDir);
   const reportFiles = getReportFiles(reportsDir);
   if (reportFiles.length === 0) {
-    console.error("No report found for this date. Run an audit first.");
+    console.error(`No report found for ${todayDir}. Run an audit first.`);
     return;
   }
+
+  console.log(`📈 Generating report for ${todayDir}...`);
+  const startTime = Date.now();
+
   // Get the timestamp from the first report file's JSON
   const firstReportFile = reportFiles.slice().sort()[0];
   const firstReportJson = JSON.parse(fs.readFileSync(firstReportFile, "utf-8"));
@@ -678,27 +677,38 @@ export function main(reportDate?: string) {
   const firstReportDate = new Date(timestampStr);
   const data = parseReports(reportFiles);
 
-  // Generate/update docs/index.html with list of report links
   const docsRoot = path.join(process.cwd(), "docs");
-  const reportDirs = fs
-    .readdirSync(docsRoot)
-    .filter(
-      (f) =>
-        /^\d{4}-\d{2}-\d{2}$/.test(f) &&
-        fs.statSync(path.join(docsRoot, f)).isDirectory()
-    )
-    .sort()
-    .reverse(); // Newest first
+  let prevReportDir, nextReportDir, reportDirs;
 
-  // Find the current report's index in the sorted list
-  const currentIndex = reportDirs.indexOf(todayDir);
-  // Previous report is the next index (older), next report is previous index (newer)
-  const prevReportDir =
-    currentIndex >= 0 && currentIndex + 1 < reportDirs.length
-      ? reportDirs[currentIndex + 1]
-      : undefined;
-  const nextReportDir =
-    currentIndex > 0 ? reportDirs[currentIndex - 1] : undefined;
+  if (latestOnly) {
+    // For latest-only mode, skip navigation and directory scanning for faster execution
+    prevReportDir = undefined;
+    nextReportDir = undefined;
+    reportDirs = [];
+    console.log(
+      "🚀 Latest-only mode: Skipping navigation and index generation for faster execution"
+    );
+  } else {
+    // Generate/update docs/index.html with list of report links
+    reportDirs = fs
+      .readdirSync(docsRoot)
+      .filter(
+        (f) =>
+          /^\d{4}-\d{2}-\d{2}$/.test(f) &&
+          fs.statSync(path.join(docsRoot, f)).isDirectory()
+      )
+      .sort()
+      .reverse(); // Newest first
+
+    // Find the current report's index in the sorted list
+    const currentIndex = reportDirs.indexOf(todayDir);
+    // Previous report is the next index (older), next report is previous index (newer)
+    prevReportDir =
+      currentIndex >= 0 && currentIndex + 1 < reportDirs.length
+        ? reportDirs[currentIndex + 1]
+        : undefined;
+    nextReportDir = currentIndex > 0 ? reportDirs[currentIndex - 1] : undefined;
+  }
 
   const html = generateHTMLTable(
     data,
@@ -709,12 +719,12 @@ export function main(reportDate?: string) {
   );
   if (!fs.existsSync(reportsDir)) fs.mkdirSync(reportsDir, { recursive: true });
   fs.writeFileSync(path.join(reportsDir, "index.html"), html, "utf-8");
-  fs.writeFileSync(path.join(docsRoot, "index.html"), html, "utf-8");
-  console.log(
-    `Accessibility comparison report generated at docs/${todayDir}/index.html and docs/index.html`
-  );
 
-  const indexHtml = `<!DOCTYPE html>
+  if (!latestOnly) {
+    // Only update docs root index and previous reports when not in today-only mode
+    fs.writeFileSync(path.join(docsRoot, "index.html"), html, "utf-8");
+
+    const indexHtml = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -739,9 +749,16 @@ export function main(reportDate?: string) {
 </html>
 `;
 
-  fs.writeFileSync(path.join(docsRoot, "index.html"), indexHtml, "utf-8");
+    fs.writeFileSync(path.join(docsRoot, "index.html"), indexHtml, "utf-8");
+  }
 
-  if (!reportDate && prevReportDir) {
+  console.log(
+    `Accessibility comparison report generated at docs/${todayDir}/index.html${
+      !latestOnly ? " and docs/index.html" : ""
+    }`
+  );
+
+  if (!latestOnly && !reportDate && prevReportDir) {
     // Update previous report so its forward navigation points to this one
     main(prevReportDir);
   }
@@ -749,5 +766,9 @@ export function main(reportDate?: string) {
 
 // If run directly, call main() for today
 if (import.meta.url === `file://${process.argv[1]}`) {
-  main();
+  const latestOnly = process.argv.includes("--latest");
+  if (latestOnly) {
+    console.log("🏃‍♂️ Running in latest-only mode for faster execution");
+  }
+  main(undefined, latestOnly);
 }

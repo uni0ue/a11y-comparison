@@ -10,6 +10,10 @@
           "Segoe UI Symbol";
         background: #f8f9fa;
         margin: 0;
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
       }
       ul,
       li {
@@ -25,11 +29,14 @@
         color: #0098ff;
       }
       .container {
-        max-width: 1200px;
         margin: 0 auto;
-        padding: 2rem 1rem;
+        padding: 2rem 1rem 0 1rem;
         box-sizing: border-box;
         position: relative;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        overflow: hidden;
       }
       .audit-meta {
         font-size: 0.8em;
@@ -40,8 +47,11 @@
       }
       .timestamp {
         font-weight: bold;
-        display: block;
-        margin-top: 0.3rem;
+        display: inline-block;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
       }
       .nav-arrows {
         margin-top: 0.4rem;
@@ -88,6 +98,82 @@
         display: block;
         margin: 0 auto;
       }
+      /* Layout and component styles */
+      header {
+        flex-shrink: 0;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #e0e0e0;
+        margin-bottom: 0;
+      }
+      .score-cell {
+        padding: 0;
+        vertical-align: top;
+        min-width: 500px;
+      }
+      .history-cell {
+        padding: 8px;
+        vertical-align: top;
+        text-align: center;
+        background: #fafafa;
+        min-width: 220px;
+      }
+      .score-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        align-items: start;
+      }
+      .score-expander {
+        display: grid;
+        grid-template-rows: 0fr;
+        overflow: hidden;
+        transition: grid-template-rows 100ms ease-in-out;
+      }
+      tr[aria-expanded="true"] .score-expander {
+        grid-template-rows: 1fr;
+      }
+      .score-expander-content {
+        min-height: 0;
+        transition: visibility 100ms ease-in-out;
+        visibility: hidden;
+      }
+      tr[aria-expanded="true"] .score-expander-content {
+        visibility: visible;
+      }
+      .score-col {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 16px 8px;
+        min-width: 0;
+        word-break: break-word;
+      }
+      .score-label {
+        font-size: 12px;
+        margin-bottom: 8px;
+        text-align: center;
+        color: #485b68;
+      }
+      .score-gauge {
+        margin-bottom: 24px;
+      }
+      .score-summary {
+        font-size: 12px;
+        margin-bottom: 8px;
+        width: 100%;
+      }
+      .score-screenshot {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+      /* Show summary only when row is expanded */
+      .score-summary .issue-summary {
+        display: none;
+      }
+      tr[aria-expanded="true"] .score-summary .issue-summary {
+        display: block !important;
+      }
       @media (max-width: 900px) {
         .container {
           padding: 1rem 0.5rem;
@@ -103,96 +189,22 @@
           margin-bottom: 0.5em;
           text-align: left;
         }
+        .score-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 8px;
+        }
+        .score-col {
+          padding: 12px 4px;
+        }
       }
     </style>
     
   </head>
   <body>
     
-  <style>
-    table {
-      table-layout: auto;
-    }
-    .score-cell {
-      padding: 0;
-      vertical-align: top;
-      min-width: 400px;
-    }
-    .history-cell {
-      padding: 8px;
-      vertical-align: top;
-      text-align: center;
-      background: #fafafa;
-      min-width: 220px;
-    }
-    .score-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 12px;
-      align-items: start;
-    }
-      .score-expander {
-        display: grid;
-        grid-template-rows: 0fr;
-        overflow: hidden;
-        transition: grid-template-rows 100ms ease-in-out;
-      }
-     tr[aria-expanded="true"] .score-expander {
-      grid-template-rows: 1fr;
-      } 
-
-      .score-expander-content {
-        min-height: 0;
-        transition: visibility 100ms ease-in-out;
-        visibility: hidden;
-      }
-
-      tr[aria-expanded="true"] .score-expander-content {
-        visibility: visible;
-      }
-
-    .score-col {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 16px 8px;
-      min-width: 0;
-      word-break: break-word;
-    }
-    .score-label {
-      font-size: 12px;
-      margin-bottom: 8px;
-      text-align: center;
-      color: #485b68;
-    }
-    .score-gauge {
-      margin-bottom: 24px;
-    }
-    .score-summary {
-      font-size: 12px;
-      margin-bottom: 8px;
-      width: 100%;
-    }
-    .score-screenshot {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-    }
-    /* Show summary only when row is expanded */
-    .score-summary .issue-summary {
-      display: none;
-    }
-    tr[aria-expanded="true"] .score-summary .issue-summary {
-      display: block !important;
-      
-    }
-    @media (max-width: 600px) {
-      .score-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
   <div class="container">
+  <header>
+  <h1>Accessibility Comparison</h1>
     <div class="audit-meta">
       Axe audit (EN-301-549) <span class="timestamp">06. Mai 2025 17:21</span>
       <div class="nav-arrows">
@@ -200,15 +212,21 @@
         <a href="../2025-08-07/index.html" class="nav-arrow" title="Next Report" aria-label="Next Report">&#8594;</a>
       </div>
     </div>
-    <h1>Accessibility Comparison</h1>
+    </header>
     <style>
+  .table-container {
+    overflow: auto;
+    width: 100%;
+    flex: 1;
+    margin: 1rem 0 0 0;
+  }
   table {
     border-collapse: collapse;
-    margin: 2rem 0;
     background: #fff;
     box-shadow: 0 2px 8px #0001;
     table-layout: fixed;
     width: 100%;
+    min-width: 1380px;
   }
   th,
   td {
@@ -312,8 +330,9 @@
     });
   });
 </script>
-<table>
-  
+<div class="table-container">
+  <table>
+    
     <tr>
       <th style="width:36px;"></th>
       <th style="text-align: left; width: 12%;">Site</th>
@@ -3011,7 +3030,8 @@
     </svg>
   </td></tr>
 
-</table>
+  </table>
+</div>
 
   </div>
   <style>
