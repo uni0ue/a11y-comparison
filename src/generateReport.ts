@@ -158,6 +158,182 @@ function getGaugeSVG(score: number): string {
   });
 }
 
+// Get historical data for all sites across all available report dates
+function getHistoricalData(): Record<
+  string,
+  Array<{ date: string; score: number }>
+> {
+  const docsRoot = path.join(process.cwd(), "docs");
+  const reportDirs = fs
+    .readdirSync(docsRoot)
+    .filter(
+      (f) =>
+        /^\d{4}-\d{2}-\d{2}$/.test(f) &&
+        fs.statSync(path.join(docsRoot, f)).isDirectory()
+    )
+    .sort(); // Chronological order (oldest first)
+
+  const historicalData: Record<
+    string,
+    Array<{ date: string; score: number }>
+  > = {};
+
+  for (const reportDir of reportDirs) {
+    const reportsDir = path.join(docsRoot, reportDir);
+    const reportFiles = getReportFiles(reportsDir);
+
+    if (reportFiles.length === 0) continue;
+
+    const data = parseReports(reportFiles);
+
+    // Calculate average score for each site
+    for (const [siteKey, siteData] of Object.entries(data)) {
+      if (!historicalData[siteKey]) {
+        historicalData[siteKey] = [];
+      }
+
+      // Calculate average across all pages and devices
+      let totalScore = 0;
+      let scoreCount = 0;
+
+      for (const pageData of Object.values(siteData.pages)) {
+        for (const deviceScore of Object.values(pageData)) {
+          if (typeof deviceScore === "number") {
+            totalScore += deviceScore;
+            scoreCount++;
+          }
+        }
+      }
+
+      if (scoreCount > 0) {
+        const averageScore = totalScore / scoreCount;
+        historicalData[siteKey].push({
+          date: reportDir,
+          score: Math.round(averageScore * 10) / 10,
+        });
+      }
+    }
+  }
+
+  return historicalData;
+}
+
+// Generate SVG line chart for historical scores
+function generateHistoryChart(
+  siteKey: string,
+  historicalData: Record<string, Array<{ date: string; score: number }>>
+): string {
+  const data = historicalData[siteKey] || [];
+
+  if (data.length < 2) {
+    return `<div style="color: #999; font-size: 12px; text-align: center; padding: 20px;">No history</div>`;
+  }
+
+  const chartWidth = 200;
+  const chartHeight = 100;
+  const padding = 8;
+  const width = chartWidth + 2 * padding;
+  const height = chartHeight + 2 * padding;
+
+  // Y-axis is always 0-100 (Lighthouse score range)
+  const minY = 0;
+  const maxY = 100;
+
+  // X-axis based on data points
+  const minX = 0;
+  const maxX = data.length - 1;
+
+  // Convert data points to SVG coordinates
+  const points = data.map((point, index) => {
+    const x = padding + (index / maxX) * chartWidth;
+    const y =
+      padding +
+      chartHeight -
+      ((point.score - minY) / (maxY - minY)) * chartHeight;
+    return { x, y, ...point };
+  });
+
+  // Lighthouse threshold lines
+  const thresholds = [
+    { score: 50, color: "#ff4136", label: "Poor/Needs Improvement" },
+    { score: 90, color: "#ffa400", label: "Needs Improvement/Good" },
+  ];
+
+  const thresholdLines = thresholds
+    .map((threshold) => {
+      const y =
+        padding +
+        chartHeight -
+        ((threshold.score - minY) / (maxY - minY)) * chartHeight;
+      return `<line x1="${padding}" y1="${y}" x2="${
+        padding + chartWidth
+      }" y2="${y}" stroke="${
+        threshold.color
+      }" stroke-width="0.5" stroke-opacity="0.3" stroke-dasharray="2,2"/>`;
+    })
+    .join("");
+
+  // Color zones (background rectangles)
+  const zones = [
+    { start: 0, end: 50, color: "#ff4136", opacity: 0.15 }, // Poor (red)
+    { start: 50, end: 90, color: "#ffa400", opacity: 0.15 }, // Needs Improvement (orange)
+    { start: 90, end: 100, color: "#0cce6b", opacity: 0.15 }, // Good (green)
+  ];
+
+  const zoneRects = zones
+    .map((zone) => {
+      const y1 =
+        padding +
+        chartHeight -
+        ((zone.end - minY) / (maxY - minY)) * chartHeight;
+      const y2 =
+        padding +
+        chartHeight -
+        ((zone.start - minY) / (maxY - minY)) * chartHeight;
+      return `<rect x="${padding}" y="${y1}" width="${chartWidth}" height="${
+        y2 - y1
+      }" fill="${zone.color}" fill-opacity="${zone.opacity}"/>`;
+    })
+    .join("");
+
+  // Function to get color based on score
+  const getScoreColor = (score: number) => {
+    if (score >= 90) return "#0cce6b"; // green
+    if (score < 50) return "#ff4136"; // red
+    return "#ffa400"; // orange
+  };
+
+  // Create line segments with different colors
+  const lineSegments = points
+    .slice(1)
+    .map((point, index) => {
+      const prevPoint = points[index];
+      const segmentColor = getScoreColor(point.score);
+      return `<line x1="${prevPoint.x}" y1="${prevPoint.y}" x2="${point.x}" y2="${point.y}" stroke="${segmentColor}" stroke-width="2"/>`;
+    })
+    .join("");
+
+  // Generate dots for each data point with individual colors based on score
+  const dots = points
+    .map((point) => {
+      const dotColor = getScoreColor(point.score);
+      return `<circle cx="${point.x}" cy="${point.y}" r="3" fill="${dotColor}" stroke="white" stroke-width="1"/>`;
+    })
+    .join("");
+
+  return `
+    <svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" style="border-radius: 4px;">
+      ${zoneRects}
+      ${thresholdLines}
+      ${lineSegments}
+      ${dots}
+      <title>Score history: ${data
+        .map((d) => `${d.date}: ${d.score}`)
+        .join(", ")}</title>
+    </svg>
+  `;
+}
+
 function generateHTMLTable(
   data: Record<
     string,
@@ -171,6 +347,9 @@ function generateHTMLTable(
   const allPages = Object.keys(sites);
   const deviceKeys = Object.keys(viewports);
   const sitesInOrder = Object.keys(sites.home);
+
+  // Get historical data for charts
+  const historicalData = getHistoricalData();
 
   // Format date as '28 Apr 2025 at 14:47'
   const dateStr = firstReportDate
@@ -191,8 +370,11 @@ function generateHTMLTable(
   const tableHead = `
     <tr>
       <th style="width:36px;"></th>
-      <th style="text-align: left; width: 15%;">Site</th>
-      ${allPages.map((page) => `<th>${page}</th>`).join("")}
+      <th style="text-align: left; width: 12%;">Site</th>
+      ${allPages
+        .map((page) => `<th style="min-width: 400px;">${page}</th>`)
+        .join("")}
+      <th style="width: 220px;">History</th>
     </tr>
   `;
 
@@ -312,6 +494,12 @@ function generateHTMLTable(
       tableBody += `</div>`; // end .score-grid
       tableBody += "</td>";
     }
+
+    // Add history chart column
+    tableBody += `<td class="history-cell" style="padding: 16px; vertical-align: top;">`;
+    tableBody += generateHistoryChart(siteKey, historicalData);
+    tableBody += "</td>";
+
     tableBody += "</tr>\n";
   }
 
@@ -324,13 +512,24 @@ function generateHTMLTable(
   // --- Compose Body Content ---
   const bodyContent = `
   <style>
+    table {
+      table-layout: auto;
+    }
     .score-cell {
       padding: 0;
       vertical-align: top;
+      min-width: 500px;
+    }
+    .history-cell {
+      padding: 8px;
+      vertical-align: top;
+      text-align: center;
+      background: #fafafa;
+      min-width: 220px;
     }
     .score-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      grid-template-columns: 1fr 1fr;
       gap: 12px;
       align-items: start;
     }
@@ -391,7 +590,11 @@ function generateHTMLTable(
     }
     @media (max-width: 600px) {
       .score-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+      .score-col {
+        padding: 12px 4px;
       }
     }
   </style>
